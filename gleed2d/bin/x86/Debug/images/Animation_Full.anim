@@ -1,0 +1,146 @@
+VERSION	2
+IMAGE	-imgfile:"Animation_Full.png"
+MODULE		-mid:103a		-type:0		-imgid:0		-x:1		-y:1		-w:175		-h:175		-desc:"Magic_Circle_2"		-color:0		-thickness:1		-ext1:0
+MODULE		-mid:103c		-type:0		-imgid:0		-x:1		-y:177		-w:116		-h:42		-desc:"shadow"		-color:0		-thickness:1		-ext1:0
+FRAME		-fid:2000		-desc:"B_Cung_Attack prepare"
+	ADD_FMODULE		-mid:103c		-x:-75.5		-y:-7.5		-transform:12		-m11:1.284		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+FRAME		-fid:2001		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-73.3		-y:-7.5		-transform:12		-m11:1.246		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+	ADD_FMODULE		-mid:103a		-x:-76.9		-y:-20.7		-transform:12		-m11:0.975		-m12:0.049		-m21:-0.131		-m22:0.365		-alpha_multiplier:0.33		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:-76.9		-y:-20.7		-transform:12		-m11:0.975		-m12:0.049		-m21:-0.131		-m22:0.365		-alpha_multiplier:0.33		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:-76.9		-y:-20.7		-transform:12		-m11:0.975		-m12:0.049		-m21:-0.131		-m22:0.365		-alpha_multiplier:0.33		-blend_mode:add
+FRAME		-fid:2002		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-71.1		-y:-7.5		-transform:12		-m11:1.208		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+	ADD_FMODULE		-mid:103a		-x:-63.4		-y:-24		-transform:12		-m11:0.95		-m12:0.097		-m21:-0.259		-m22:0.356		-alpha_multiplier:0.67		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:-63.4		-y:-24		-transform:12		-m11:0.95		-m12:0.097		-m21:-0.259		-m22:0.356		-alpha_multiplier:0.67		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:-63.4		-y:-24		-transform:12		-m11:0.95		-m12:0.097		-m21:-0.259		-m22:0.356		-alpha_multiplier:0.67		-blend_mode:add
+FRAME		-fid:2003		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-68.8		-y:-7.5		-transform:12		-m11:1.17		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+	ADD_FMODULE		-mid:103a		-x:-48.8		-y:-26.7		-transform:4		-m11:0.907		-m12:0.143		-m21:-0.383		-m22:0.34		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:-48.8		-y:-26.7		-transform:4		-m11:0.907		-m12:0.143		-m21:-0.383		-m22:0.34		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:-48.8		-y:-26.7		-transform:4		-m11:0.907		-m12:0.143		-m21:-0.383		-m22:0.34		-blend_mode:add
+FRAME		-fid:2004		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-66.6		-y:-7.5		-transform:12		-m11:1.131		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+	ADD_FMODULE		-mid:103a		-x:-33.4		-y:-28.6		-transform:4		-m11:0.848		-m12:0.187		-m21:-0.5		-m22:0.318		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:-33.4		-y:-28.6		-transform:4		-m11:0.848		-m12:0.187		-m21:-0.5		-m22:0.318		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:-33.4		-y:-28.6		-transform:4		-m11:0.848		-m12:0.187		-m21:-0.5		-m22:0.318		-blend_mode:add
+FRAME		-fid:2005		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-64.4		-y:-7.5		-transform:12		-m11:1.093		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+	ADD_FMODULE		-mid:103a		-x:-17.5		-y:-29.7		-transform:4		-m11:0.774		-m12:0.228		-m21:-0.608		-m22:0.29		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:-17.5		-y:-29.7		-transform:4		-m11:0.774		-m12:0.228		-m21:-0.608		-m22:0.29		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:-17.5		-y:-29.7		-transform:4		-m11:0.774		-m12:0.228		-m21:-0.608		-m22:0.29		-blend_mode:add
+FRAME		-fid:2006		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-62.2		-y:-7.5		-transform:12		-m11:1.055		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+	ADD_FMODULE		-mid:103a		-x:-1.3		-y:-30.1		-transform:4		-m11:0.687		-m12:0.264		-m21:-0.705		-m22:0.257		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:-1.3		-y:-30.1		-transform:4		-m11:0.687		-m12:0.264		-m21:-0.705		-m22:0.257		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:-1.3		-y:-30.1		-transform:4		-m11:0.687		-m12:0.264		-m21:-0.705		-m22:0.257		-blend_mode:add
+FRAME		-fid:2007		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-60		-y:-7.5		-transform:12		-m11:1.017		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+	ADD_FMODULE		-mid:103a		-x:14.8		-y:-29.6		-transform:4		-m11:0.587		-m12:0.296		-m21:-0.79		-m22:0.22		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:14.8		-y:-29.6		-transform:4		-m11:0.587		-m12:0.296		-m21:-0.79		-m22:0.22		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:14.8		-y:-29.6		-transform:4		-m11:0.587		-m12:0.296		-m21:-0.79		-m22:0.22		-blend_mode:add
+FRAME		-fid:2008		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-57.8		-y:-7.5		-transform:12		-m11:0.978		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+	ADD_FMODULE		-mid:103a		-x:30.7		-y:-28.3		-transform:4		-m11:0.477		-m12:0.323		-m21:-0.861		-m22:0.179		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:30.7		-y:-28.3		-transform:4		-m11:0.477		-m12:0.323		-m21:-0.861		-m22:0.179		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:30.7		-y:-28.3		-transform:4		-m11:0.477		-m12:0.323		-m21:-0.861		-m22:0.179		-blend_mode:add
+FRAME		-fid:2009		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-57.8		-y:-7.5		-transform:12		-m11:0.978		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+	ADD_FMODULE		-mid:103a		-x:45.9		-y:-26.2		-transform:4		-m11:0.358		-m12:0.343		-m21:-0.917		-m22:0.134		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:45.9		-y:-26.2		-transform:4		-m11:0.358		-m12:0.343		-m21:-0.917		-m22:0.134		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:45.9		-y:-26.2		-transform:4		-m11:0.358		-m12:0.343		-m21:-0.917		-m22:0.134		-blend_mode:add
+FRAME		-fid:200a		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-57.8		-y:-7.5		-transform:12		-m11:0.978		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+	ADD_FMODULE		-mid:103a		-x:60.3		-y:-23.4		-transform:4		-m11:0.234		-m12:0.358		-m21:-0.956		-m22:0.087		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:60.3		-y:-23.4		-transform:4		-m11:0.234		-m12:0.358		-m21:-0.956		-m22:0.087		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:60.3		-y:-23.4		-transform:4		-m11:0.234		-m12:0.358		-m21:-0.956		-m22:0.087		-blend_mode:add
+FRAME		-fid:200b		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-57.8		-y:-7.5		-transform:12		-m11:0.978		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+	ADD_FMODULE		-mid:103a		-x:73.5		-y:-19.9		-transform:12		-m11:0.105		-m12:0.367		-m21:-0.979		-m22:0.039		-alpha_multiplier:0.88		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:73.5		-y:-19.9		-transform:12		-m11:0.105		-m12:0.367		-m21:-0.979		-m22:0.039		-alpha_multiplier:0.88		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:73.5		-y:-19.9		-transform:12		-m11:0.105		-m12:0.367		-m21:-0.979		-m22:0.039		-alpha_multiplier:0.88		-blend_mode:add
+FRAME		-fid:200c		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-57.8		-y:-7.5		-transform:12		-m11:0.978		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+	ADD_FMODULE		-mid:103a		-x:85.4		-y:-15.8		-transform:12		-m11:-0.026		-m12:0.369		-m21:-0.984		-m22:-0.01		-alpha_multiplier:0.75		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:85.4		-y:-15.8		-transform:12		-m11:-0.026		-m12:0.369		-m21:-0.984		-m22:-0.01		-alpha_multiplier:0.75		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:85.4		-y:-15.8		-transform:12		-m11:-0.026		-m12:0.369		-m21:-0.984		-m22:-0.01		-alpha_multiplier:0.75		-blend_mode:add
+FRAME		-fid:200d		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-57.8		-y:-7.5		-transform:12		-m11:0.978		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+	ADD_FMODULE		-mid:103a		-x:95.8		-y:-11.2		-transform:12		-m11:-0.157		-m12:0.364		-m21:-0.972		-m22:-0.059		-alpha_multiplier:0.63		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:95.8		-y:-11.2		-transform:12		-m11:-0.157		-m12:0.364		-m21:-0.972		-m22:-0.059		-alpha_multiplier:0.63		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:95.8		-y:-11.2		-transform:12		-m11:-0.157		-m12:0.364		-m21:-0.972		-m22:-0.059		-alpha_multiplier:0.63		-blend_mode:add
+FRAME		-fid:200e		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-57.8		-y:-7.5		-transform:12		-m11:0.978		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+	ADD_FMODULE		-mid:103a		-x:104.4		-y:-6		-transform:12		-m11:-0.284		-m12:0.353		-m21:-0.942		-m22:-0.106		-alpha_multiplier:0.5		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:104.4		-y:-6		-transform:12		-m11:-0.284		-m12:0.353		-m21:-0.942		-m22:-0.106		-alpha_multiplier:0.5		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:104.4		-y:-6		-transform:12		-m11:-0.284		-m12:0.353		-m21:-0.942		-m22:-0.106		-alpha_multiplier:0.5		-blend_mode:add
+FRAME		-fid:200f		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-57.8		-y:-7.5		-transform:12		-m11:0.978		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+	ADD_FMODULE		-mid:103a		-x:111.1		-y:-0.5		-transform:12		-m11:-0.407		-m12:0.336		-m21:-0.896		-m22:-0.152		-alpha_multiplier:0.38		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:111.1		-y:-0.5		-transform:12		-m11:-0.407		-m12:0.336		-m21:-0.896		-m22:-0.152		-alpha_multiplier:0.38		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:111.1		-y:-0.5		-transform:12		-m11:-0.407		-m12:0.336		-m21:-0.896		-m22:-0.152		-alpha_multiplier:0.38		-blend_mode:add
+FRAME		-fid:2010		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-57.8		-y:-7.5		-transform:12		-m11:0.978		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+	ADD_FMODULE		-mid:103a		-x:115.7		-y:5.3		-transform:12		-m11:-0.522		-m12:0.313		-m21:-0.834		-m22:-0.196		-alpha_multiplier:0.25		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:115.7		-y:5.3		-transform:12		-m11:-0.522		-m12:0.313		-m21:-0.834		-m22:-0.196		-alpha_multiplier:0.25		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:115.7		-y:5.3		-transform:12		-m11:-0.522		-m12:0.313		-m21:-0.834		-m22:-0.196		-alpha_multiplier:0.25		-blend_mode:add
+FRAME		-fid:2011		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-57.8		-y:-7.5		-transform:12		-m11:0.978		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+	ADD_FMODULE		-mid:103a		-x:118.3		-y:11.3		-transform:12		-m11:-0.628		-m12:0.284		-m21:-0.758		-m22:-0.235		-alpha_multiplier:0.13		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:118.3		-y:11.3		-transform:12		-m11:-0.628		-m12:0.284		-m21:-0.758		-m22:-0.235		-alpha_multiplier:0.13		-blend_mode:add
+	ADD_FMODULE		-mid:103a		-x:118.3		-y:11.3		-transform:12		-m11:-0.628		-m12:0.284		-m21:-0.758		-m22:-0.235		-alpha_multiplier:0.13		-blend_mode:add
+FRAME		-fid:2012		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-57.8		-y:-7.5		-transform:12		-m11:0.978		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+FRAME		-fid:2013		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-57.8		-y:-7.5		-transform:12		-m11:0.978		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+FRAME		-fid:2014		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-57.8		-y:-7.5		-transform:12		-m11:0.978		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+FRAME		-fid:2015		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-57.8		-y:-7.5		-transform:12		-m11:0.978		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+FRAME		-fid:2016		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-57.8		-y:-7.5		-transform:12		-m11:0.978		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+FRAME		-fid:2017		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-57.8		-y:-7.5		-transform:12		-m11:0.978		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+FRAME		-fid:2018		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-57.8		-y:-7.5		-transform:12		-m11:0.978		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+FRAME		-fid:2019		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-57.8		-y:-7.5		-transform:12		-m11:0.978		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+FRAME		-fid:201a		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-57.8		-y:-7.5		-transform:12		-m11:0.978		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+FRAME		-fid:201b		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-57.8		-y:-7.5		-transform:12		-m11:0.978		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+FRAME		-fid:201c		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-57.8		-y:-7.5		-transform:12		-m11:0.978		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+FRAME		-fid:201d		-desc:""
+	ADD_FMODULE		-mid:103c		-x:-57.8		-y:-7.5		-transform:12		-m11:0.978		-m12:0		-m21:0		-m22:1.095		-alpha_multiplier:0.5
+ANIMATION		-aid:3000		-desc:"B_Cung_Attack prepare"
+	ADD_AFRAME		-fid:2000		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2001		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2002		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2003		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2004		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2005		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2006		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2007		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2008		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2009		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:200a		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:200b		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:200c		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:200d		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:200e		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:200f		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2010		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2011		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2012		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2013		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2014		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2015		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2016		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2017		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2018		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2019		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:201a		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:201b		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:201c		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:201d		-x:0		-y:0		-transform:0		-time:1
