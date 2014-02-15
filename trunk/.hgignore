@@ -1,0 +1,8 @@
+# Ignore Visual Studio 2008 files
+
+syntax: glob
+
+*.suo
+*.cachefile
+bin/
+obj/

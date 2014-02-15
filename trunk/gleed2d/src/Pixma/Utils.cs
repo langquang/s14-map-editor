@@ -1,0 +1,181 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+
+
+namespace GLEED2D
+{
+    class Utils
+    {
+        public static bool hasFlags(int flags ,int value)
+        {
+			return ((flags & value) == value);
+		}
+
+        public static  string getBlendModeint(int mode)
+        {
+            return "normal";
+        }
+
+        public static Rectangle transformRect(Rectangle bounds, PixMatrix m)
+        {
+            if (m == null) return bounds;
+
+            Vector2 topLeft = new Vector2(bounds.Left, bounds.Top);
+            topLeft = m.transform(topLeft);
+
+
+            Vector2 topRight = new Vector2(bounds.Right, bounds.Top);
+            topRight = m.transform(topRight);
+
+
+            Vector2 bottomRight = new Vector2(bounds.Right, bounds.Bottom);
+            bottomRight = m.transform(bottomRight);
+
+
+            Vector2 bottomLeft = new Vector2(bounds.Left, bounds.Bottom);
+            bottomLeft = m.transform(bottomLeft);
+
+
+            float left = Math.Min(Math.Min(Math.Min(topLeft.X, topRight.X) , bottomRight.X) , bottomLeft.X);
+			float top = Math.Min(Math.Min(Math.Min(topLeft.Y, topRight.Y), bottomRight.Y), bottomLeft.Y);
+			float right = Math.Max(Math.Max(Math.Max(topLeft.X, topRight.X), bottomRight.X), bottomLeft.X);
+			float bottom = Math.Max(Math.Max(Math.Max(topLeft.Y, topRight.Y), bottomRight.Y), bottomLeft.Y);
+			return new Rectangle((int)left, (int)top, (int)(right - left),(int)(bottom - top));
+        }
+
+        public static float getRectangleScaleX(Rectangle src, Rectangle dest)
+        {
+            Vector2 topLeft = new Vector2(src.Left, src.Top);
+            Vector2 topRight = new Vector2(src.Right, src.Top);
+            float length_src = Vector2.Distance(topLeft, topRight);
+
+            topLeft = new Vector2(dest.Left, dest.Top);
+            topRight = new Vector2(dest.Right, dest.Top);
+            float length_dest = Vector2.Distance(topLeft, topRight);
+
+            return length_dest / length_src;
+        }
+
+        public static float getRectangleScaleY(Rectangle src, Rectangle dest)
+        {
+            Vector2 topLeft = new Vector2(src.Left, src.Top);
+            Vector2 bottomLeft = new Vector2(src.Left, src.Bottom);
+            float length_src = Vector2.Distance(topLeft, bottomLeft);
+
+            topLeft = new Vector2(dest.Left, dest.Top);
+            bottomLeft = new Vector2(dest.Right, dest.Top);
+            float length_dest = Vector2.Distance(topLeft, bottomLeft);
+
+            return length_dest / length_src;
+        }
+
+        /// <summary>
+        /// Splits a texture into an array of smaller textures of the specified size.
+        /// </summary>
+        /// <param name="original">The texture to be split into smaller textures</param>
+        /// <param name="partWidth">The width of each of the smaller textures that will be contained in the returned array.</param>
+        /// <param name="partHeight">The height of each of the smaller textures that will be contained in the returned array.</param>
+        public Texture2D[] Split(Texture2D original, int partWidth, int partHeight, out int xCount, out int yCount)
+        {
+            yCount = original.Height / partHeight + (partHeight % original.Height == 0 ? 0 : 1);//The number of textures in each horizontal row
+            xCount = original.Height / partHeight + (partHeight % original.Height == 0 ? 0 : 1);//The number of textures in each vertical column
+            Texture2D[] r = new Texture2D[xCount * yCount];//Number of parts = (area of original) / (area of each part).
+            int dataPerPart = partWidth * partHeight;//Number of pixels in each of the split parts
+
+            //Get the pixel data from the original texture:
+            Color[] originalData = new Color[original.Width * original.Height];
+            original.GetData<Color>(originalData);
+
+            int index = 0;
+            for (int y = 0; y < yCount * partHeight; y += partHeight)
+                for (int x = 0; x < xCount * partWidth; x += partWidth)
+                {
+                    //The texture at coordinate {x, y} from the top-left of the original texture
+                    Texture2D part = new Texture2D(original.GraphicsDevice, partWidth, partHeight);
+                    //The data for part
+                    Color[] partData = new Color[dataPerPart];
+
+                    //Fill the part data with colors from the original texture
+                    for (int py = 0; py < partHeight; py++)
+                        for (int px = 0; px < partWidth; px++)
+                        {
+                            int partIndex = px + py * partWidth;
+                            //If a part goes outside of the source texture, then fill the overlapping part with Color.Transparent
+                            if (y + py >= original.Height || x + px >= original.Width)
+                                partData[partIndex] = Color.TransparentWhite;
+                            else
+                                partData[partIndex] = originalData[(x + px) + (y + py) * original.Width];
+                        }
+
+                    //Fill the part with the extracted data
+                    part.SetData<Color>(partData);
+                    //Stick the part in the return array:                    
+                    r[index++] = part;
+                }
+            //Return the array of parts.
+            return r;
+        }
+
+        public static void copyPixel(Texture2D src, Texture2D dest, Rectangle rect_src, Vector2 dest_point)
+        {
+            //Get the pixel data from the original texture:
+            Color[] originalData = new Color[src.Width * src.Height];
+            src.GetData<Color>(originalData);
+
+            Color[] partData = new Color[dest.Width * dest.Height];
+            dest.GetData<Color>(partData);
+
+            //Fill the part data with colors from the original texture
+            int i = 0;
+            for (int py = rect_src.Top; py < rect_src.Bottom; py++)
+                for (int px = rect_src.Left; px < rect_src.Right; px++)
+                {
+                    int partIndex = px + py * src.Width;
+                    //If a part goes outside of the source texture, then fill the overlapping part with Color.Transparent
+                    if (py < src.Height && px < src.Width)
+                    {
+                        partData[i] = originalData[partIndex];
+                       // partData[i] = Color.Red;
+                    }
+                        
+                    i++;
+                }
+
+            //Fill the part with the extracted data
+            dest.SetData<Color>(partData);
+        }
+
+        public static void draw(Texture2D backbuffer, Texture2D drawData, int ox, int oy)
+        {
+            //Get the pixel data from the original texture:
+            Color[] originalData = new Color[backbuffer.Width * backbuffer.Height];
+            backbuffer.GetData<Color>(originalData);
+
+            Color[] partData = new Color[drawData.Width * drawData.Height];
+            drawData.GetData<Color>(partData);
+
+            //Fill the part data with colors from the original texture
+            int max_x = ox + drawData.Width;
+            int max_y = oy + drawData.Height;
+            int i = 0;
+            for (int py = oy; py < max_y; py++)
+                for (int px = ox; px < max_x; px++)
+                {
+                    int partIndex = px + py * backbuffer.Width;
+                    //If a part goes outside of the source texture, then fill the overlapping part with Color.Transparent
+                    if (py < backbuffer.Height && px < backbuffer.Width)
+                        originalData[partIndex] = partData[i];
+
+                    i++;
+                }
+
+            //Fill the part with the extracted data
+            backbuffer.SetData<Color>(originalData);
+        }
+    }
+}
