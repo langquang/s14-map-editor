@@ -21,24 +21,24 @@ namespace GLEED2D
             return "normal";
         }
 
-        public static Rectangle transformRect(Rectangle bounds, PixMatrix m)
+        public static Rectangle transformRect(Rectangle bounds, Matrix m)
         {
             if (m == null) return bounds;
 
             Vector2 topLeft = new Vector2(bounds.Left, bounds.Top);
-            topLeft = m.transform(topLeft);
+            topLeft = Vector2.Transform(topLeft, m);
 
 
             Vector2 topRight = new Vector2(bounds.Right, bounds.Top);
-            topRight = m.transform(topRight);
+            topRight = Vector2.Transform(topRight, m);
 
 
             Vector2 bottomRight = new Vector2(bounds.Right, bounds.Bottom);
-            bottomRight = m.transform(bottomRight);
+            bottomRight = Vector2.Transform(bottomRight, m);
 
 
             Vector2 bottomLeft = new Vector2(bounds.Left, bounds.Bottom);
-            bottomLeft = m.transform(bottomLeft);
+            bottomLeft = Vector2.Transform(bottomLeft, m);
 
 
             float left = Math.Min(Math.Min(Math.Min(topLeft.X, topRight.X) , bottomRight.X) , bottomLeft.X);
@@ -140,7 +140,6 @@ namespace GLEED2D
                     if (py < src.Height && px < src.Width)
                     {
                         partData[i] = originalData[partIndex];
-                       // partData[i] = Color.Red;
                     }
                         
                     i++;
@@ -150,32 +149,53 @@ namespace GLEED2D
             dest.SetData<Color>(partData);
         }
 
-        public static void draw(Texture2D backbuffer, Texture2D drawData, int ox, int oy)
+        public static void draw(System.Drawing.Graphics backbuffer, System.Drawing.Bitmap drawData, Matrix transform)
         {
-            //Get the pixel data from the original texture:
-            Color[] originalData = new Color[backbuffer.Width * backbuffer.Height];
-            backbuffer.GetData<Color>(originalData);
+            System.Drawing.Drawing2D.Matrix _matrix = new System.Drawing.Drawing2D.Matrix(transform.M11, transform.M12, transform.M21, transform.M22, transform.M41, transform.M42);
+            backbuffer.Transform = _matrix;
+            backbuffer.DrawImage(drawData, 0,0);
 
-            Color[] partData = new Color[drawData.Width * drawData.Height];
-            drawData.GetData<Color>(partData);
-
-            //Fill the part data with colors from the original texture
-            int max_x = ox + drawData.Width;
-            int max_y = oy + drawData.Height;
-            int i = 0;
-            for (int py = oy; py < max_y; py++)
-                for (int px = ox; px < max_x; px++)
-                {
-                    int partIndex = px + py * backbuffer.Width;
-                    //If a part goes outside of the source texture, then fill the overlapping part with Color.Transparent
-                    if (py < backbuffer.Height && px < backbuffer.Width)
-                        originalData[partIndex] = partData[i];
-
-                    i++;
-                }
-
-            //Fill the part with the extracted data
-            backbuffer.SetData<Color>(originalData);
         }
+
+        public static void copyPixel(System.Drawing.Bitmap src, System.Drawing.Bitmap dest, Rectangle rect_src, Vector2 dest_point)
+        {
+            //Fill the part data with colors from the original texture
+            int x = 0, y = 0;
+            System.Drawing.Color c;
+            for (int py = rect_src.Top; py < rect_src.Bottom; py++)
+            {
+                x = 0;
+                for (int px = rect_src.Left; px < rect_src.Right; px++)
+                {
+                    c = src.GetPixel(px, py);
+                    dest.SetPixel(x, y, c);
+                    x++;
+                }
+                y++;
+            }
+        }
+
+        public static Texture2D BitmapToTexture2D(  
+        	    GraphicsDevice GraphicsDevice,   
+        	    System.Drawing.Bitmap image)  
+    	{
+            int width = image.Width;
+            int height = image.Height;
+
+            Color[] pixels = new Color[width * height];
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    System.Drawing.Color c = image.GetPixel(x, y);
+                    pixels[(y * width) + x] = new Color(c.R, c.G, c.B, c.A);
+                }
+            }
+
+            Texture2D myTex = new Texture2D(GraphicsDevice,width,height);
+            myTex.SetData<Color>(pixels);
+            return myTex;
+    	} 
+
     }
 }

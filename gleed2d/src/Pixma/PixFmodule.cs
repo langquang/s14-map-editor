@@ -30,7 +30,6 @@ namespace GLEED2D
             _drawMatrix = mLocalTrans * worldMatrix;
            
             sb.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Immediate, SaveStateMode.None, _drawMatrix);
-
             sb.GraphicsDevice.RenderState.CullMode = CullMode.None; 
             sb.Draw(mTexture, _pos, c);
             sb.End();

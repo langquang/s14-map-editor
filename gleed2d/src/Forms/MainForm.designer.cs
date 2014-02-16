@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Rectangle", 0);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Circle", 1);
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Path", 2);
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("Rectangle", 0);
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("Circle", 1);
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("Path", 2);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -140,6 +140,14 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.listView2 = new System.Windows.Forms.ListView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.listView4 = new System.Windows.Forms.ListView();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.pixma_path = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.imageList48 = new System.Windows.Forms.ImageList(this.components);
             this.imageList64 = new System.Windows.Forms.ImageList(this.components);
             this.imageList128 = new System.Windows.Forms.ImageList(this.components);
@@ -152,6 +160,18 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.listView3 = new System.Windows.Forms.ListView();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.framesList48 = new System.Windows.Forms.ImageList(this.components);
+            this.framesList64 = new System.Windows.Forms.ImageList(this.components);
+            this.framesList96 = new System.Windows.Forms.ImageList(this.components);
+            this.framesList128 = new System.Windows.Forms.ImageList(this.components);
+            this.framesList256 = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.CustomPropertyContextMenu.SuspendLayout();
@@ -175,6 +195,7 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.LevelContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1140,6 +1161,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.HotTrack = true;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -1196,7 +1218,7 @@
             // chooseFolder
             // 
             this.chooseFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chooseFolder.Location = new System.Drawing.Point(541, 6);
+            this.chooseFolder.Location = new System.Drawing.Point(565, 6);
             this.chooseFolder.Name = "chooseFolder";
             this.chooseFolder.Size = new System.Drawing.Size(60, 23);
             this.chooseFolder.TabIndex = 5;
@@ -1208,7 +1230,7 @@
             // 
             this.buttonFolderUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonFolderUp.Image = ((System.Drawing.Image)(resources.GetObject("buttonFolderUp.Image")));
-            this.buttonFolderUp.Location = new System.Drawing.Point(503, 6);
+            this.buttonFolderUp.Location = new System.Drawing.Point(527, 6);
             this.buttonFolderUp.Name = "buttonFolderUp";
             this.buttonFolderUp.Size = new System.Drawing.Size(32, 23);
             this.buttonFolderUp.TabIndex = 4;
@@ -1219,7 +1241,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(649, 11);
+            this.label2.Location = new System.Drawing.Point(648, 11);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(30, 13);
             this.label2.TabIndex = 3;
@@ -1243,7 +1265,7 @@
             this.textBox1.Location = new System.Drawing.Point(51, 8);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(446, 20);
+            this.textBox1.Size = new System.Drawing.Size(470, 20);
             this.textBox1.TabIndex = 1;
             // 
             // label1
@@ -1270,15 +1292,15 @@
             // 
             this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView2.HideSelection = false;
-            listViewItem1.ToolTipText = "A simple rectangle defined by position, width and height. Rectangle Primitives ca" +
+            listViewItem4.ToolTipText = "A simple rectangle defined by position, width and height. Rectangle Primitives ca" +
                 "n be scaled but not rotated.";
-            listViewItem2.ToolTipText = "A simple circle defined by position and radius. Circle Primitives can be scaled b" +
+            listViewItem5.ToolTipText = "A simple circle defined by position and radius. Circle Primitives can be scaled b" +
                 "ut not rotated.";
-            listViewItem3.ToolTipText = "A Path is an array of Vector2. Path Primitives can be rotated and scaled.";
+            listViewItem6.ToolTipText = "A Path is an array of Vector2. Path Primitives can be rotated and scaled.";
             this.listView2.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3});
+            listViewItem4,
+            listViewItem5,
+            listViewItem6});
             this.listView2.LargeImageList = this.imageList1;
             this.listView2.Location = new System.Drawing.Point(3, 3);
             this.listView2.MultiSelect = false;
@@ -1296,6 +1318,98 @@
             this.imageList1.Images.SetKeyName(0, "primitive_rectangle.png");
             this.imageList1.Images.SetKeyName(1, "primitive_circle.png");
             this.imageList1.Images.SetKeyName(2, "primitive_path.png");
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.listView4);
+            this.tabPage3.Controls.Add(this.button3);
+            this.tabPage3.Controls.Add(this.button4);
+            this.tabPage3.Controls.Add(this.label5);
+            this.tabPage3.Controls.Add(this.comboBox3);
+            this.tabPage3.Controls.Add(this.pixma_path);
+            this.tabPage3.Controls.Add(this.label6);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(739, 167);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Frames";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // listView4
+            // 
+            this.listView4.AllowDrop = true;
+            this.listView4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listView4.HideSelection = false;
+            this.listView4.LargeImageList = this.imageList96;
+            this.listView4.Location = new System.Drawing.Point(9, 34);
+            this.listView4.MultiSelect = false;
+            this.listView4.Name = "listView4";
+            this.listView4.ShowItemToolTips = true;
+            this.listView4.Size = new System.Drawing.Size(740, 127);
+            this.listView4.TabIndex = 13;
+            this.listView4.UseCompatibleStateImageBehavior = false;
+            // 
+            // button3
+            // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Location = new System.Drawing.Point(561, 6);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(60, 23);
+            this.button3.TabIndex = 12;
+            this.button3.Text = "Choose...";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
+            this.button4.Location = new System.Drawing.Point(523, 6);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(32, 23);
+            this.button4.TabIndex = 11;
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(644, 11);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(30, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Size:";
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(675, 8);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(74, 21);
+            this.comboBox3.TabIndex = 9;
+            // 
+            // pixma_path
+            // 
+            this.pixma_path.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pixma_path.Location = new System.Drawing.Point(51, 8);
+            this.pixma_path.Name = "pixma_path";
+            this.pixma_path.ReadOnly = true;
+            this.pixma_path.Size = new System.Drawing.Size(466, 20);
+            this.pixma_path.TabIndex = 8;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 11);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(39, 13);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "Folder:";
             // 
             // imageList48
             // 
@@ -1382,6 +1496,111 @@
             this.toolStripMenuItem6.Text = "Add Custom Property";
             this.toolStripMenuItem6.Click += new System.EventHandler(this.ActionAddCustomProperty);
             // 
+            // listView3
+            // 
+            this.listView3.AllowDrop = true;
+            this.listView3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listView3.HideSelection = false;
+            this.listView3.LargeImageList = this.imageList96;
+            this.listView3.Location = new System.Drawing.Point(9, 34);
+            this.listView3.MultiSelect = false;
+            this.listView3.Name = "listView3";
+            this.listView3.ShowItemToolTips = true;
+            this.listView3.Size = new System.Drawing.Size(748, 127);
+            this.listView3.TabIndex = 6;
+            this.listView3.UseCompatibleStateImageBehavior = false;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(545, 6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(60, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Choose...";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.Location = new System.Drawing.Point(507, 6);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(32, 23);
+            this.button2.TabIndex = 4;
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(653, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(30, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Size:";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(683, 8);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(74, 21);
+            this.comboBox2.TabIndex = 2;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox2.Location = new System.Drawing.Point(51, 8);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(450, 20);
+            this.textBox2.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 11);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(39, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Folder:";
+            // 
+            // framesList48
+            // 
+            this.framesList48.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.framesList48.ImageSize = new System.Drawing.Size(48, 48);
+            this.framesList48.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // framesList64
+            // 
+            this.framesList64.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.framesList64.ImageSize = new System.Drawing.Size(64, 64);
+            this.framesList64.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // framesList96
+            // 
+            this.framesList96.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.framesList96.ImageSize = new System.Drawing.Size(96, 96);
+            this.framesList96.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // framesList128
+            // 
+            this.framesList128.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.framesList128.ImageSize = new System.Drawing.Size(128, 128);
+            this.framesList128.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // framesList256
+            // 
+            this.framesList256.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.framesList256.ImageSize = new System.Drawing.Size(256, 256);
+            this.framesList256.TransparentColor = System.Drawing.Color.Transparent;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1428,6 +1647,8 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.LevelContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1555,5 +1776,25 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator18;
         public System.Windows.Forms.PropertyGrid propertyGrid1;
         public System.Windows.Forms.ToolStripComboBox isoCombo;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.ListView listView4;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.TextBox pixma_path;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ListView listView3;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ImageList framesList48;
+        private System.Windows.Forms.ImageList framesList64;
+        private System.Windows.Forms.ImageList framesList96;
+        private System.Windows.Forms.ImageList framesList128;
+        private System.Windows.Forms.ImageList framesList256;
     }
 }
