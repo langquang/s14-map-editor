@@ -98,6 +98,13 @@ namespace GLEED2D
             SetListViewSpacing(listView2, 128 + 8, 128 + 32);
 
             pictureBox1.AllowDrop = true;
+            // pixma tap
+            comboBox3.Items.Add("48x48");
+            comboBox3.Items.Add("64x64");
+            comboBox3.Items.Add("96x96");
+            comboBox3.Items.Add("128x128");
+            comboBox3.Items.Add("256x256");
+            comboBox3.SelectedIndex = 1;
 
         }
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -995,6 +1002,77 @@ namespace GLEED2D
             }
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog d = new FolderBrowserDialog();
+            d.SelectedPath = pixma_path.Text;
+            if (d.ShowDialog() == DialogResult.OK) loadPixmaFrames(d.SelectedPath);
+        }
+
+        public void loadPixmaFrames(string path)
+        {
+            framesList48.Images.Clear();
+            framesList64.Images.Clear();
+            framesList96.Images.Clear();
+            framesList128.Images.Clear();
+            framesList256.Images.Clear();
+
+            Image img = Resources.folder;
+            framesList48.Images.Add(img);
+            framesList64.Images.Add(img);
+            framesList96.Images.Add(img);
+            framesList128.Images.Add(img);
+            framesList256.Images.Add(img);
+
+            listView1.Clear();
+
+            DirectoryInfo di = new DirectoryInfo(path);
+            textBox1.Text = di.FullName;
+            DirectoryInfo[] folders = di.GetDirectories();
+            foreach (DirectoryInfo folder in folders)
+            {
+                ListViewItem lvi = new ListViewItem();
+                lvi.Text = folder.Name;
+                lvi.ToolTipText = folder.Name;
+                lvi.ImageIndex = 0;
+                lvi.Tag = "folder";
+                lvi.Name = folder.FullName;
+                listView1.Items.Add(lvi);
+            }
+
+            string filters = "*.anim";
+            List<FileInfo> fileList = new List<FileInfo>();
+            string[] extensions = filters.Split(';');
+            foreach (string filter in extensions) fileList.AddRange(di.GetFiles(filter));
+            FileInfo[] files = fileList.ToArray();
+
+            foreach (FileInfo file in files)
+            {
+                Pixma pixma = new Pixma(file.Name);
+                pixma.load(file.FullName);
+                int i = 0, length = pixma.NumFrame;
+                for (i = 0; i < length; i++)
+                {
+                    //PixFrame frame = pixma.GetFrame(i);
+                    //Bitmap bmp = new Bitmap(frame.t);
+                    //framesList48.Images.Add(file.FullName, getThumbNail(bmp, 48, 48));
+                    //framesList64.Images.Add(file.FullName, getThumbNail(bmp, 64, 64));
+                    //framesList96.Images.Add(file.FullName, getThumbNail(bmp, 96, 96));
+                    //framesList128.Images.Add(file.FullName, getThumbNail(bmp, 128, 128));
+                    //framesList256.Images.Add(file.FullName, getThumbNail(bmp, 256, 256));
+
+                    //ListViewItem lvi = new ListViewItem();
+                    //lvi.Name = file.FullName;
+                    //lvi.Text = file.Name;
+                    //lvi.ImageKey = file.FullName;
+                    //lvi.Tag = "file";
+                    //lvi.ToolTipText = file.Name + " (" + bmp.Width.ToString() + " x " + bmp.Height.ToString() + ")";
+
+                    //listView1.Items.Add(lvi);
+                }
+
+            }
+        }
 
 
 

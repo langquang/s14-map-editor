@@ -99,12 +99,16 @@ namespace GLEED2D
 		private int[] aframeInfos;
 		
 		private int numImages;
-		private int numLoaded;
         private String[] imageFiles;
 		
 		private int numModuleDes;
 		private string[] moduleDesNames;
 		private int[] moduleDesIndexs;
+
+
+        //=================== GDI
+        private System.Drawing.Bitmap[] textures_bitmap;
+        private System.Drawing.Bitmap[] modules_bitmap;
 
         private string pixma_path;
         public Pixma(string name)
@@ -187,6 +191,7 @@ namespace GLEED2D
 
                 loadModules();
                 loadFrames();
+                calculateFrameRects();
                 loadAnims();
                 loadTextures();
 
@@ -199,6 +204,7 @@ namespace GLEED2D
             if (numModules > 0)
             {
                 moduleImages = new Texture2D[numModules];
+                modules_bitmap = new System.Drawing.Bitmap[numModules];
                 moduleInfos = new int[numModules*5];
                 for (int i = 0; i < numModules; i++)
                 {
@@ -330,13 +336,17 @@ namespace GLEED2D
             numImages = images_str.Length;
             textures = new Texture2D[numImages];
             imageFiles = new String[numImages];
+
+            textures_bitmap = new System.Drawing.Bitmap[numImages];
+
             string folder = Path.GetDirectoryName(pixma_path);
             for (int i = 0; i < numImages; i++)
             {
                 imageFiles[i] = readString(images_str[i], "-imgfile:\"", "\"");
                 textures[i] = TextureLoader.Instance.FromFile(Game1.Instance.GraphicsDevice, folder + "\\" + imageFiles[i]);
+                textures_bitmap[i] = new System.Drawing.Bitmap(folder + "\\" + imageFiles[i]);
                 Texture2D modBm;
-				Vector2 p;
+                System.Drawing.Bitmap modBm_bitmap;
 				int off;
 				int j;
 				for (j = 0;j<numModules;j++) 
@@ -351,12 +361,85 @@ namespace GLEED2D
 						modBm = new Texture2D(Game1.Instance.GraphicsDevice, rectHelper.Width , rectHelper.Height);					
 						Utils.copyPixel(textures[i] ,modBm, rectHelper , new Vector2(0,0));
 						moduleImages[j] = modBm;
-						numLoaded++;
+
+                        modBm_bitmap = new System.Drawing.Bitmap(rectHelper.Width, rectHelper.Height);
+                        Utils.copyPixel(textures_bitmap[i], modBm_bitmap, rectHelper, new Vector2(0, 0));
+                        modules_bitmap[j] = modBm_bitmap;
 					}
 
                 }
             }
         }
+
+        public Rectangle getFrameRect(int frameId)
+        {
+			return frameRects[frameId];
+		}
+		
+		private void calculateFrameRects()
+        {
+			int i;
+			for (i =0;i<numFrames;i++) {
+				frameRects[i] = createFrameRect(i);
+			}
+		}
+
+        private Rectangle createFrameRect(int frameId)
+        {
+			Rectangle frame_rect = new Rectangle();	
+			Rectangle module_rect = new Rectangle(); 			
+			
+			int fmodule_min = 0;
+			int fmodule_max = 0;			
+			int i;
+			
+			int module = 0;						
+			int ox , oy;
+
+            if (frameId < (numFrames - 1))
+            {
+                fmodule_min = frameInfos[frameId];
+                fmodule_max = frameInfos[frameId + 1] - 1;
+            }
+            else if (frameId == (numFrames - 1))
+            {
+                fmodule_min = frameInfos[frameId];
+                fmodule_max = numFModules - 1;
+            }
+
+            for (i = fmodule_min; i <= fmodule_max; i++)
+            {
+                module = fmoduleInfos[i * 2];
+                int fmodule_transf = fmoduleInfos[i * 2 + 1];
+
+				module_rect.X = 0;
+				module_rect.Y = 0;
+				module_rect.Width = moduleInfos[module * 5];
+				module_rect.Height = moduleInfos[module * 5 + 1];	
+
+                fm_trans_matrix = Matrix.Identity;
+                fm_trans_matrix.M11 = fmoduleMatrices[i * 6 + 2];
+                fm_trans_matrix.M12 = fmoduleMatrices[i * 6 + 3];
+                fm_trans_matrix.M21 = fmoduleMatrices[i * 6 + 4];
+                fm_trans_matrix.M22 = fmoduleMatrices[i * 6 + 5];
+                fm_trans_matrix.M41 = fmoduleMatrices[i * 6];
+                fm_trans_matrix.M42 = fmoduleMatrices[i * 6 + 1];
+
+                //// [CS.2012/06/27] incorrect flipping
+                if ((fmodule_transf & TRANSFORM_FLIP_H) != 0)
+                {
+                    fm_trans_matrix *= Matrix.CreateScale(-1, 1, 1);
+                }
+                if ((fmodule_transf & TRANSFORM_FLIP_V) != 0)
+                {
+                    fm_trans_matrix *= Matrix.CreateScale(1, -1, 1);
+                }
+
+                frame_rect = Rectangle.Union(frame_rect, Utils.transformRect(module_rect, fm_trans_matrix));
+            }
+			
+			return frame_rect;
+		}
 
         Matrix fm_trans_matrix = new Matrix();
         Rectangle rectHelper = new Rectangle();
@@ -561,6 +644,126 @@ namespace GLEED2D
                 if (Uri.IsHexDigit(text[i]))
                     return true;
             return false;
+        }
+
+        public int NumFrame
+        {
+            get { return numFrames; }
+        }
+
+
+
+        //============================== GDI
+        public PixFrame GetFrame_bitmap(int frame_id)
+        {
+            if (moduleImages.Length == 0)
+                return null;
+
+            int fmodule_min = 0;
+            int fmodule_max = 0;
+
+            int module = 0;
+            int fmodule_transf = 0;
+            float ox = 0;
+            float oy = 0;
+            String blend_mode = null;
+            int i = 0;
+            System.Drawing.Bitmap module_bmp_data;
+            int mw;
+            int mh;
+            Rectangle module_rect = new Rectangle();
+            PixFrame frame = new PixFrame();
+            Rectangle frame_rect = getFrameRect(frame_id);
+            System.Drawing.Bitmap frame_bitmap = new System.Drawing.Bitmap(frame_rect.Width, frame_rect.Height);
+            System.Drawing.Graphics back_buffer = System.Drawing.Graphics.FromImage(frame_bitmap);
+            Matrix  bitmap_trans = Matrix.CreateTranslation(frame_rect.X, frame_rect.Y, 0);
+
+            if (frame_id < (numFrames - 1))
+            {
+                fmodule_min = frameInfos[frame_id];
+                fmodule_max = frameInfos[frame_id + 1] - 1;
+            }
+            else if (frame_id == (numFrames - 1))
+            {
+                fmodule_min = frameInfos[frame_id];
+                fmodule_max = numFModules - 1;
+            }
+
+            for (i = fmodule_min; i <= fmodule_max; i++)
+            {
+                module = fmoduleInfos[i * 2];
+                fmodule_transf = fmoduleInfos[i * 2 + 1];
+                blend_mode = fmoduleBlends[i];
+
+                ox = fmoduleMatrices[i * 6];
+                oy = fmoduleMatrices[i * 6 + 1];
+
+                module_bmp_data = modules_bitmap[module];
+                mw = moduleInfos[module * 5];
+                mh = moduleInfos[module * 5 + 1];
+                if (mw <= 0 || mh <= 0) break;
+
+
+
+                module_rect.X = 0;
+                module_rect.Y = 0;
+                module_rect.Width = mw;
+                module_rect.Height = mh;
+
+                fm_trans_matrix = Matrix.Identity;
+                fm_trans_matrix.M11 = fmoduleMatrices[i * 6 + 2];
+                fm_trans_matrix.M12 = fmoduleMatrices[i * 6 + 3];
+                fm_trans_matrix.M21 = fmoduleMatrices[i * 6 + 4];
+                fm_trans_matrix.M22 = fmoduleMatrices[i * 6 + 5];
+                fm_trans_matrix.M41 = fmoduleMatrices[i * 6] - frame_rect.X;
+                fm_trans_matrix.M42 = fmoduleMatrices[i * 6 + 1] - frame_rect.Y;
+
+                //// [CS.2012/06/27] incorrect flipping
+                if ((fmodule_transf & TRANSFORM_FLIP_H) != 0)
+                {
+                    fm_trans_matrix *= Matrix.CreateScale(-1, 1, 1);
+                }
+                if ((fmodule_transf & TRANSFORM_FLIP_V) != 0)
+                {
+                    fm_trans_matrix *= Matrix.CreateScale(1, -1, 1);
+                }
+                Utils.draw(back_buffer, module_bmp_data, fm_trans_matrix);
+
+                
+            }
+            frame.addModule_bitmap(frame_bitmap, bitmap_trans);
+            return frame;
+        }
+
+        public PixAnim GetAnim_bitmap(int anim_id)
+        {
+            PixAnim pixAnim = new PixAnim();
+
+            int minAFrame = 0;
+            int maxAFrame = 0;
+            int i;
+            PixFrame frame;
+
+
+            minAFrame = animInfos[anim_id];
+            if (anim_id == (numAnims - 1))
+            {
+                maxAFrame = numAFrames - 1;
+            }
+            else
+            {
+                maxAFrame = animInfos[anim_id + 1];
+            }
+
+            for (i = minAFrame; i < maxAFrame + 1; i++)
+            {
+                frame = GetFrame_bitmap(i);
+                frame.Position = new Vector2(aframeInfos[i * 5 + 1], aframeInfos[i * 5 + 2]);
+                frame.Scale = new Vector2(1, 1);
+                pixAnim.addFrame(frame, aframeInfos[i * 5 + 4]);
+            }
+
+            return pixAnim;
         }
     }
 }

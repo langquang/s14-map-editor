@@ -1359,19 +1359,21 @@ namespace GLEED2D
             frame_int = 0;
 
             Pixma pixma = new Pixma("test");
-            pixma.load(@"D:\JavaServer\Code\CSharp\gleed2d_svn_client\gleed2d\bin\x86\Debug\images\Character_nude.anim");
-            pixmaFrame = pixma.GetFrame(140);
+            pixma.load(@"D:\Myproject\Work\CSharp\s14_editor\gleed2d\bin\x86\Debug\images\Character_nude.anim");
+            //pixmaFrame = pixma.GetFrame(140);
+            pixmaFrame = pixma.GetFrame_bitmap(140);
 
             pixmaFrame.loadIntoEditor();
             pixmaFrame.Visible = true;
-            pixmaFrame.Position = new Vector2(-100,0);
+            //pixmaFrame.Position = new Vector2(-100,0);
             //pixmaFrame.pFlipVertically = true;
-            pixmaFrame.pFlipHorizontally = true;
+            //pixmaFrame.pFlipHorizontally = true;
 
             pixmaAnim = pixma.GetAnim(0);
+            //pixmaAnim = pixma.GetAnim_bitmap(0);
             pixmaAnim.loadIntoEditor();
             pixmaAnim.Visible = true;
-            pixmaAnim.Position = new Vector2(100, 100);
+            //pixmaAnim.Position = new Vector2(100, 100);
 
             //pixmaAnim.Rotation = (float)Math.PI/4;
             //pixmaAnim.pFlipHorizontally = true;
@@ -1383,8 +1385,8 @@ namespace GLEED2D
 
         public void drawTest(SpriteBatch sb)
         {
-            pixmaFrame.drawInEditor(sb);
-            //pixmaAnim.drawInEditor(sb);
+            //pixmaFrame.drawInEditor(sb);
+            pixmaAnim.drawInEditor(sb);
 
             //pixmaAnim.Rotation += 0.1f;
         }
