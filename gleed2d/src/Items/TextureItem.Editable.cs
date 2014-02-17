@@ -27,8 +27,8 @@ namespace GLEED2D
     {
         //for per-pixel-collision
         protected Color[] coldata;
-        Matrix transform;
-        Rectangle boundingrectangle;    //bounding rectangle in world space, for collision broadphase
+        protected Matrix transform;
+        protected Rectangle boundingrectangle;    //bounding rectangle in world space, for collision broadphase
 
         protected Vector2[] polygon;              //selection box: drawn when selected
 
@@ -257,12 +257,14 @@ namespace GLEED2D
         {
             if (!Visible) return;
 
+            sb.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Deferred, SaveStateMode.None, Editor.Instance.camera.matrix);
             SpriteEffects se = SpriteEffects.None;
             if (pFlipHorizontally) se |= SpriteEffects.FlipHorizontally;
             if (pFlipVertically) se |= SpriteEffects.FlipVertically;
             Color c = TintColor;
             if (hovering && Constants.Instance.EnableHighlightOnMouseOver) c = Constants.Instance.ColorHighlight;
             sb.Draw(texture, Position, null, c, Rotation, Origin, Scale, se, 0);
+            sb.End();
         }
 
         public override void drawSelectionFrame(SpriteBatch sb, Matrix matrix, Color color)
@@ -288,7 +290,7 @@ namespace GLEED2D
             return false;
         }
 
-        public bool intersectpixels(Vector2 worldpos)
+        virtual public bool intersectpixels(Vector2 worldpos)
         {
             Vector2 positionInB = Vector2.Transform(worldpos, Matrix.Invert(transform));
             int xB = (int)Math.Round(positionInB.X);

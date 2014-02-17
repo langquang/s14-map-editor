@@ -192,6 +192,7 @@ namespace GLEED2D
         public override void drawInEditor(SpriteBatch sb)
         {
             if (!Visible) return;
+            sb.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Deferred, SaveStateMode.None, Editor.Instance.camera.matrix);
             Color c = LineColor;
             if (hovering && Constants.Instance.EnableHighlightOnMouseOver) c = Constants.Instance.ColorHighlight;
 
@@ -199,6 +200,7 @@ namespace GLEED2D
                 Primitives.Instance.drawPolygon(sb, WorldPoints, c, LineWidth);
             else
                 Primitives.Instance.drawPath(sb, WorldPoints, c, LineWidth);
+            sb.End();
 
         }
 

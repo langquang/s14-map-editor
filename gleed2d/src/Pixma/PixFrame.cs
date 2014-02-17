@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Collections;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Color = Microsoft.Xna.Framework.Graphics.Color;
+using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
 
 namespace GLEED2D
@@ -18,8 +15,8 @@ namespace GLEED2D
         private bool useBitmap;
         // use bitmap mode
         private System.Drawing.Bitmap bitmap;
-        Texture2D mTexture;
         private Matrix bitmap_trans;
+        private Rectangle frame_rect;
         // cache for render
         Vector2 _pos;
         private Matrix worldMatrix;
@@ -28,6 +25,13 @@ namespace GLEED2D
         {
             this.name = name;
             aframes = new ArrayList();
+            this.Position = Vector2.Zero;
+            this.Rotation = 0;
+            this.Scale = Vector2.One;
+            this.TintColor = Microsoft.Xna.Framework.Graphics.Color.White;
+            FlipHorizontally = FlipVertically = false;
+            this.Origin = Vector2.Zero;
+ 
         }
 
         // Auto call in Pixma, don't call it
@@ -42,26 +46,41 @@ namespace GLEED2D
             return name;
         }
 
-        public void addModule_bitmap(System.Drawing.Bitmap bitmap, Matrix bitmap_trans)
+        public void addModule_bitmap(System.Drawing.Bitmap bitmap, Matrix bitmap_trans, Rectangle frame_rect, Vector2 position)
         {
             this.bitmap = bitmap;
-            mTexture = Utils.BitmapToTexture2D(Game1.Instance.GraphicsDevice, this.bitmap);
+            texture = Utils.BitmapToTexture2D(Game1.Instance.GraphicsDevice, this.bitmap);
             this.bitmap_trans = bitmap_trans;
+            this.frame_rect = frame_rect;
+            Position = position;
             _pos = new Vector2();
-            useBitmap = true;   
+            useBitmap = true;
+
+           
+            //for per-pixel-collision
+            coldata = new Color[texture.Width * texture.Height];
+            texture.GetData(coldata);
+
+            polygon = new Vector2[4];
+            OnTransformed();
         }
 
         public override void drawInEditor(SpriteBatch sb)
         {
             if (!Visible) return;
 
-            worldMatrix = Matrix.Identity;
-            worldMatrix *= Matrix.CreateScale(Scale.X, Scale.Y, 1);
-            worldMatrix *= Matrix.CreateRotationZ(Rotation);
-            if (pFlipHorizontally) worldMatrix *= Matrix.CreateScale(-1, 1, 1);
-            if (pFlipVertically) worldMatrix *= Matrix.CreateScale(1, -1, 1);
-            if (useBitmap) worldMatrix *= bitmap_trans;
-            worldMatrix *= Matrix.CreateTranslation(Position.X, Position.Y, 0);
+//            worldMatrix = Matrix.Identity;
+//            worldMatrix *= Matrix.CreateScale(Scale.X, Scale.Y, 1);
+//            worldMatrix *= Matrix.CreateRotationZ(Rotation);
+//            if (pFlipHorizontally) worldMatrix *= Matrix.CreateScale(-1, 1, 1);
+//            if (pFlipVertically) worldMatrix *= Matrix.CreateScale(1, -1, 1);
+//            if (useBitmap) worldMatrix *= bitmap_trans;
+//            worldMatrix *= Matrix.CreateTranslation(Position.X, Position.Y, 0);
+
+            transform = Matrix.Identity;
+            transform *= Matrix.CreateScale(Scale.X, Scale.Y, 1);
+            transform *= Matrix.CreateRotationZ(Rotation);
+            transform *= Matrix.CreateTranslation(Position.X, Position.Y, 0);
             // translate to view 
             worldMatrix *= Editor.Instance.camera.matrix;
 
@@ -78,7 +97,7 @@ namespace GLEED2D
             {
                 sb.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Immediate, SaveStateMode.None, worldMatrix);
                 sb.GraphicsDevice.RenderState.CullMode = CullMode.None;
-                sb.Draw(mTexture, _pos, c);
+                sb.Draw(texture, _pos, c);
                 sb.End();
             }
         }
@@ -98,7 +117,7 @@ namespace GLEED2D
 
                 sb.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Immediate, SaveStateMode.None, worldMatrix);
                 sb.GraphicsDevice.RenderState.CullMode = CullMode.None;
-                sb.Draw(mTexture, _pos, c);
+                sb.Draw(texture, _pos, c);
                 sb.End();
             }
  
@@ -106,13 +125,13 @@ namespace GLEED2D
 
         public System.Drawing.Bitmap getBitmapView()
         {
-            int w = mTexture.Width;
-            int h = mTexture.Height;
+            int w = texture.Width;
+            int h = texture.Height;
             Color c;
-            System.Drawing.Bitmap bm = new Bitmap(w,h);
+            System.Drawing.Bitmap bm = new System.Drawing.Bitmap(w, h);
             //Get the pixel data from the original texture:
-            Color[] originalData = new Color[mTexture.Width * mTexture.Height];
-            mTexture.GetData<Color>(originalData);
+            Color[] originalData = new Color[texture.Width * texture.Height];
+            texture.GetData<Color>(originalData);
 
             for (int y = 0; y < h; y++)
             {
@@ -123,6 +142,76 @@ namespace GLEED2D
                 }
             }
             return bm;
+        }
+
+        public void setPosition( float x, float y )
+        {
+            Position = new Vector2(x,y);
+        }
+
+        public override void OnTransformed()
+        {
+            transform = Matrix.Identity;
+            transform *= Matrix.CreateScale(Scale.X, Scale.Y, 1);
+            transform *= Matrix.CreateRotationZ(Rotation);
+            transform *= Matrix.CreateTranslation(Position.X, Position.Y, 0);
+
+            Vector2 leftTop = new Vector2(frame_rect.X, frame_rect.Y );
+            Vector2 rightTop = new Vector2(frame_rect.X + frame_rect.Width, frame_rect.Y);
+            Vector2 leftBottom = new Vector2(frame_rect.X, frame_rect.Y + frame_rect.Height);
+            Vector2 rightBottom = new Vector2(frame_rect.X + frame_rect.Width, frame_rect.Y + frame_rect.Height);
+
+            // Transform all four corners into work space
+            Vector2.Transform(ref leftTop, ref transform, out leftTop);
+            Vector2.Transform(ref rightTop, ref transform, out rightTop);
+            Vector2.Transform(ref leftBottom, ref transform, out leftBottom);
+            Vector2.Transform(ref rightBottom, ref transform, out rightBottom);
+
+            polygon[0] = leftTop;
+            polygon[1] = rightTop;
+            polygon[3] = leftBottom;
+            polygon[2] = rightBottom;
+
+            // Find the minimum and maximum extents of the rectangle in world space
+            Vector2 min = Vector2.Min(Vector2.Min(leftTop, rightTop),
+                                      Vector2.Min(leftBottom, rightBottom));
+            Vector2 max = Vector2.Max(Vector2.Max(leftTop, rightTop),
+                                      Vector2.Max(leftBottom, rightBottom));
+
+            // Return as a rectangle
+            boundingrectangle = new Rectangle((int)min.X, (int)min.Y,
+                                 (int)(max.X - min.X), (int)(max.Y - min.Y));
+        }
+
+        public override bool contains(Vector2 worldpos)
+        {
+            if (boundingrectangle.Contains((int)worldpos.X, (int)worldpos.Y))
+            {
+                return intersectpixels(worldpos);
+            }
+            return false;
+        }
+
+        public override bool intersectpixels(Vector2 worldpos)
+        {
+            Vector2 positionInB = Vector2.Transform(worldpos, Matrix.Invert(transform));
+            int xB = (int)Math.Round(positionInB.X);
+            int yB = (int)Math.Round(positionInB.Y);
+            xB -= frame_rect.X;
+            yB -= frame_rect.Y;
+            if (FlipHorizontally) xB = texture.Width - xB;
+            if (FlipVertically) yB = texture.Height - yB;
+
+            // If the pixel lies within the bounds of B
+            if (0 <= xB && xB < texture.Width && 0 <= yB && yB < texture.Height)
+            {
+                Color colorB = coldata[xB + yB * texture.Width];
+                if (colorB.A != 0)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 

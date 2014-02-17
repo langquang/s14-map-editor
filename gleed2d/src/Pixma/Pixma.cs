@@ -668,7 +668,7 @@ namespace GLEED2D
 
 
         //============================== GDI
-        public PixFrame GetFrame_bitmap(int frame_id)
+        public PixFrame GetFrame_bitmap(int frame_id, Vector2 position)
         {
             if (moduleImages.Length == 0)
                 return null;
@@ -745,7 +745,7 @@ namespace GLEED2D
 
                 
             }
-            frame.addModule_bitmap(frame_bitmap, bitmap_trans);
+            frame.addModule_bitmap(frame_bitmap, bitmap_trans, frame_rect, position);
             return frame;
         }
 
@@ -771,8 +771,7 @@ namespace GLEED2D
 
             for (i = minAFrame; i < maxAFrame + 1; i++)
             {
-                frame = GetFrame_bitmap(i);
-                frame.Position = new Vector2(aframeInfos[i * 5 + 1], aframeInfos[i * 5 + 2]);
+                frame = GetFrame_bitmap(i, new Vector2(aframeInfos[i * 5 + 1], aframeInfos[i * 5 + 2]));
                 frame.Scale = new Vector2(1, 1);
                 pixAnim.addFrame(frame, aframeInfos[i * 5 + 4]);
             }
