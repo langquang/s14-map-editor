@@ -60,7 +60,7 @@
     <PackedValue>4294902015</PackedValue>
   </ColorTextureTransparent>
   <DefaultPathItemLineWidth>4</DefaultPathItemLineWidth>
-  <DefaultContentRootFolder>D:\JavaServer\Code\CSharp\gleed2d_svn_client\gleed2d\bin\x86\Debug\images</DefaultContentRootFolder>
+  <DefaultContentRootFolder>D:\JavaServer\Code\CSharp\s14_xna_editor\gleed2d\bin\x86\Debug\res</DefaultContentRootFolder>
   <CameraSpeed>1000</CameraSpeed>
   <CameraFastSpeed>2000</CameraFastSpeed>
   <DefaultTextureOriginMethod>TextureCenter</DefaultTextureOriginMethod>

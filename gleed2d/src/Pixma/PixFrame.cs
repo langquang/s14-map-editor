@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Collections;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Color = Microsoft.Xna.Framework.Graphics.Color;
 
 
 namespace GLEED2D
 {
     public partial class PixFrame : TextureItem
     {
+        private string name;
         private ArrayList aframes;
         private bool useBitmap;
         // use bitmap mode
@@ -21,8 +24,9 @@ namespace GLEED2D
         Vector2 _pos;
         private Matrix worldMatrix;
 
-        public PixFrame()
+        public PixFrame(string name)
         {
+            this.name = name;
             aframes = new ArrayList();
         }
 
@@ -31,6 +35,11 @@ namespace GLEED2D
         {
             aframes.Add(module);
             useBitmap = false;
+        }
+
+        public string getName()
+        {
+            return name;
         }
 
         public void addModule_bitmap(System.Drawing.Bitmap bitmap, Matrix bitmap_trans)
@@ -93,6 +102,27 @@ namespace GLEED2D
                 sb.End();
             }
  
+        }
+
+        public System.Drawing.Bitmap getBitmapView()
+        {
+            int w = mTexture.Width;
+            int h = mTexture.Height;
+            Color c;
+            System.Drawing.Bitmap bm = new Bitmap(w,h);
+            //Get the pixel data from the original texture:
+            Color[] originalData = new Color[mTexture.Width * mTexture.Height];
+            mTexture.GetData<Color>(originalData);
+
+            for (int y = 0; y < h; y++)
+            {
+                for (int x = 0; x < w; x++)
+                {
+                    c = originalData[y*w + x];
+                    bm.SetPixel(x, y, System.Drawing.Color.FromArgb(c.A, c.R, c.G, c.B));
+                }
+            }
+            return bm;
         }
     }
 
