@@ -103,7 +103,7 @@ namespace GLEED2D
             comboBox3.Items.Add("64x64");
             comboBox3.Items.Add("96x96");
             comboBox3.Items.Add("128x128");
-            comboBox3.Items.Add("256x256");
+            //comboBox3.Items.Add("256x256");
             comboBox3.SelectedIndex = 1;
 
         }
@@ -1024,10 +1024,10 @@ namespace GLEED2D
             framesList128.Images.Add(img);
             framesList256.Images.Add(img);
 
-            listView1.Clear();
+            listView4.Clear();
 
             DirectoryInfo di = new DirectoryInfo(path);
-            textBox1.Text = di.FullName;
+            pixma_path.Text = di.FullName;
             DirectoryInfo[] folders = di.GetDirectories();
             foreach (DirectoryInfo folder in folders)
             {
@@ -1037,7 +1037,7 @@ namespace GLEED2D
                 lvi.ImageIndex = 0;
                 lvi.Tag = "folder";
                 lvi.Name = folder.FullName;
-                listView1.Items.Add(lvi);
+                listView4.Items.Add(lvi);
             }
 
             string filters = "*.anim";
@@ -1053,25 +1053,75 @@ namespace GLEED2D
                 int i = 0, length = pixma.NumFrame;
                 for (i = 0; i < length; i++)
                 {
-                    //PixFrame frame = pixma.GetFrame(i);
-                    //Bitmap bmp = new Bitmap(frame.t);
-                    //framesList48.Images.Add(file.FullName, getThumbNail(bmp, 48, 48));
-                    //framesList64.Images.Add(file.FullName, getThumbNail(bmp, 64, 64));
-                    //framesList96.Images.Add(file.FullName, getThumbNail(bmp, 96, 96));
-                    //framesList128.Images.Add(file.FullName, getThumbNail(bmp, 128, 128));
-                    //framesList256.Images.Add(file.FullName, getThumbNail(bmp, 256, 256));
+                    if (pixma.hasFrameName(i))
+                    {
+                        PixFrame frame = pixma.GetFrame_bitmap(i);
+                        Bitmap bmp = frame.getBitmapView();
+                        framesList48.Images.Add(frame.getName(), getThumbNail(bmp, 48, 48));
+                        framesList64.Images.Add(frame.getName(), getThumbNail(bmp, 64, 64));
+                        framesList96.Images.Add(frame.getName(), getThumbNail(bmp, 96, 96));
+                        framesList128.Images.Add(frame.getName(), getThumbNail(bmp, 128, 128));
+//                        framesList256.Images.Add(frame.getName(), getThumbNail(bmp, 256, 256));
 
-                    //ListViewItem lvi = new ListViewItem();
-                    //lvi.Name = file.FullName;
-                    //lvi.Text = file.Name;
-                    //lvi.ImageKey = file.FullName;
-                    //lvi.Tag = "file";
-                    //lvi.ToolTipText = file.Name + " (" + bmp.Width.ToString() + " x " + bmp.Height.ToString() + ")";
+                        ListViewItem lvi = new ListViewItem();
+                        lvi.Name = frame.getName();
+                        lvi.Text = frame.getName();
+                        lvi.ImageKey = frame.getName();
+                        lvi.Tag = "file";
+                        lvi.ToolTipText = frame.getName() + " - " + file.Name + " (" + bmp.Width.ToString() + " x " + bmp.Height.ToString() + ")";
 
-                    //listView1.Items.Add(lvi);
+                        listView4.Items.Add(lvi);
+                    }
                 }
 
             }
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBox3.SelectedIndex)
+            {
+                case 0:
+                    listView4.LargeImageList = framesList48;
+                    SetListViewSpacing(listView4, 48 + 8, 48 + 32);
+                    break;
+                case 1:
+                    listView4.LargeImageList = framesList64;
+                    SetListViewSpacing(listView4, 64 + 8, 64 + 32);
+                    break;
+                case 2:
+                    listView4.LargeImageList = framesList96;
+                    SetListViewSpacing(listView4, 96 + 8, 96 + 32);
+                    break;
+                case 3:
+                    listView4.LargeImageList = framesList128;
+                    SetListViewSpacing(listView4, 128 + 8, 128 + 32);
+                    break;
+//                case 4:
+//                    listView4.LargeImageList = framesList256;
+//                    SetListViewSpacing(listView4, 256 + 8, 256 + 32);
+//                    break;
+            }
+        }
+
+        private void listView4_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            string itemtype = listView4.FocusedItem.Tag.ToString();
+            if (itemtype == "folder")
+            {
+                loadPixmaFrames(listView4.FocusedItem.Name);
+            }
+            //if (itemtype == "file")
+            //{
+            //    Editor.Instance.createTextureBrush(listView4.FocusedItem.Name);
+            //}
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            DirectoryInfo di = Directory.GetParent(pixma_path.Text);
+            if (di == null) return;
+            loadPixmaFrames(di.FullName);
         }
 
 

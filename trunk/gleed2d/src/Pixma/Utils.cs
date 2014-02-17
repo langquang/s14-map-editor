@@ -23,8 +23,6 @@ namespace GLEED2D
 
         public static Rectangle transformRect(Rectangle bounds, Matrix m)
         {
-            if (m == null) return bounds;
-
             Vector2 topLeft = new Vector2(bounds.Left, bounds.Top);
             topLeft = Vector2.Transform(topLeft, m);
 

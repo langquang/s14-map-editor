@@ -480,6 +480,7 @@ namespace GLEED2D
 
             level = l;
             MainForm.Instance.loadfolder(level.ContentRootFolder);
+            MainForm.Instance.loadPixmaFrames(@"D:\JavaServer\Code\CSharp\s14_xna_editor\gleed2d\bin\x86\Debug\res");
             if (level.Name == null) level.Name = "Level_01";
 
 
@@ -1359,7 +1360,7 @@ namespace GLEED2D
             frame_int = 0;
 
             Pixma pixma = new Pixma("test");
-            pixma.load(@"D:\Myproject\Work\CSharp\s14_editor\gleed2d\bin\x86\Debug\images\Character_nude.anim");
+            pixma.load(@"D:\JavaServer\Code\CSharp\s14_xna_editor\gleed2d\bin\x86\Debug\res\Character_nude.anim");
             //pixmaFrame = pixma.GetFrame(140);
             pixmaFrame = pixma.GetFrame_bitmap(140);
 

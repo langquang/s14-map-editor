@@ -84,6 +84,7 @@ namespace GLEED2D
 		private int[] frameInfos;
 		private Rectangle[] frameRects;
 		private Texture2D[]	frame_caches;
+        private string[] frame_names;
 
         private int numFModules;
 		private int[] fmoduleInfos;	
@@ -228,9 +229,12 @@ namespace GLEED2D
                 frameInfos = new int[numFrames];
 				frameRects = new Rectangle[numFrames];
 				frame_caches = new Texture2D[numFrames];
+                frame_names = new string[numFrames];
 				
 				numFModules = 0;		// number of frame	
-				for (int i = 0; i<numFrames; i++) {
+				for (int i = 0; i<numFrames; i++)
+				{
+				    frame_names[i] = readString(frames_str[i], _desc, _end);
                     num = num_fmodules[i+1];				
 					frameInfos[i] = numFModules;
 					numFModules += num;
@@ -437,6 +441,11 @@ namespace GLEED2D
 
                 frame_rect = Rectangle.Union(frame_rect, Utils.transformRect(module_rect, fm_trans_matrix));
             }
+
+            if (frame_rect.Width <= 0 || frame_rect.Height <= 0)
+            {
+                frame_rect = new Rectangle(0,0,1,1);
+            }
 			
 			return frame_rect;
 		}
@@ -463,7 +472,7 @@ namespace GLEED2D
             int mw;
             int mh;
             Rectangle module_rect = new Rectangle();
-            PixFrame frame = new PixFrame();
+            PixFrame frame = new PixFrame( frame_names[frame_id] );
 
             if (frame_id < (numFrames - 1))
             {
@@ -574,6 +583,11 @@ namespace GLEED2D
 			
 			return pixAnim;
         }
+
+        public bool hasFrameName(int frame_id)
+        {
+           return frame_id < numFrames && frame_names[frame_id] != null && frame_names[frame_id] != "\"\"";
+        }
 			
 
 
@@ -672,7 +686,7 @@ namespace GLEED2D
             int mw;
             int mh;
             Rectangle module_rect = new Rectangle();
-            PixFrame frame = new PixFrame();
+            PixFrame frame = new PixFrame(frame_names[frame_id]);
             Rectangle frame_rect = getFrameRect(frame_id);
             System.Drawing.Bitmap frame_bitmap = new System.Drawing.Bitmap(frame_rect.Width, frame_rect.Height);
             System.Drawing.Graphics back_buffer = System.Drawing.Graphics.FromImage(frame_bitmap);
