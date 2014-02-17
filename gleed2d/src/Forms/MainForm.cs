@@ -1057,16 +1057,16 @@ namespace GLEED2D
                     {
                         PixFrame frame = pixma.GetFrame_bitmap(i);
                         Bitmap bmp = frame.getBitmapView();
-                        framesList48.Images.Add(frame.getName(), getThumbNail(bmp, 48, 48));
-                        framesList64.Images.Add(frame.getName(), getThumbNail(bmp, 64, 64));
-                        framesList96.Images.Add(frame.getName(), getThumbNail(bmp, 96, 96));
-                        framesList128.Images.Add(frame.getName(), getThumbNail(bmp, 128, 128));
+                        framesList48.Images.Add(frame.getName()+ file.FullName, getThumbNail(bmp, 48, 48));
+                        framesList64.Images.Add(frame.getName() + file.FullName, getThumbNail(bmp, 64, 64));
+                        framesList96.Images.Add(frame.getName() + file.FullName, getThumbNail(bmp, 96, 96));
+                        framesList128.Images.Add(frame.getName() + file.FullName, getThumbNail(bmp, 128, 128));
 //                        framesList256.Images.Add(frame.getName(), getThumbNail(bmp, 256, 256));
 
                         ListViewItem lvi = new ListViewItem();
-                        lvi.Name = frame.getName();
+                        lvi.Name = file.FullName;
                         lvi.Text = frame.getName();
-                        lvi.ImageKey = frame.getName();
+                        lvi.ImageKey = frame.getName() + file.FullName;
                         lvi.Tag = "file";
                         lvi.ToolTipText = frame.getName() + " - " + file.Name + " (" + bmp.Width.ToString() + " x " + bmp.Height.ToString() + ")";
 
