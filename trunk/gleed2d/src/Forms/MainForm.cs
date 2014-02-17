@@ -15,6 +15,8 @@ using System.Xml;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
 using GLEED2D.src.Utils;
+using Microsoft.Xna.Framework;
+using Point = System.Drawing.Point;
 
 namespace GLEED2D
 {
@@ -288,9 +290,18 @@ namespace GLEED2D
         }
         private void pictureBox1_DragEnter(object sender, DragEventArgs e)
         {
+            ListView listview = null;
+            if (tabControl1.SelectedIndex == 0)     // image
+                listview = listView1;
+            else if (tabControl1.SelectedIndex == 2)// frame
+                listview = listView4;
             e.Effect = DragDropEffects.Move;
             ListViewItem lvi = (ListViewItem)e.Data.GetData(typeof(ListViewItem));
-            Editor.Instance.createTextureBrush(lvi.Name);
+            string[] data = Regex.Split(listview.FocusedItem.Tag.ToString(), ";");
+            string itemtype = data[0];
+            string id = data[1];
+            Editor.Instance.createTextureBrush(lvi.Name, itemtype, id);
+
 
         }
         private void pictureBox1_DragOver(object sender, DragEventArgs e)
@@ -309,8 +320,13 @@ namespace GLEED2D
         }
         private void pictureBox1_DragDrop(object sender, DragEventArgs e)
         {
+            ListView listview = null;
+            if (tabControl1.SelectedIndex == 0)     // image
+                listview = listView1;
+            else if (tabControl1.SelectedIndex == 2)// frame
+                listview = listView4;
             Editor.Instance.paintTextureBrush(false);
-            listView1.Cursor = Cursors.Default;
+            listview.Cursor = Cursors.Default;
             pictureBox1.Cursor = Cursors.Default;
         }
 
@@ -765,29 +781,38 @@ namespace GLEED2D
         }
         private void listView1_Click(object sender, EventArgs e)
         {
-            toolStripStatusLabel1.Text = listView1.FocusedItem.ToolTipText;
+            ListView listview = (ListView)sender;
+            toolStripStatusLabel1.Text = listview.FocusedItem.ToolTipText;
         }
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            string itemtype = listView1.FocusedItem.Tag.ToString();
-            if (itemtype == "folder")
+            string[] data = Regex.Split(listView1.FocusedItem.Tag.ToString(), ";");
+            string itemtype = data[0];
+            string id = data[1];
+            if (itemtype == Define.TYPE_FOLDER)
             {
                 loadfolder(listView1.FocusedItem.Name);
             }
-            if (itemtype == "file")
+            else if (itemtype == Define.TYPE_IMAGE)
             {
-                Editor.Instance.createTextureBrush(listView1.FocusedItem.Name);
+                Editor.Instance.createTextureBrush(listView1.FocusedItem.Name, Define.TYPE_IMAGE, id);
             }
-
         }
         private void listView1_ItemDrag(object sender, ItemDragEventArgs e)
         {
+            ListView listview = (ListView) sender;
+
+
             ListViewItem lvi = (ListViewItem)e.Item;
-            if (lvi.Tag.ToString() == "folder") return;
+            string[] data = Regex.Split(lvi.Tag.ToString(), ";");
+            string itemtype = data[0];
+            string id = data[1];
+            if (itemtype == Define.TYPE_FOLDER ) return;
             toolStripStatusLabel1.Text = lvi.ToolTipText;
-            Bitmap bmp = new Bitmap(listView1.LargeImageList.Images[lvi.ImageKey]);
+
+            Bitmap bmp = new Bitmap(listview.LargeImageList.Images[lvi.ImageKey]);
             dragcursor = new Cursor(bmp.GetHicon());
-            listView1.DoDragDrop(e.Item, DragDropEffects.Move);
+            listview.DoDragDrop(e.Item, DragDropEffects.Move);
         }
         private void listView1_DragOver(object sender, DragEventArgs e)
         {
@@ -795,22 +820,24 @@ namespace GLEED2D
         }
         private void listView1_GiveFeedback(object sender, GiveFeedbackEventArgs e)
         {
+            ListView listview = (ListView)sender;
             if (e.Effect == DragDropEffects.Move)
             {
                 e.UseDefaultCursors = false;
-                listView1.Cursor = dragcursor;
+                listview.Cursor = dragcursor;
                 pictureBox1.Cursor = Cursors.Default;
             }
             else
             {
                 e.UseDefaultCursors = true;
-                listView1.Cursor = Cursors.Default;
+                listview.Cursor = Cursors.Default;
                 pictureBox1.Cursor = Cursors.Default;
             }
         }
         private void listView1_DragDrop(object sender, DragEventArgs e)
         {
-            listView1.Cursor = Cursors.Default;
+            ListView listview = (ListView)sender;
+            listview.Cursor = Cursors.Default;
             pictureBox1.Cursor = Cursors.Default;
         }
 
@@ -869,7 +896,7 @@ namespace GLEED2D
                 lvi.Text = folder.Name;
                 lvi.ToolTipText = folder.Name;
                 lvi.ImageIndex = 0;
-                lvi.Tag = "folder";
+                lvi.Tag = Define.TYPE_FOLDER + Define.TYPE_SEPARATE + "0"; ;
                 lvi.Name = folder.FullName;
                 listView1.Items.Add(lvi);
             }
@@ -893,7 +920,7 @@ namespace GLEED2D
                 lvi.Name = file.FullName;
                 lvi.Text = file.Name;
                 lvi.ImageKey = file.FullName;
-                lvi.Tag = "file";
+                lvi.Tag = Define.TYPE_IMAGE + Define.TYPE_SEPARATE + "0";
                 lvi.ToolTipText = file.Name + " (" + bmp.Width.ToString() + " x " + bmp.Height.ToString() + ")";
 
                 listView1.Items.Add(lvi);
@@ -1035,7 +1062,7 @@ namespace GLEED2D
                 lvi.Text = folder.Name;
                 lvi.ToolTipText = folder.Name;
                 lvi.ImageIndex = 0;
-                lvi.Tag = "folder";
+                lvi.Tag = Define.TYPE_FOLDER + Define.TYPE_SEPARATE + "0";
                 lvi.Name = folder.FullName;
                 listView4.Items.Add(lvi);
             }
@@ -1045,17 +1072,23 @@ namespace GLEED2D
             string[] extensions = filters.Split(';');
             foreach (string filter in extensions) fileList.AddRange(di.GetFiles(filter));
             FileInfo[] files = fileList.ToArray();
-
+            Pixma pixma;
             foreach (FileInfo file in files)
             {
-                Pixma pixma = new Pixma(file.Name);
-                pixma.load(file.FullName);
+                pixma = PixmaManager.getCache(file.FullName);
+                if (pixma == null)
+                {
+                    pixma = new Pixma(file.Name);
+                    pixma.load(file.FullName);
+                    PixmaManager.cache(file.FullName, pixma);
+                }
+
                 int i = 0, length = pixma.NumFrame;
                 for (i = 0; i < length; i++)
                 {
                     if (pixma.hasFrameName(i))
                     {
-                        PixFrame frame = pixma.GetFrame_bitmap(i);
+                        PixFrame frame = pixma.GetFrame_bitmap(i, Vector2.Zero);
                         Bitmap bmp = frame.getBitmapView();
                         framesList48.Images.Add(frame.getName()+ file.FullName, getThumbNail(bmp, 48, 48));
                         framesList64.Images.Add(frame.getName() + file.FullName, getThumbNail(bmp, 64, 64));
@@ -1067,7 +1100,7 @@ namespace GLEED2D
                         lvi.Name = file.FullName;
                         lvi.Text = frame.getName();
                         lvi.ImageKey = frame.getName() + file.FullName;
-                        lvi.Tag = "file";
+                        lvi.Tag = Define.TYPE_FRAME + Define.TYPE_SEPARATE + i;
                         lvi.ToolTipText = frame.getName() + " - " + file.Name + " (" + bmp.Width.ToString() + " x " + bmp.Height.ToString() + ")";
 
                         listView4.Items.Add(lvi);
@@ -1106,15 +1139,22 @@ namespace GLEED2D
 
         private void listView4_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            string itemtype = listView4.FocusedItem.Tag.ToString();
-            if (itemtype == "folder")
+            string[] data = Regex.Split(listView4.FocusedItem.Tag.ToString(), ";");
+            string itemtype = data[0];
+            string id = data[1];
+            if (itemtype == Define.TYPE_FOLDER)
             {
                 loadPixmaFrames(listView4.FocusedItem.Name);
             }
-            //if (itemtype == "file")
-            //{
-            //    Editor.Instance.createTextureBrush(listView4.FocusedItem.Name);
-            //}
+            else if (itemtype == Define.TYPE_FRAME)
+            {
+                Editor.Instance.createTextureBrush(listView4.FocusedItem.Name, Define.TYPE_FRAME, id);
+            }
+            else if (itemtype == Define.TYPE_ANIM)
+            {
+                //Editor.Instance.createTextureBrush(listView1.FocusedItem.Name);
+            }
+
         }
 
         private void button4_Click(object sender, EventArgs e)

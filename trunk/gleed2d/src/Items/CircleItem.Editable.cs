@@ -80,9 +80,11 @@ namespace GLEED2D
         public override void drawInEditor(SpriteBatch sb)
         {
             if (!Visible) return;
+            sb.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Deferred, SaveStateMode.None, Editor.Instance.camera.matrix);
             Color c = FillColor;
             if (hovering && Constants.Instance.EnableHighlightOnMouseOver) c = Constants.Instance.ColorHighlight;
             Primitives.Instance.drawCircleFilled(sb, Position, Radius, c);
+            sb.End();
         }
 
 

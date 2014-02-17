@@ -87,7 +87,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\Items\PixFrame.cs" />
     <Compile Include="src\Layer.ICustomTypeDescriptor.cs" />
     <Compile Include="src\Forms\LinkItemsForm.cs">
       <SubType>Form</SubType>
@@ -107,6 +106,7 @@
     <Compile Include="src\Pixma\PixFmodule.cs" />
     <Compile Include="src\Pixma\PixFrame.cs" />
     <Compile Include="src\Pixma\Pixma.cs" />
+    <Compile Include="src\Pixma\PixmaManager.cs" />
     <Compile Include="src\Pixma\PixMatrix.cs" />
     <Compile Include="src\Pixma\Utils.cs" />
     <Compile Include="src\Utils\Define.cs" />

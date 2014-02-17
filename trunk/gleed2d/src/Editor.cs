@@ -297,10 +297,10 @@ namespace GLEED2D
             SelectedItems.Clear();
             updatetreeview();
         }
-        public void createTextureBrush(string fullpath)
+        public void createTextureBrush(string fullpath, string type, string pixma_id)
         {
             state = EditorState.brush;
-            currentbrush = new Brush(fullpath);
+            currentbrush = new Brush(fullpath, type, pixma_id);
         }
         
         public void destroyTextureBrush()
@@ -317,7 +317,16 @@ namespace GLEED2D
                 destroyTextureBrush();
                 return;
             }
-            Item i = new TextureItem(currentbrush.fullpath, new Vector2((int)mouseworldpos.X, (int)mouseworldpos.Y));
+            Item i = null;
+            if ( currentbrush.type == Define.TYPE_IMAGE )
+            {
+                i = new TextureItem(currentbrush.fullpath, new Vector2((int)mouseworldpos.X, (int)mouseworldpos.Y));
+            }
+            else if (currentbrush.type == Define.TYPE_FRAME)
+            {
+                Pixma pixma = PixmaManager.getCache(currentbrush.fullpath);
+                i = pixma.GetFrame_bitmap(currentbrush.pixma_id, new Vector2((int)mouseworldpos.X, (int)mouseworldpos.Y));
+            }
             i.Name = i.getNamePrefix() + level.getNextItemNumber();
             i.layer = SelectedLayer;
             beginCommand("Add Item \"" + i.Name + "\"");
@@ -480,7 +489,7 @@ namespace GLEED2D
 
             level = l;
             MainForm.Instance.loadfolder(level.ContentRootFolder);
-            MainForm.Instance.loadPixmaFrames(@"D:\JavaServer\Code\CSharp\s14_xna_editor\gleed2d\bin\x86\Debug\res");
+            MainForm.Instance.loadPixmaFrames(@"D:\JavaServer\Code\CSharp\s14_xna_editor\gleed2d\bin\x86\Debug\res\pixma");
             if (level.Name == null) level.Name = "Level_01";
 
 
@@ -531,6 +540,8 @@ namespace GLEED2D
                     if (item is RectangleItem) imageindex = 2;
                     if (item is CircleItem) imageindex = 3;
                     if (item is PathItem) imageindex = 4;
+                    if (item is PixFrame) imageindex = 4;
+                    if (item is PixAnim) imageindex = 4;
                     itemnode.ImageIndex = itemnode.SelectedImageIndex = imageindex;
                 }
                 layernode.Expand();
@@ -1165,18 +1176,24 @@ namespace GLEED2D
             {
                 Vector2 maincameraposition = camera.Position;
                 camera.Position *= l.ScrollSpeed;
-                sb.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Deferred, SaveStateMode.None, camera.matrix);
+                
 
                 l.drawInEditor(sb);
+
+                sb.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Deferred, SaveStateMode.None, camera.matrix);
                 if (l == SelectedLayer && state == EditorState.selecting)
                 {
                     Primitives.Instance.drawBoxFilled(sb, selectionrectangle, Constants.Instance.ColorSelectionBox);
                 }
+                sb.End();
+
                 if (l == SelectedLayer && state == EditorState.brush)
                 {
-                    sb.Draw(currentbrush.texture, new Vector2(mouseworldpos.X, mouseworldpos.Y), null, new Color(1f, 1f, 1f, 0.7f),
-                        0, new Vector2(currentbrush.texture.Width / 2, currentbrush.texture.Height / 2), 1, SpriteEffects.None, 0);
+                    currentbrush.draw(sb, mouseworldpos);                
                 }
+
+                sb.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Deferred, SaveStateMode.None, camera.matrix);
+
                 if (l == SelectedLayer && state == EditorState.brush_primitive && primitivestarted)
                 {
                     switch (currentprimitive)
@@ -1357,23 +1374,23 @@ namespace GLEED2D
         int frame_int;
         public void initTest()
         {
-            frame_int = 0;
+//            frame_int = 0;
 
-            Pixma pixma = new Pixma("test");
-            pixma.load(@"D:\JavaServer\Code\CSharp\s14_xna_editor\gleed2d\bin\x86\Debug\res\Character_nude.anim");
+//            Pixma pixma = new Pixma("test");
+//            pixma.load(@"D:\JavaServer\Code\CSharp\s14_xna_editor\gleed2d\bin\x86\Debug\res\Character_nude.anim");
             //pixmaFrame = pixma.GetFrame(140);
-            pixmaFrame = pixma.GetFrame_bitmap(140);
+//            pixmaFrame = pixma.GetFrame_bitmap(140);
 
-            pixmaFrame.loadIntoEditor();
-            pixmaFrame.Visible = true;
+
+//            pixmaFrame.Visible = true;
             //pixmaFrame.Position = new Vector2(-100,0);
             //pixmaFrame.pFlipVertically = true;
             //pixmaFrame.pFlipHorizontally = true;
 
-            pixmaAnim = pixma.GetAnim(0);
+//            pixmaAnim = pixma.GetAnim(0);
             //pixmaAnim = pixma.GetAnim_bitmap(0);
-            pixmaAnim.loadIntoEditor();
-            pixmaAnim.Visible = true;
+//            pixmaAnim.loadIntoEditor();
+//            pixmaAnim.Visible = true;
             //pixmaAnim.Position = new Vector2(100, 100);
 
             //pixmaAnim.Rotation = (float)Math.PI/4;
@@ -1381,21 +1398,21 @@ namespace GLEED2D
             //pixmaAnim.stop(frame_int);
 
 
-            Game1.Instance.jugger.add(pixmaAnim);
+//            Game1.Instance.jugger.add(pixmaAnim);////
         }
 
         public void drawTest(SpriteBatch sb)
         {
             //pixmaFrame.drawInEditor(sb);
-            pixmaAnim.drawInEditor(sb);
+//            pixmaAnim.drawInEditor(sb);
 
             //pixmaAnim.Rotation += 0.1f;
         }
 
         public void keyDebug()
         {
-            pixmaFrame.pFlipHorizontally = !pixmaFrame.pFlipHorizontally;
-            frame_int++;
+//            pixmaFrame.pFlipHorizontally = !pixmaFrame.pFlipHorizontally;
+//            frame_int++;
         }
 
 
