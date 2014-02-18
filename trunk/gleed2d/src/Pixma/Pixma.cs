@@ -772,5 +772,10 @@ namespace GLEED2D
 
             return pixAnim;
         }
+
+        public int getFrameIndex(string frame_name)
+        {
+            return Array.IndexOf(frame_names, frame_name);
+        }
     }
 }
