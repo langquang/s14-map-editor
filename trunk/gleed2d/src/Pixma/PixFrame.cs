@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections;
+using System.IO;
+using System.Windows.Forms;
+using System.Xml.Serialization;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Color = Microsoft.Xna.Framework.Graphics.Color;
@@ -8,28 +11,49 @@ using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
 namespace GLEED2D
 {
+    [Serializable]
     public partial class PixFrame : TextureItem
     {
-        private string name;
+        [XmlIgnore()]
+        private string _frameName;
+
+        public string FrameName
+        {
+            get{return _frameName;}
+            set { _frameName = value; }
+        }
+        [XmlIgnore()]
+        private int frameId;
+        [XmlIgnore()]
         private ArrayList aframes;
+        [XmlIgnore()]
         private bool useBitmap;
         // use bitmap mode
+        [XmlIgnore()]
         private System.Drawing.Bitmap bitmap;
+        [XmlIgnore()]
         private Matrix bitmap_trans;
+        [XmlIgnore()]
         private Rectangle frame_rect;
 
-
-        public PixFrame(string name)
+        public PixFrame()
         {
-            this.name = name;
+            
+        }
+
+        public PixFrame(int frameId, string fullpath, Vector2 position)
+        {
+            CustomProperties = new SerializableDictionary();
+            this.frameId = frameId;
+            this.texture_fullpath = fullpath;
             aframes = new ArrayList();
-            this.Position = Vector2.Zero;
+            this.Position = position;
             this.Rotation = 0;
             this.Scale = Vector2.One;
             this.TintColor = Microsoft.Xna.Framework.Graphics.Color.White;
             FlipHorizontally = FlipVertically = false;
             this.Origin = Vector2.Zero;
- 
+            loadIntoEditor();
         }
 
         // Auto call in Pixma, don't call it
@@ -39,28 +63,14 @@ namespace GLEED2D
             useBitmap = false;
         }
 
-        public string getName()
-        {
-            return name;
-        }
-
-        public void addModule_bitmap(System.Drawing.Bitmap bitmap, Matrix bitmap_trans, Rectangle frame_rect, Vector2 position)
+        public void addModule_bitmap(System.Drawing.Bitmap bitmap, Matrix bitmap_trans, Rectangle frame_rect)
         {
             this.bitmap = bitmap;
             texture = Utils.BitmapToTexture2D(Game1.Instance.GraphicsDevice, this.bitmap);
             this.bitmap_trans = bitmap_trans;
             this.frame_rect = frame_rect;
-            Position = position;
             _pos = new Vector2();
             useBitmap = true;
-
-           
-            //for per-pixel-collision
-            coldata = new Color[texture.Width * texture.Height];
-            texture.GetData(coldata);
-
-            polygon = new Vector2[4];
-            OnTransformed();
         }
 
         public override void drawInEditor(SpriteBatch sb)
@@ -212,6 +222,47 @@ namespace GLEED2D
         public override string getNamePrefix()
         {
             return "Frame_";
+        }
+
+        public override bool loadIntoEditor()
+        {
+            if (layer != null) this.texture_fullpath = System.IO.Path.Combine(layer.level.ContentRootFolder + "\\", texture_filename);
+
+            if (!File.Exists(texture_fullpath))
+            {
+                DialogResult dr = System.Windows.Forms.MessageBox.Show("The file \"" + texture_fullpath + "\" doesn't exist!\n"
+                    + "The texture path is a combination of the Level's ContentRootFolder and the TextureItem's relative path.\n"
+                    + "Please adjust the XML file before trying to load this level again.\n"
+                    + "For now, a dummy texture will be used. Continue loading the level?", "Error loading texture file",
+                    MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Error);
+                if (dr == DialogResult.No) return false;
+                texture = Editor.Instance.dummytexture;
+            }
+            else
+            {
+                Pixma pixma = PixmaManager.getCache(this.texture_fullpath);
+                if (pixma == null)
+                {
+                    pixma = new Pixma(texture_filename);
+                    pixma.load(this.texture_fullpath);
+                    PixmaManager.cache(this.texture_fullpath, pixma);
+                }
+                pixma.GetFrame_bitmap(this);
+            }
+
+            //for per-pixel-collision
+            coldata = new Color[texture.Width * texture.Height];
+            texture.GetData(coldata);
+
+            polygon = new Vector2[4];
+            OnTransformed();
+
+            return true;
+        }
+
+        public int getFrameId()
+        {
+            return frameId;
         }
     }
 
