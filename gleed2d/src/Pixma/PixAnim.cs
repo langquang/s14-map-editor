@@ -16,7 +16,7 @@ namespace GLEED2D
         private int mCurFrame;
         private int mCurFrame_time;
         private bool mIsStop;
-        private Matrix worldMatrix;
+
 
         public PixAnim()
         {

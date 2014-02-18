@@ -325,7 +325,8 @@ namespace GLEED2D
             else if (currentbrush.type == Define.TYPE_FRAME)
             {
                 Pixma pixma = PixmaManager.getCache(currentbrush.fullpath);
-                i = pixma.GetFrame_bitmap(currentbrush.pixma_id, new Vector2((int)mouseworldpos.X, (int)mouseworldpos.Y));
+                i = new PixFrame(currentbrush.pixma_id, currentbrush.fullpath, new Vector2((int)mouseworldpos.X, (int)mouseworldpos.Y)); 
+                pixma.GetFrame_bitmap((PixFrame)i);
             }
             i.Name = i.getNamePrefix() + level.getNextItemNumber();
             i.layer = SelectedLayer;
@@ -489,7 +490,7 @@ namespace GLEED2D
 
             level = l;
             MainForm.Instance.loadfolder(level.ContentRootFolder);
-            MainForm.Instance.loadPixmaFrames(@"D:\JavaServer\Code\CSharp\s14_xna_editor\gleed2d\bin\x86\Debug\res\pixma");
+            MainForm.Instance.loadPixmaFrames(level.ContentRootFolder);
             if (level.Name == null) level.Name = "Level_01";
 
 

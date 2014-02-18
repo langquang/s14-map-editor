@@ -472,7 +472,7 @@ namespace GLEED2D
             int mw;
             int mh;
             Rectangle module_rect = new Rectangle();
-            PixFrame frame = new PixFrame( frame_names[frame_id] );
+            PixFrame frame = new PixFrame(frame_id, String.Empty, Vector2.Zero);
 
             if (frame_id < (numFrames - 1))
             {
@@ -668,11 +668,12 @@ namespace GLEED2D
 
 
         //============================== GDI
-        public PixFrame GetFrame_bitmap(int frame_id, Vector2 position)
+        public PixFrame GetFrame_bitmap(PixFrame frame)
         {
             if (moduleImages.Length == 0)
                 return null;
 
+            int frame_id = frame.getFrameId();
             int fmodule_min = 0;
             int fmodule_max = 0;
 
@@ -685,8 +686,6 @@ namespace GLEED2D
             System.Drawing.Bitmap module_bmp_data;
             int mw;
             int mh;
-            Rectangle module_rect = new Rectangle();
-            PixFrame frame = new PixFrame(frame_names[frame_id]);
             Rectangle frame_rect = getFrameRect(frame_id);
             System.Drawing.Bitmap frame_bitmap = new System.Drawing.Bitmap(frame_rect.Width, frame_rect.Height);
             System.Drawing.Graphics back_buffer = System.Drawing.Graphics.FromImage(frame_bitmap);
@@ -718,12 +717,6 @@ namespace GLEED2D
                 if (mw <= 0 || mh <= 0) break;
 
 
-
-                module_rect.X = 0;
-                module_rect.Y = 0;
-                module_rect.Width = mw;
-                module_rect.Height = mh;
-
                 fm_trans_matrix = Matrix.Identity;
                 fm_trans_matrix.M11 = fmoduleMatrices[i * 6 + 2];
                 fm_trans_matrix.M12 = fmoduleMatrices[i * 6 + 3];
@@ -745,7 +738,8 @@ namespace GLEED2D
 
                 
             }
-            frame.addModule_bitmap(frame_bitmap, bitmap_trans, frame_rect, position);
+            frame.addModule_bitmap(frame_bitmap, bitmap_trans, frame_rect);
+            frame.FrameName = frame_names[frame_id];
             return frame;
         }
 
@@ -771,8 +765,8 @@ namespace GLEED2D
 
             for (i = minAFrame; i < maxAFrame + 1; i++)
             {
-                frame = GetFrame_bitmap(i, new Vector2(aframeInfos[i * 5 + 1], aframeInfos[i * 5 + 2]));
-                frame.Scale = new Vector2(1, 1);
+                frame = new PixFrame(i, String.Empty, new Vector2(aframeInfos[i * 5 + 1], aframeInfos[i * 5 + 2]));
+                frame = GetFrame_bitmap(frame);
                 pixAnim.addFrame(frame, aframeInfos[i * 5 + 4]);
             }
 

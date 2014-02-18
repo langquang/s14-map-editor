@@ -142,6 +142,7 @@ namespace GLEED2D
     [XmlInclude(typeof(RectangleItem))]
     [XmlInclude(typeof(CircleItem))]
     [XmlInclude(typeof(PathItem))]
+    [XmlInclude(typeof(PixFrame))]
     public partial class Item
     {
         /// <summary>
