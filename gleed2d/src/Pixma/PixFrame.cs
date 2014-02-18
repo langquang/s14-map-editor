@@ -17,9 +17,7 @@ namespace GLEED2D
         private System.Drawing.Bitmap bitmap;
         private Matrix bitmap_trans;
         private Rectangle frame_rect;
-        // cache for render
-        Vector2 _pos;
-        private Matrix worldMatrix;
+
 
         public PixFrame(string name)
         {
@@ -69,18 +67,15 @@ namespace GLEED2D
         {
             if (!Visible) return;
 
-//            worldMatrix = Matrix.Identity;
-//            worldMatrix *= Matrix.CreateScale(Scale.X, Scale.Y, 1);
-//            worldMatrix *= Matrix.CreateRotationZ(Rotation);
-//            if (pFlipHorizontally) worldMatrix *= Matrix.CreateScale(-1, 1, 1);
-//            if (pFlipVertically) worldMatrix *= Matrix.CreateScale(1, -1, 1);
-//            if (useBitmap) worldMatrix *= bitmap_trans;
-//            worldMatrix *= Matrix.CreateTranslation(Position.X, Position.Y, 0);
+            worldMatrix = Matrix.Identity;
+            if (useBitmap) worldMatrix *= bitmap_trans;
+            worldMatrix *= Matrix.CreateScale(Scale.X, Scale.Y, 1);
+            worldMatrix *= Matrix.CreateRotationZ(Rotation);
+            if (pFlipHorizontally) worldMatrix *= Matrix.CreateScale(-1, 1, 1);
+            if (pFlipVertically) worldMatrix *= Matrix.CreateScale(1, -1, 1);
+            
+            worldMatrix *= Matrix.CreateTranslation(Position.X, Position.Y, 0);
 
-            transform = Matrix.Identity;
-            transform *= Matrix.CreateScale(Scale.X, Scale.Y, 1);
-            transform *= Matrix.CreateRotationZ(Rotation);
-            transform *= Matrix.CreateTranslation(Position.X, Position.Y, 0);
             // translate to view 
             worldMatrix *= Editor.Instance.camera.matrix;
 
@@ -154,6 +149,8 @@ namespace GLEED2D
             transform = Matrix.Identity;
             transform *= Matrix.CreateScale(Scale.X, Scale.Y, 1);
             transform *= Matrix.CreateRotationZ(Rotation);
+            if (pFlipHorizontally) transform *= Matrix.CreateScale(-1, 1, 1);
+            if (pFlipVertically) transform *= Matrix.CreateScale(1, -1, 1);
             transform *= Matrix.CreateTranslation(Position.X, Position.Y, 0);
 
             Vector2 leftTop = new Vector2(frame_rect.X, frame_rect.Y );
@@ -199,8 +196,6 @@ namespace GLEED2D
             int yB = (int)Math.Round(positionInB.Y);
             xB -= frame_rect.X;
             yB -= frame_rect.Y;
-            if (FlipHorizontally) xB = texture.Width - xB;
-            if (FlipVertically) yB = texture.Height - yB;
 
             // If the pixel lies within the bounds of B
             if (0 <= xB && xB < texture.Width && 0 <= yB && yB < texture.Height)
@@ -212,6 +207,11 @@ namespace GLEED2D
                 }
             }
             return false;
+        }
+
+        public override string getNamePrefix()
+        {
+            return "Frame_";
         }
     }
 

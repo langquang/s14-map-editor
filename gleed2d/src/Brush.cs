@@ -36,6 +36,7 @@ namespace GLEED2D
             {
                 Pixma pixma = PixmaManager.getCache(this.fullpath);
                 frame = pixma.GetFrame_bitmap(this.pixma_id, Vector2.Zero);
+                frame.Visible = true;
             }
         }
 
