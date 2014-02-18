@@ -23,7 +23,7 @@ namespace GLEED2D
             set { _frameName = value; }
         }
         [XmlIgnore()]
-        private int frameId;
+        private int frameId = -1;
         [XmlIgnore()]
         private ArrayList aframes;
         [XmlIgnore()]
@@ -247,6 +247,9 @@ namespace GLEED2D
                     pixma.load(this.texture_fullpath);
                     PixmaManager.cache(this.texture_fullpath, pixma);
                 }
+
+                if( this.frameId < 0 )
+                    frameId = pixma.getFrameIndex(FrameName);
                 pixma.GetFrame_bitmap(this);
             }
 
