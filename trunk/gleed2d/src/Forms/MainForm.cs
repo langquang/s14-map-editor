@@ -841,14 +841,6 @@ namespace GLEED2D
             pictureBox1.Cursor = Cursors.Default;
         }
 
-
-       
-
-
-
-
-
-
         public string getUniqueNameBasedOn(string name)
         {
             int i=0;

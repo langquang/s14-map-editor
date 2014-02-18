@@ -104,7 +104,9 @@ namespace GLEED2D
         [Description("If true, the texture is flipped horizontally when drawn.")]
         public bool pFlipHorizontally {
             get { return FlipHorizontally; }
-            set { FlipHorizontally = value; }
+            set { FlipHorizontally = value;
+                OnTransformed();
+            }
         }
 
         [XmlIgnore()]
@@ -112,8 +114,16 @@ namespace GLEED2D
         [Description("If true, the texture is flipped vertically when drawn.")]
         public bool pFlipVertically {
             get { return FlipVertically; }
-            set { FlipVertically = value; }
+            set { FlipVertically = value;
+                OnTransformed();
+            }
         }
+
+        // cache for render
+        [XmlIgnore()]
+        protected  Vector2 _pos;
+        [XmlIgnore()]
+        protected Matrix worldMatrix;
 
         public TextureItem(String fullpath, Vector2 position) : base()
         {
@@ -179,11 +189,13 @@ namespace GLEED2D
 
         public override void OnTransformed()
         {
-            transform =
-                Matrix.CreateTranslation(new Vector3(-Origin.X, -Origin.Y, 0.0f)) *
-                Matrix.CreateScale(Scale.X, Scale.Y, 1) *
-                Matrix.CreateRotationZ(Rotation) *
-                Matrix.CreateTranslation(new Vector3(Position, 0.0f));
+            transform = Matrix.Identity;
+            transform *= Matrix.CreateTranslation(new Vector3(-Origin.X, -Origin.Y, 0.0f));
+            transform *= Matrix.CreateScale(Scale.X, Scale.Y, 1);
+            transform *= Matrix.CreateRotationZ(Rotation);
+            if (pFlipHorizontally) transform *= Matrix.CreateScale(-1, 1, 1);
+            if (pFlipVertically) transform *= Matrix.CreateScale(1, -1, 1);
+            transform *= Matrix.CreateTranslation(Position.X, Position.Y, 0);
 
             Vector2 leftTop = new Vector2(0, 0);
             Vector2 rightTop = new Vector2(texture.Width, 0);
@@ -257,13 +269,24 @@ namespace GLEED2D
         {
             if (!Visible) return;
 
-            sb.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Deferred, SaveStateMode.None, Editor.Instance.camera.matrix);
-            SpriteEffects se = SpriteEffects.None;
-            if (pFlipHorizontally) se |= SpriteEffects.FlipHorizontally;
-            if (pFlipVertically) se |= SpriteEffects.FlipVertically;
+            worldMatrix = Matrix.Identity;
+            worldMatrix *= Matrix.CreateTranslation(new Vector3(-Origin.X, -Origin.Y, 0.0f));
+            worldMatrix *= Matrix.CreateScale(Scale.X, Scale.Y, 1);
+            worldMatrix *= Matrix.CreateRotationZ(Rotation);
+            if (pFlipHorizontally) worldMatrix *= Matrix.CreateScale(-1, 1, 1);
+            if (pFlipVertically) worldMatrix *= Matrix.CreateScale(1, -1, 1);
+
+            worldMatrix *= Matrix.CreateTranslation(Position.X, Position.Y, 0);
+
+            // translate to view 
+            worldMatrix *= Editor.Instance.camera.matrix;
+
             Color c = TintColor;
             if (hovering && Constants.Instance.EnableHighlightOnMouseOver) c = Constants.Instance.ColorHighlight;
-            sb.Draw(texture, Position, null, c, Rotation, Origin, Scale, se, 0);
+
+            sb.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Immediate, SaveStateMode.None, worldMatrix);
+            sb.GraphicsDevice.RenderState.CullMode = CullMode.None;
+            sb.Draw(texture, _pos, c);
             sb.End();
         }
 
