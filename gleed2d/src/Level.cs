@@ -203,6 +203,15 @@ namespace GLEED2D
         /// </summary>
         public SerializableDictionary CustomProperties;
 
+        [Browsable(false)]
+        [XmlIgnore()]
+        public int Width;
+
+        [Browsable(false)]
+        [XmlIgnore()]
+        public int Height;
+
+
         public Item()
         {
             CustomProperties = new SerializableDictionary();

@@ -72,6 +72,9 @@ namespace GLEED2D
             this.bitmap_trans = bitmap_trans;
             this.frame_rect = frame_rect;
             useBitmap = true;
+
+            this.Width = this.frame_rect.Width + this.frame_rect.X;
+            this.Height = this.frame_rect.Height + this.frame_rect.Y;
         }
 
         public override void drawInEditor(SpriteBatch sb)
