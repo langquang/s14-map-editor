@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -203,7 +204,73 @@ namespace GLEED2D
                 tx = Texture2D.FromFile(GraphicsDevice, s);
             }
             return tx;
-    	} 
+    	}
+
+        public static List<Item> zoder(List<Item> src)
+        {
+            List<Item> dest = new List<Item>();
+
+            Dictionary<Item, ArrayList> dependency = new Dictionary<Item, ArrayList>();
+
+            int max = src.Count;
+            int i = 0, j = 0;
+            for (i = 0; i < max; i++)
+            {
+                ArrayList behind = new ArrayList();
+                Item objA = (Item) src[i];
+                float rightA = objA.IsoPosition.X + objA.Width;
+                float frontA = objA.IsoPosition.Y + objA.Height;
+
+                for (j = 0; j < max; ++j)
+				{
+					Item objB = (Item) src[j];
+                    if ((objB.IsoPosition.X < rightA) &&
+                        (objB.IsoPosition.Y < frontA) &&
+						(objA != objB))
+					{
+						behind.Add(objB);
+					}
+				}
+				
+				dependency[objA] = behind;
+
+            }
+
+            Dictionary<Item, bool> visited = new Dictionary<Item, bool>();
+            foreach (Item item in src)
+            {
+                if (!visited.ContainsKey(item))
+                {
+                    place(item, dest, dependency, visited);
+                }
+            }
+            return dest;
+        }
+
+        public  static  void place(Item obj, List<Item> dest, Dictionary<Item, ArrayList> dependency, Dictionary<Item, bool> visited)
+		{
+			visited[obj] = true;
+
+            ArrayList src = dependency[obj];
+            foreach (Item item in src)
+            {
+                if ( !visited.ContainsKey(item))
+                {
+                    place(item, dest, dependency, visited);
+                }
+            }
+			
+            dest.Add(obj);
+		}
+
+        public static int RandNumber(int Low, int High)
+        {
+            Random rndNum = new Random(int.Parse(Guid.NewGuid().ToString().Substring(0, 8), System.Globalization.NumberStyles.HexNumber));
+
+            int rnd = rndNum.Next(Low, High);
+
+            return rnd;
+        }
 
     }
 }

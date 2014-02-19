@@ -1293,6 +1293,16 @@ namespace GLEED2D
             Game1.Instance.jugger.Play =  toolStripButton2.Checked;
         }
 
+        private void zoder_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode.Tag is Layer)
+            {
+                Layer l = (Layer)treeView1.SelectedNode.Tag;
+                l.Items = Utils.zoder(l.Items);
+                Editor.Instance.updatetreeview();
+            }
+        }
+
 
 
 

@@ -55,8 +55,14 @@ namespace GLEED2D
             mFrames.Add(frame);
             mFrame_times.Add(time);
 
-            m1StFrame = (PixFrame)mFrames[0];
-            mFrame = m1StFrame;
+            if (mFrames.Count == 1)
+            {
+                this.m1StFrame = (PixFrame)mFrames[0];
+                this.Width = m1StFrame.Width;
+                this.Height = m1StFrame.Height;
+                this.mFrame = m1StFrame;
+            }
+
         }
 
         // 30fps
@@ -122,6 +128,11 @@ namespace GLEED2D
         public void play()
         {
             mIsStop = false;
+            Random random = new Random();
+            mCurFrame = Utils.RandNumber(0, mFrames.Count);
+            mCurFrame_time = (int)mFrame_times[mCurFrame];
+            mFrame = (PixFrame)mFrames[mCurFrame];
+            Debug.WriteLine(mCurFrame);
         }
 
         public int getAnimId()

@@ -35,21 +35,21 @@ namespace GLEED2D
         [XmlIgnore()]
         public string texture_fullpath;
 
-        [XmlIgnore()]
-        [DisplayName("Origin"), Category(" General")]
-        [Description("The item's origin in texture space ([0,0] is upper left corner).")]
-        public Vector2 pOrigin
-        {
-            get
-            {
-                return Origin;
-            }
-            set
-            {
-                Origin = value;
-                OnTransformed();
-            }
-        }
+        //[XmlIgnore()]
+        //[DisplayName("Origin"), Category(" General")]
+        //[Description("The item's origin in texture space ([0,0] is upper left corner).")]
+        //public Vector2 pOrigin
+        //{
+        //    get
+        //    {
+        //        return Origin;
+        //    }
+        //    set
+        //    {
+        //        Origin = value;
+        //        OnTransformed();
+        //    }
+        //}
 
         [XmlIgnore()]
         [DisplayName("Rotation"), Category(" General")]
