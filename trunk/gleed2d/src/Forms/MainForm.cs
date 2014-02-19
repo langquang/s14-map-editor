@@ -1157,6 +1157,12 @@ namespace GLEED2D
         }
 
 
+        private void toolStripButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            Define.is_nagetive = !toolStripButton4.Checked;
+        }
+
+
 
 
 

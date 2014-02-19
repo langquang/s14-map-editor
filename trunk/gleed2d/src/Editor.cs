@@ -541,8 +541,8 @@ namespace GLEED2D
                     if (item is RectangleItem) imageindex = 2;
                     if (item is CircleItem) imageindex = 3;
                     if (item is PathItem) imageindex = 4;
-                    if (item is PixFrame) imageindex = 4;
-                    if (item is PixAnim) imageindex = 4;
+                    if (item is PixFrame) imageindex = 6;
+                    if (item is PixAnim) imageindex = 7;
                     itemnode.ImageIndex = itemnode.SelectedImageIndex = imageindex;
                 }
                 layernode.Expand();
@@ -713,7 +713,14 @@ namespace GLEED2D
             result.X = Constants.Instance.GridSpacing.X * (int)Math.Round(result.X / Constants.Instance.GridSpacing.X);
             result.Y = Constants.Instance.GridSpacing.Y * (int)Math.Round(result.Y / Constants.Instance.GridSpacing.Y);
             if (Define.is_iso)
+            {
+                if (!Define.is_nagetive)
+                {
+                    result.X = result.X > 0 ? result.X : 0;
+                    result.Y = result.Y > 0 ? result.Y : 0;
+                }
                 result = IsoMath.isoToScreen(result, false);
+            }
             posSnappedPoint = result;
             drawSnappedPoint = true;
             return result;
