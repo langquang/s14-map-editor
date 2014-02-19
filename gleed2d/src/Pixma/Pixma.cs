@@ -83,8 +83,9 @@ namespace GLEED2D
         private int numFrames;
 		private int[] frameInfos;
 		private Rectangle[] frameRects;
-		private Texture2D[]	frame_caches;
+		private PixFrame[]	frame_caches;
         private string[] frame_names;
+        private Dictionary<string, int> frame_id_index = new Dictionary<string, int>(); 
 
         private int numFModules;
 		private int[] fmoduleInfos;	
@@ -95,6 +96,8 @@ namespace GLEED2D
 		
 		private int numAnims;
 		private int[] animInfos;
+        private string[] anim_names;
+
 		
 		private int numAFrames;
 		private int[] aframeInfos;
@@ -228,13 +231,14 @@ namespace GLEED2D
             {
                 frameInfos = new int[numFrames];
 				frameRects = new Rectangle[numFrames];
-				frame_caches = new Texture2D[numFrames];
+				frame_caches = new PixFrame[numFrames];
                 frame_names = new string[numFrames];
 				
 				numFModules = 0;		// number of frame	
 				for (int i = 0; i<numFrames; i++)
 				{
 				    frame_names[i] = readString(frames_str[i], _desc, _end);
+                    frame_id_index.Add( readString(frames_str[i], _fid, _desc), i );
                     num = num_fmodules[i+1];				
 					frameInfos[i] = numFModules;
 					numFModules += num;
@@ -307,11 +311,13 @@ namespace GLEED2D
         {
 			int i;
 			int n;
-			numAnims = anims_str.Length;				
+			numAnims = anims_str.Length;	
+			anim_names = new string[numAnims];
 			if (numAnims > 0) {
                 animInfos = new int[numAnims];
 				numAFrames = 0;
 				for (i = 0;i<numAnims;i++) {
+                    anim_names[i] = readString(anims_str[i], _desc, _end);
 					n = num_frames[i+1];
 					animInfos[i] = numAFrames;
 					numAFrames += n;
@@ -327,7 +333,7 @@ namespace GLEED2D
             aframeInfos = new int[numAFrames * 5];
 			
 			for (i = 0;i<numAFrames;i++) {
-                aframeInfos[i * 5 + 0] = readInt(aframe_str[i], _fid, _x);//id
+                aframeInfos[i * 5 + 0] = frame_id_index[readString(aframe_str[i], _fid, _x)];//id
                 aframeInfos[i * 5 + 1] = readInt(aframe_str[i], _x, _y);//x
                 aframeInfos[i * 5 + 2] = readInt(aframe_str[i], _y, _transform);//y
                 aframeInfos[i * 5 + 3] = readInt(aframe_str[i], _transform, _time);//transform	
@@ -588,6 +594,12 @@ namespace GLEED2D
         {
            return frame_id < numFrames && frame_names[frame_id] != null && frame_names[frame_id] != "\"\"";
         }
+
+        public bool hasAnimName(int anim_id)
+        {
+            return anim_id < numAnims && anim_names[anim_id] != null && anim_names[anim_id] != "\"\"";
+            
+        }
 			
 
 
@@ -665,6 +677,11 @@ namespace GLEED2D
             get { return numFrames; }
         }
 
+        public int NumAnim
+        {
+            get { return numAnims; }
+        }
+
 
 
         //============================== GDI
@@ -672,8 +689,16 @@ namespace GLEED2D
         {
             if (moduleImages.Length == 0)
                 return null;
+            
 
             int frame_id = frame.getFrameId();
+
+            if (frame_caches[frame_id] != null)
+            {
+                return frame_caches[frame_id].FillEmptyFrame(frame);
+            }
+                
+
             int fmodule_min = 0;
             int fmodule_max = 0;
 
@@ -734,19 +759,18 @@ namespace GLEED2D
                 {
                     fm_trans_matrix *= Matrix.CreateScale(1, -1, 1);
                 }
-                Utils.draw(back_buffer, module_bmp_data, fm_trans_matrix);
-
-                
+                Utils.draw(back_buffer, module_bmp_data, fm_trans_matrix);   
             }
             frame.addModule_bitmap(frame_bitmap, bitmap_trans, frame_rect);
             frame.FrameName = frame_names[frame_id];
+            frame_caches[frame_id] = frame;
             return frame;
         }
 
-        public PixAnim GetAnim_bitmap(int anim_id)
+        public PixAnim GetAnim_bitmap(PixAnim pixAnim)
         {
-            PixAnim pixAnim = new PixAnim();
 
+            int anim_id = pixAnim.getAnimId();
             int minAFrame = 0;
             int maxAFrame = 0;
             int i;
@@ -765,17 +789,21 @@ namespace GLEED2D
 
             for (i = minAFrame; i < maxAFrame + 1; i++)
             {
-                frame = new PixFrame(i, String.Empty, new Vector2(aframeInfos[i * 5 + 1], aframeInfos[i * 5 + 2]));
-                frame = GetFrame_bitmap(frame);
+                frame = new PixFrame(aframeInfos[i * 5], pixAnim.texture_fullpath, new Vector2(aframeInfos[i * 5 + 1], aframeInfos[i * 5 + 2]));
                 pixAnim.addFrame(frame, aframeInfos[i * 5 + 4]);
             }
-
+            pixAnim.FrameName = anim_names[anim_id];
             return pixAnim;
         }
 
         public int getFrameIndex(string frame_name)
         {
             return Array.IndexOf(frame_names, frame_name);
+        }
+
+        public int getAnimIndex(string anim_name)
+        {
+            return Array.IndexOf(anim_names, anim_name);
         }
     }
 }
