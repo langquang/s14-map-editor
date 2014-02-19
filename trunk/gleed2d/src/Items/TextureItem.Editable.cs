@@ -121,7 +121,7 @@ namespace GLEED2D
 
         // cache for render
         [XmlIgnore()]
-        protected  Vector2 _pos;
+        protected  Vector2 _pos = Vector2.Zero;
         [XmlIgnore()]
         protected Matrix worldMatrix;
 

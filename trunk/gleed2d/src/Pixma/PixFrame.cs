@@ -71,7 +71,6 @@ namespace GLEED2D
             texture = Utils.BitmapToTexture2D(Game1.Instance.GraphicsDevice, this.bitmap);
             this.bitmap_trans = bitmap_trans;
             this.frame_rect = frame_rect;
-            _pos = new Vector2();
             useBitmap = true;
         }
 
@@ -272,7 +271,11 @@ namespace GLEED2D
 
         public PixFrame FillEmptyFrame(PixFrame frame)
         {
-            frame.addModule_bitmap(bitmap, bitmap_trans, frame_rect);
+            frame.bitmap = bitmap;
+            frame.texture = texture;
+            frame.bitmap_trans = bitmap_trans;
+            frame.frame_rect = frame_rect;
+            frame.useBitmap = true;
             frame.FrameName = FrameName;
             return frame;
         }

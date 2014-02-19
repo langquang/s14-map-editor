@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
@@ -177,22 +178,31 @@ namespace GLEED2D
         	    GraphicsDevice GraphicsDevice,   
         	    System.Drawing.Bitmap image)  
     	{
-            int width = image.Width;
-            int height = image.Height;
+//            int width = image.Width;
+//            int height = image.Height;
+//
+//            Color[] pixels = new Color[width * height];
+//            for (int y = 0; y < height; y++)
+//            {
+//                for (int x = 0; x < width; x++)
+//                {
+//                    System.Drawing.Color c = image.GetPixel(x, y);
+//                    pixels[(y * width) + x] = new Color(c.R, c.G, c.B, c.A);
+//                }
+//            }
+//
+//            Texture2D myTex = new Texture2D(GraphicsDevice,width,height);
+//            myTex.SetData<Color>(pixels);
+//            return myTex;
 
-            Color[] pixels = new Color[width * height];
-            for (int y = 0; y < height; y++)
+            Texture2D tx = null;
+            using (MemoryStream s = new MemoryStream())
             {
-                for (int x = 0; x < width; x++)
-                {
-                    System.Drawing.Color c = image.GetPixel(x, y);
-                    pixels[(y * width) + x] = new Color(c.R, c.G, c.B, c.A);
-                }
+                image.Save(s, System.Drawing.Imaging.ImageFormat.Png);
+                s.Seek(0, SeekOrigin.Begin); //must do this, or error is thrown in next line
+                tx = Texture2D.FromFile(GraphicsDevice, s);
             }
-
-            Texture2D myTex = new Texture2D(GraphicsDevice,width,height);
-            myTex.SetData<Color>(pixels);
-            return myTex;
+            return tx;
     	} 
 
     }
