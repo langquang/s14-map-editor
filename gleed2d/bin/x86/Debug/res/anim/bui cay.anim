@@ -1,0 +1,341 @@
+VERSION	2
+IMAGE	-imgfile:"bui cay.png"
+MODULE		-mid:1001		-type:0		-imgid:0		-x:1		-y:91		-w:26		-h:27		-desc:""		-color:0		-thickness:1		-ext1:0
+MODULE		-mid:1002		-type:0		-imgid:0		-x:1		-y:119		-w:23		-h:28		-desc:""		-color:0		-thickness:1		-ext1:0
+MODULE		-mid:1003		-type:0		-imgid:0		-x:49		-y:67		-w:28		-h:36		-desc:""		-color:0		-thickness:1		-ext1:0
+MODULE		-mid:1004		-type:0		-imgid:0		-x:55		-y:104		-w:26		-h:22		-desc:""		-color:0		-thickness:1		-ext1:0
+MODULE		-mid:1005		-type:0		-imgid:0		-x:1		-y:67		-w:47		-h:23		-desc:""		-color:0		-thickness:1		-ext1:0
+MODULE		-mid:1006		-type:0		-imgid:0		-x:28		-y:104		-w:26		-h:22		-desc:""		-color:0		-thickness:1		-ext1:0
+MODULE		-mid:1007		-type:0		-imgid:0		-x:25		-y:127		-w:22		-h:15		-desc:""		-color:0		-thickness:1		-ext1:0
+MODULE		-mid:1008		-type:0		-imgid:0		-x:1		-y:1		-w:78		-h:65		-desc:""		-color:0		-thickness:1		-ext1:0
+FRAME		-fid:2000		-desc:"buicay_1"
+	ADD_FMODULE		-mid:1005		-x:-22		-y:-46		-transform:0
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-45		-y:-21		-transform:0
+	ADD_FMODULE		-mid:1006		-x:-42.1		-y:-34.7		-transform:4		-m11:0.999		-m12:-0.034		-m21:0.034		-m22:0.999
+	ADD_FMODULE		-mid:1004		-x:21		-y:-28.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1003		-x:5		-y:-30.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.6		-y:-23.2		-transform:4		-m11:0.996		-m12:-0.089		-m21:0.089		-m22:0.996
+	ADD_FMODULE		-mid:1001		-x:-15		-y:-38.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+FRAME		-fid:2001		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-22		-y:-46		-transform:4		-m11:1		-m12:0.001		-m21:-0.001		-m22:1
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-45		-y:-21		-transform:4		-m11:1		-m12:0.001		-m21:-0.001		-m22:1
+	ADD_FMODULE		-mid:1006		-x:-42		-y:-34.9		-transform:4		-m11:1		-m12:-0.028		-m21:0.028		-m22:1
+	ADD_FMODULE		-mid:1004		-x:21		-y:-28.5		-transform:4		-m11:1		-m12:0.001		-m21:-0.001		-m22:1
+	ADD_FMODULE		-mid:1003		-x:5		-y:-30.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.6		-y:-23.1		-transform:4		-m11:0.995		-m12:-0.098		-m21:0.098		-m22:0.995
+	ADD_FMODULE		-mid:1001		-x:-15		-y:-38.5		-transform:4		-m11:1		-m12:0.001		-m21:-0.001		-m22:1
+FRAME		-fid:2002		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-21.9		-y:-46.1		-transform:4		-m11:1		-m12:0.005		-m21:-0.005		-m22:1
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-45		-y:-21.1		-transform:4		-m11:1		-m12:0.005		-m21:-0.005		-m22:1
+	ADD_FMODULE		-mid:1006		-x:-41.9		-y:-35		-transform:4		-m11:1		-m12:-0.022		-m21:0.022		-m22:1
+	ADD_FMODULE		-mid:1004		-x:21		-y:-28.5		-transform:4		-m11:1		-m12:0.004		-m21:-0.004		-m22:1
+	ADD_FMODULE		-mid:1003		-x:5		-y:-30.5		-transform:4		-m11:1		-m12:-0.001		-m21:0.001		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.6		-y:-23		-transform:4		-m11:0.994		-m12:-0.105		-m21:0.105		-m22:0.994
+	ADD_FMODULE		-mid:1001		-x:-15		-y:-38.6		-transform:4		-m11:1		-m12:0.004		-m21:-0.004		-m22:1
+FRAME		-fid:2003		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-21.8		-y:-46.3		-transform:4		-m11:1		-m12:0.011		-m21:-0.011		-m22:1
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.9		-y:-21.2		-transform:4		-m11:1		-m12:0.011		-m21:-0.011		-m22:1
+	ADD_FMODULE		-mid:1006		-x:-41.8		-y:-35.1		-transform:4		-m11:1		-m12:-0.016		-m21:0.016		-m22:1
+	ADD_FMODULE		-mid:1004		-x:21.1		-y:-28.5		-transform:4		-m11:1		-m12:0.009		-m21:-0.009		-m22:1
+	ADD_FMODULE		-mid:1003		-x:5		-y:-30.5		-transform:4		-m11:1		-m12:-0.003		-m21:0.003		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.6		-y:-23		-transform:4		-m11:0.994		-m12:-0.111		-m21:0.111		-m22:0.994
+	ADD_FMODULE		-mid:1001		-x:-14.9		-y:-38.6		-transform:4		-m11:1		-m12:0.008		-m21:-0.008		-m22:1
+FRAME		-fid:2004		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-21.6		-y:-46.4		-transform:4		-m11:1		-m12:0.019		-m21:-0.019		-m22:1
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.9		-y:-21.3		-transform:4		-m11:1		-m12:0.018		-m21:-0.018		-m22:1
+	ADD_FMODULE		-mid:1006		-x:-41.7		-y:-35.3		-transform:4		-m11:1		-m12:-0.011		-m21:0.011		-m22:1
+	ADD_FMODULE		-mid:1004		-x:21.1		-y:-28.5		-transform:4		-m11:1		-m12:0.015		-m21:-0.015		-m22:1
+	ADD_FMODULE		-mid:1003		-x:5		-y:-30.5		-transform:4		-m11:1		-m12:-0.005		-m21:0.005		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.6		-y:-22.9		-transform:4		-m11:0.993		-m12:-0.115		-m21:0.115		-m22:0.993
+	ADD_FMODULE		-mid:1001		-x:-14.9		-y:-38.7		-transform:4		-m11:1		-m12:0.013		-m21:-0.013		-m22:1
+FRAME		-fid:2005		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-21.4		-y:-46.6		-transform:4		-m11:1		-m12:0.028		-m21:-0.028		-m22:1
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.8		-y:-21.5		-transform:4		-m11:1		-m12:0.027		-m21:-0.027		-m22:1
+	ADD_FMODULE		-mid:1006		-x:-41.6		-y:-35.4		-transform:4		-m11:1		-m12:-0.006		-m21:0.006		-m22:1
+	ADD_FMODULE		-mid:1004		-x:21.2		-y:-28.5		-transform:4		-m11:1		-m12:0.022		-m21:-0.022		-m22:1
+	ADD_FMODULE		-mid:1003		-x:5		-y:-30.5		-transform:4		-m11:1		-m12:-0.007		-m21:0.007		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.6		-y:-22.9		-transform:4		-m11:0.993		-m12:-0.116		-m21:0.116		-m22:0.993
+	ADD_FMODULE		-mid:1001		-x:-14.8		-y:-38.8		-transform:4		-m11:1		-m12:0.019		-m21:-0.019		-m22:1
+FRAME		-fid:2006		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-21.2		-y:-46.9		-transform:4		-m11:0.999		-m12:0.038		-m21:-0.038		-m22:0.999
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.8		-y:-21.7		-transform:4		-m11:0.999		-m12:0.037		-m21:-0.037		-m22:0.999
+	ADD_FMODULE		-mid:1006		-x:-41.5		-y:-35.4		-transform:4		-m11:1		-m12:-0.003		-m21:0.003		-m22:1
+	ADD_FMODULE		-mid:1004		-x:21.3		-y:-28.5		-transform:4		-m11:1		-m12:0.03		-m21:-0.03		-m22:1
+	ADD_FMODULE		-mid:1003		-x:5		-y:-30.4		-transform:4		-m11:1		-m12:-0.009		-m21:0.009		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.6		-y:-22.9		-transform:4		-m11:0.993		-m12:-0.115		-m21:0.115		-m22:0.993
+	ADD_FMODULE		-mid:1001		-x:-14.8		-y:-38.9		-transform:4		-m11:1		-m12:0.026		-m21:-0.026		-m22:1
+FRAME		-fid:2007		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-20.9		-y:-47.1		-transform:4		-m11:0.999		-m12:0.049		-m21:-0.049		-m22:0.999
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.7		-y:-21.9		-transform:4		-m11:0.999		-m12:0.047		-m21:-0.047		-m22:0.999
+	ADD_FMODULE		-mid:1006		-x:-41.5		-y:-35.5		-transform:4		-m11:1		-m12:-0.001		-m21:0.001		-m22:1
+	ADD_FMODULE		-mid:1004		-x:21.3		-y:-28.5		-transform:4		-m11:0.999		-m12:0.039		-m21:-0.039		-m22:0.999
+	ADD_FMODULE		-mid:1003		-x:4.9		-y:-30.4		-transform:4		-m11:1		-m12:-0.012		-m21:0.012		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.6		-y:-23		-transform:4		-m11:0.994		-m12:-0.111		-m21:0.111		-m22:0.994
+	ADD_FMODULE		-mid:1001		-x:-14.7		-y:-39		-transform:4		-m11:0.999		-m12:0.033		-m21:-0.033		-m22:0.999
+FRAME		-fid:2008		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-20.7		-y:-47.4		-transform:4		-m11:0.998		-m12:0.06		-m21:-0.06		-m22:0.998
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.6		-y:-22.1		-transform:4		-m11:0.998		-m12:0.058		-m21:-0.058		-m22:0.998
+	ADD_FMODULE		-mid:1006		-x:-41.5		-y:-35.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1004		-x:21.4		-y:-28.5		-transform:4		-m11:0.999		-m12:0.048		-m21:-0.048		-m22:0.999
+	ADD_FMODULE		-mid:1003		-x:4.9		-y:-30.4		-transform:4		-m11:1		-m12:-0.015		-m21:0.015		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.6		-y:-23		-transform:4		-m11:0.994		-m12:-0.105		-m21:0.105		-m22:0.994
+	ADD_FMODULE		-mid:1001		-x:-14.6		-y:-39.1		-transform:4		-m11:0.999		-m12:0.041		-m21:-0.041		-m22:0.999
+FRAME		-fid:2009		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-20.4		-y:-47.6		-transform:4		-m11:0.997		-m12:0.071		-m21:-0.071		-m22:0.997
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.5		-y:-22.3		-transform:4		-m11:0.998		-m12:0.069		-m21:-0.069		-m22:0.998
+	ADD_FMODULE		-mid:1006		-x:-41.5		-y:-35.5		-transform:4		-m11:1		-m12:-0.001		-m21:0.001		-m22:1
+	ADD_FMODULE		-mid:1004		-x:21.5		-y:-28.5		-transform:4		-m11:0.998		-m12:0.057		-m21:-0.057		-m22:0.998
+	ADD_FMODULE		-mid:1003		-x:4.9		-y:-30.4		-transform:4		-m11:1		-m12:-0.017		-m21:0.017		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.6		-y:-23.1		-transform:4		-m11:0.995		-m12:-0.098		-m21:0.098		-m22:0.995
+	ADD_FMODULE		-mid:1001		-x:-14.5		-y:-39.2		-transform:4		-m11:0.999		-m12:0.049		-m21:-0.049		-m22:0.999
+FRAME		-fid:200a		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-20.1		-y:-47.9		-transform:4		-m11:0.997		-m12:0.082		-m21:-0.082		-m22:0.997
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.5		-y:-22.4		-transform:4		-m11:0.997		-m12:0.079		-m21:-0.079		-m22:0.997
+	ADD_FMODULE		-mid:1006		-x:-41.5		-y:-35.4		-transform:4		-m11:1		-m12:-0.003		-m21:0.003		-m22:1
+	ADD_FMODULE		-mid:1004		-x:21.6		-y:-28.5		-transform:4		-m11:0.998		-m12:0.066		-m21:-0.066		-m22:0.998
+	ADD_FMODULE		-mid:1003		-x:4.9		-y:-30.4		-transform:4		-m11:1		-m12:-0.02		-m21:0.02		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.6		-y:-23.2		-transform:4		-m11:0.996		-m12:-0.089		-m21:0.089		-m22:0.996
+	ADD_FMODULE		-mid:1001		-x:-14.5		-y:-39.3		-transform:4		-m11:0.998		-m12:0.056		-m21:-0.056		-m22:0.998
+FRAME		-fid:200b		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-19.9		-y:-48.1		-transform:4		-m11:0.996		-m12:0.092		-m21:-0.092		-m22:0.996
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.4		-y:-22.6		-transform:4		-m11:0.996		-m12:0.089		-m21:-0.089		-m22:0.996
+	ADD_FMODULE		-mid:1006		-x:-41.6		-y:-35.4		-transform:4		-m11:1		-m12:-0.006		-m21:0.006		-m22:1
+	ADD_FMODULE		-mid:1004		-x:21.6		-y:-28.5		-transform:4		-m11:0.997		-m12:0.074		-m21:-0.074		-m22:0.997
+	ADD_FMODULE		-mid:1003		-x:4.9		-y:-30.4		-transform:4		-m11:1		-m12:-0.023		-m21:0.023		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.6		-y:-23.3		-transform:4		-m11:0.997		-m12:-0.079		-m21:0.079		-m22:0.997
+	ADD_FMODULE		-mid:1001		-x:-14.4		-y:-39.4		-transform:4		-m11:0.998		-m12:0.063		-m21:-0.063		-m22:0.998
+FRAME		-fid:200c		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-19.7		-y:-48.3		-transform:4		-m11:0.995		-m12:0.101		-m21:-0.101		-m22:0.995
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.3		-y:-22.8		-transform:4		-m11:0.995		-m12:0.098		-m21:-0.098		-m22:0.995
+	ADD_FMODULE		-mid:1006		-x:-41.7		-y:-35.3		-transform:4		-m11:1		-m12:-0.011		-m21:0.011		-m22:1
+	ADD_FMODULE		-mid:1004		-x:21.7		-y:-28.5		-transform:4		-m11:0.997		-m12:0.081		-m21:-0.081		-m22:0.997
+	ADD_FMODULE		-mid:1003		-x:4.9		-y:-30.4		-transform:4		-m11:1		-m12:-0.025		-m21:0.025		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.6		-y:-23.4		-transform:4		-m11:0.998		-m12:-0.069		-m21:0.069		-m22:0.998
+	ADD_FMODULE		-mid:1001		-x:-14.3		-y:-39.5		-transform:4		-m11:0.998		-m12:0.069		-m21:-0.069		-m22:0.998
+FRAME		-fid:200d		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-19.5		-y:-48.4		-transform:4		-m11:0.994		-m12:0.109		-m21:-0.109		-m22:0.994
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.3		-y:-22.9		-transform:4		-m11:0.994		-m12:0.105		-m21:-0.105		-m22:0.994
+	ADD_FMODULE		-mid:1006		-x:-41.8		-y:-35.1		-transform:4		-m11:1		-m12:-0.016		-m21:0.016		-m22:1
+	ADD_FMODULE		-mid:1004		-x:21.8		-y:-28.4		-transform:4		-m11:0.996		-m12:0.087		-m21:-0.087		-m22:0.996
+	ADD_FMODULE		-mid:1003		-x:4.9		-y:-30.4		-transform:4		-m11:1		-m12:-0.027		-m21:0.027		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.6		-y:-23.5		-transform:4		-m11:0.998		-m12:-0.058		-m21:0.058		-m22:0.998
+	ADD_FMODULE		-mid:1001		-x:-14.3		-y:-39.6		-transform:4		-m11:0.997		-m12:0.074		-m21:-0.074		-m22:0.997
+FRAME		-fid:200e		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-19.4		-y:-48.6		-transform:4		-m11:0.993		-m12:0.115		-m21:-0.115		-m22:0.993
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.2		-y:-23		-transform:4		-m11:0.994		-m12:0.111		-m21:-0.111		-m22:0.994
+	ADD_FMODULE		-mid:1006		-x:-41.9		-y:-35		-transform:4		-m11:1		-m12:-0.022		-m21:0.022		-m22:1
+	ADD_FMODULE		-mid:1004		-x:21.8		-y:-28.4		-transform:4		-m11:0.996		-m12:0.092		-m21:-0.092		-m22:0.996
+	ADD_FMODULE		-mid:1003		-x:4.9		-y:-30.3		-transform:4		-m11:1		-m12:-0.028		-m21:0.028		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.6		-y:-23.6		-transform:4		-m11:0.999		-m12:-0.047		-m21:0.047		-m22:0.999
+	ADD_FMODULE		-mid:1001		-x:-14.2		-y:-39.7		-transform:4		-m11:0.997		-m12:0.078		-m21:-0.078		-m22:0.997
+FRAME		-fid:200f		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-19.3		-y:-48.6		-transform:4		-m11:0.993		-m12:0.118		-m21:-0.118		-m22:0.993
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.2		-y:-23.1		-transform:4		-m11:0.993		-m12:0.115		-m21:-0.115		-m22:0.993
+	ADD_FMODULE		-mid:1006		-x:-42		-y:-34.9		-transform:4		-m11:1		-m12:-0.028		-m21:0.028		-m22:1
+	ADD_FMODULE		-mid:1004		-x:21.8		-y:-28.4		-transform:4		-m11:0.995		-m12:0.095		-m21:-0.095		-m22:0.995
+	ADD_FMODULE		-mid:1003		-x:4.8		-y:-30.3		-transform:4		-m11:1		-m12:-0.029		-m21:0.029		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.6		-y:-23.7		-transform:4		-m11:0.999		-m12:-0.037		-m21:0.037		-m22:0.999
+	ADD_FMODULE		-mid:1001		-x:-14.2		-y:-39.7		-transform:4		-m11:0.997		-m12:0.081		-m21:-0.081		-m22:0.997
+FRAME		-fid:2010		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-19.2		-y:-48.7		-transform:4		-m11:0.993		-m12:0.12		-m21:-0.12		-m22:0.993
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.2		-y:-23.1		-transform:4		-m11:0.993		-m12:0.116		-m21:-0.116		-m22:0.993
+	ADD_FMODULE		-mid:1006		-x:-42.1		-y:-34.7		-transform:4		-m11:0.999		-m12:-0.034		-m21:0.034		-m22:0.999
+	ADD_FMODULE		-mid:1004		-x:21.8		-y:-28.4		-transform:4		-m11:0.995		-m12:0.096		-m21:-0.096		-m22:0.995
+	ADD_FMODULE		-mid:1003		-x:4.8		-y:-30.3		-transform:4		-m11:1		-m12:-0.029		-m21:0.029		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.5		-y:-23.7		-transform:4		-m11:1		-m12:-0.027		-m21:0.027		-m22:1
+	ADD_FMODULE		-mid:1001		-x:-14.2		-y:-39.7		-transform:4		-m11:0.997		-m12:0.082		-m21:-0.082		-m22:0.997
+FRAME		-fid:2011		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-19.3		-y:-48.6		-transform:4		-m11:0.993		-m12:0.118		-m21:-0.118		-m22:0.993
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.2		-y:-23.1		-transform:4		-m11:0.993		-m12:0.115		-m21:-0.115		-m22:0.993
+	ADD_FMODULE		-mid:1006		-x:-42.2		-y:-34.6		-transform:4		-m11:0.999		-m12:-0.041		-m21:0.041		-m22:0.999
+	ADD_FMODULE		-mid:1004		-x:21.8		-y:-28.4		-transform:4		-m11:0.995		-m12:0.095		-m21:-0.095		-m22:0.995
+	ADD_FMODULE		-mid:1003		-x:4.8		-y:-30.3		-transform:4		-m11:1		-m12:-0.029		-m21:0.029		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.5		-y:-23.8		-transform:4		-m11:1		-m12:-0.018		-m21:0.018		-m22:1
+	ADD_FMODULE		-mid:1001		-x:-14.2		-y:-39.7		-transform:4		-m11:0.997		-m12:0.081		-m21:-0.081		-m22:0.997
+FRAME		-fid:2012		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-19.4		-y:-48.6		-transform:4		-m11:0.993		-m12:0.115		-m21:-0.115		-m22:0.993
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.2		-y:-23		-transform:4		-m11:0.994		-m12:0.111		-m21:-0.111		-m22:0.994
+	ADD_FMODULE		-mid:1006		-x:-42.3		-y:-34.4		-transform:4		-m11:0.999		-m12:-0.047		-m21:0.047		-m22:0.999
+	ADD_FMODULE		-mid:1004		-x:21.8		-y:-28.4		-transform:4		-m11:0.996		-m12:0.092		-m21:-0.092		-m22:0.996
+	ADD_FMODULE		-mid:1003		-x:4.9		-y:-30.3		-transform:4		-m11:1		-m12:-0.028		-m21:0.028		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.5		-y:-23.9		-transform:4		-m11:1		-m12:-0.011		-m21:0.011		-m22:1
+	ADD_FMODULE		-mid:1001		-x:-14.2		-y:-39.7		-transform:4		-m11:0.997		-m12:0.078		-m21:-0.078		-m22:0.997
+FRAME		-fid:2013		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-19.5		-y:-48.4		-transform:4		-m11:0.994		-m12:0.109		-m21:-0.109		-m22:0.994
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.3		-y:-22.9		-transform:4		-m11:0.994		-m12:0.105		-m21:-0.105		-m22:0.994
+	ADD_FMODULE		-mid:1006		-x:-42.3		-y:-34.3		-transform:4		-m11:0.999		-m12:-0.053		-m21:0.053		-m22:0.999
+	ADD_FMODULE		-mid:1004		-x:21.8		-y:-28.4		-transform:4		-m11:0.996		-m12:0.087		-m21:-0.087		-m22:0.996
+	ADD_FMODULE		-mid:1003		-x:4.9		-y:-30.4		-transform:4		-m11:1		-m12:-0.027		-m21:0.027		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.5		-y:-24		-transform:4		-m11:1		-m12:-0.005		-m21:0.005		-m22:1
+	ADD_FMODULE		-mid:1001		-x:-14.3		-y:-39.6		-transform:4		-m11:0.997		-m12:0.074		-m21:-0.074		-m22:0.997
+FRAME		-fid:2014		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-19.7		-y:-48.3		-transform:4		-m11:0.995		-m12:0.101		-m21:-0.101		-m22:0.995
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.3		-y:-22.8		-transform:4		-m11:0.995		-m12:0.098		-m21:-0.098		-m22:0.995
+	ADD_FMODULE		-mid:1006		-x:-42.4		-y:-34.2		-transform:4		-m11:0.998		-m12:-0.058		-m21:0.058		-m22:0.998
+	ADD_FMODULE		-mid:1004		-x:21.7		-y:-28.5		-transform:4		-m11:0.997		-m12:0.081		-m21:-0.081		-m22:0.997
+	ADD_FMODULE		-mid:1003		-x:4.9		-y:-30.4		-transform:4		-m11:1		-m12:-0.025		-m21:0.025		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.5		-y:-24		-transform:4		-m11:1		-m12:-0.001		-m21:0.001		-m22:1
+	ADD_FMODULE		-mid:1001		-x:-14.3		-y:-39.5		-transform:4		-m11:0.998		-m12:0.069		-m21:-0.069		-m22:0.998
+FRAME		-fid:2015		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-19.9		-y:-48.1		-transform:4		-m11:0.996		-m12:0.092		-m21:-0.092		-m22:0.996
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.4		-y:-22.6		-transform:4		-m11:0.996		-m12:0.089		-m21:-0.089		-m22:0.996
+	ADD_FMODULE		-mid:1006		-x:-42.5		-y:-34		-transform:4		-m11:0.998		-m12:-0.062		-m21:0.062		-m22:0.998
+	ADD_FMODULE		-mid:1004		-x:21.6		-y:-28.5		-transform:4		-m11:0.997		-m12:0.074		-m21:-0.074		-m22:0.997
+	ADD_FMODULE		-mid:1003		-x:4.9		-y:-30.4		-transform:4		-m11:1		-m12:-0.023		-m21:0.023		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.5		-y:-24		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1001		-x:-14.4		-y:-39.4		-transform:4		-m11:0.998		-m12:0.063		-m21:-0.063		-m22:0.998
+FRAME		-fid:2016		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-20.1		-y:-47.9		-transform:4		-m11:0.997		-m12:0.082		-m21:-0.082		-m22:0.997
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.5		-y:-22.4		-transform:4		-m11:0.997		-m12:0.079		-m21:-0.079		-m22:0.997
+	ADD_FMODULE		-mid:1006		-x:-42.5		-y:-34		-transform:4		-m11:0.998		-m12:-0.066		-m21:0.066		-m22:0.998
+	ADD_FMODULE		-mid:1004		-x:21.6		-y:-28.5		-transform:4		-m11:0.998		-m12:0.066		-m21:-0.066		-m22:0.998
+	ADD_FMODULE		-mid:1003		-x:4.9		-y:-30.4		-transform:4		-m11:1		-m12:-0.02		-m21:0.02		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.5		-y:-24		-transform:4		-m11:1		-m12:-0.001		-m21:0.001		-m22:1
+	ADD_FMODULE		-mid:1001		-x:-14.5		-y:-39.3		-transform:4		-m11:0.998		-m12:0.056		-m21:-0.056		-m22:0.998
+FRAME		-fid:2017		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-20.4		-y:-47.6		-transform:4		-m11:0.997		-m12:0.071		-m21:-0.071		-m22:0.997
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.5		-y:-22.3		-transform:4		-m11:0.998		-m12:0.069		-m21:-0.069		-m22:0.998
+	ADD_FMODULE		-mid:1006		-x:-42.6		-y:-33.9		-transform:4		-m11:0.998		-m12:-0.068		-m21:0.068		-m22:0.998
+	ADD_FMODULE		-mid:1004		-x:21.5		-y:-28.5		-transform:4		-m11:0.998		-m12:0.057		-m21:-0.057		-m22:0.998
+	ADD_FMODULE		-mid:1003		-x:4.9		-y:-30.4		-transform:4		-m11:1		-m12:-0.017		-m21:0.017		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.5		-y:-24		-transform:4		-m11:1		-m12:-0.005		-m21:0.005		-m22:1
+	ADD_FMODULE		-mid:1001		-x:-14.5		-y:-39.2		-transform:4		-m11:0.999		-m12:0.049		-m21:-0.049		-m22:0.999
+FRAME		-fid:2018		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-20.7		-y:-47.4		-transform:4		-m11:0.998		-m12:0.06		-m21:-0.06		-m22:0.998
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.6		-y:-22.1		-transform:4		-m11:0.998		-m12:0.058		-m21:-0.058		-m22:0.998
+	ADD_FMODULE		-mid:1006		-x:-42.6		-y:-33.9		-transform:4		-m11:0.998		-m12:-0.069		-m21:0.069		-m22:0.998
+	ADD_FMODULE		-mid:1004		-x:21.4		-y:-28.5		-transform:4		-m11:0.999		-m12:0.048		-m21:-0.048		-m22:0.999
+	ADD_FMODULE		-mid:1003		-x:4.9		-y:-30.4		-transform:4		-m11:1		-m12:-0.015		-m21:0.015		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.5		-y:-23.9		-transform:4		-m11:1		-m12:-0.011		-m21:0.011		-m22:1
+	ADD_FMODULE		-mid:1001		-x:-14.6		-y:-39.1		-transform:4		-m11:0.999		-m12:0.041		-m21:-0.041		-m22:0.999
+FRAME		-fid:2019		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-20.9		-y:-47.1		-transform:4		-m11:0.999		-m12:0.049		-m21:-0.049		-m22:0.999
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.7		-y:-21.9		-transform:4		-m11:0.999		-m12:0.047		-m21:-0.047		-m22:0.999
+	ADD_FMODULE		-mid:1006		-x:-42.6		-y:-33.9		-transform:4		-m11:0.998		-m12:-0.068		-m21:0.068		-m22:0.998
+	ADD_FMODULE		-mid:1004		-x:21.3		-y:-28.5		-transform:4		-m11:0.999		-m12:0.039		-m21:-0.039		-m22:0.999
+	ADD_FMODULE		-mid:1003		-x:4.9		-y:-30.4		-transform:4		-m11:1		-m12:-0.012		-m21:0.012		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.5		-y:-23.8		-transform:4		-m11:1		-m12:-0.018		-m21:0.018		-m22:1
+	ADD_FMODULE		-mid:1001		-x:-14.7		-y:-39		-transform:4		-m11:0.999		-m12:0.033		-m21:-0.033		-m22:0.999
+FRAME		-fid:201a		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-21.2		-y:-46.9		-transform:4		-m11:0.999		-m12:0.038		-m21:-0.038		-m22:0.999
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.8		-y:-21.7		-transform:4		-m11:0.999		-m12:0.037		-m21:-0.037		-m22:0.999
+	ADD_FMODULE		-mid:1006		-x:-42.5		-y:-34		-transform:4		-m11:0.998		-m12:-0.066		-m21:0.066		-m22:0.998
+	ADD_FMODULE		-mid:1004		-x:21.3		-y:-28.5		-transform:4		-m11:1		-m12:0.03		-m21:-0.03		-m22:1
+	ADD_FMODULE		-mid:1003		-x:5		-y:-30.4		-transform:4		-m11:1		-m12:-0.009		-m21:0.009		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.5		-y:-23.7		-transform:4		-m11:1		-m12:-0.027		-m21:0.027		-m22:1
+	ADD_FMODULE		-mid:1001		-x:-14.8		-y:-38.9		-transform:4		-m11:1		-m12:0.026		-m21:-0.026		-m22:1
+FRAME		-fid:201b		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-21.4		-y:-46.6		-transform:4		-m11:1		-m12:0.028		-m21:-0.028		-m22:1
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.8		-y:-21.5		-transform:4		-m11:1		-m12:0.027		-m21:-0.027		-m22:1
+	ADD_FMODULE		-mid:1006		-x:-42.5		-y:-34		-transform:4		-m11:0.998		-m12:-0.062		-m21:0.062		-m22:0.998
+	ADD_FMODULE		-mid:1004		-x:21.2		-y:-28.5		-transform:4		-m11:1		-m12:0.022		-m21:-0.022		-m22:1
+	ADD_FMODULE		-mid:1003		-x:5		-y:-30.5		-transform:4		-m11:1		-m12:-0.007		-m21:0.007		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.6		-y:-23.7		-transform:4		-m11:0.999		-m12:-0.037		-m21:0.037		-m22:0.999
+	ADD_FMODULE		-mid:1001		-x:-14.8		-y:-38.8		-transform:4		-m11:1		-m12:0.019		-m21:-0.019		-m22:1
+FRAME		-fid:201c		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-21.6		-y:-46.4		-transform:4		-m11:1		-m12:0.019		-m21:-0.019		-m22:1
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.9		-y:-21.3		-transform:4		-m11:1		-m12:0.018		-m21:-0.018		-m22:1
+	ADD_FMODULE		-mid:1006		-x:-42.4		-y:-34.2		-transform:4		-m11:0.998		-m12:-0.058		-m21:0.058		-m22:0.998
+	ADD_FMODULE		-mid:1004		-x:21.1		-y:-28.5		-transform:4		-m11:1		-m12:0.015		-m21:-0.015		-m22:1
+	ADD_FMODULE		-mid:1003		-x:5		-y:-30.5		-transform:4		-m11:1		-m12:-0.005		-m21:0.005		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.6		-y:-23.6		-transform:4		-m11:0.999		-m12:-0.047		-m21:0.047		-m22:0.999
+	ADD_FMODULE		-mid:1001		-x:-14.9		-y:-38.7		-transform:4		-m11:1		-m12:0.013		-m21:-0.013		-m22:1
+FRAME		-fid:201d		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-21.8		-y:-46.3		-transform:4		-m11:1		-m12:0.011		-m21:-0.011		-m22:1
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-44.9		-y:-21.2		-transform:4		-m11:1		-m12:0.011		-m21:-0.011		-m22:1
+	ADD_FMODULE		-mid:1006		-x:-42.3		-y:-34.3		-transform:4		-m11:0.999		-m12:-0.053		-m21:0.053		-m22:0.999
+	ADD_FMODULE		-mid:1004		-x:21.1		-y:-28.5		-transform:4		-m11:1		-m12:0.009		-m21:-0.009		-m22:1
+	ADD_FMODULE		-mid:1003		-x:5		-y:-30.5		-transform:4		-m11:1		-m12:-0.003		-m21:0.003		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.6		-y:-23.5		-transform:4		-m11:0.998		-m12:-0.058		-m21:0.058		-m22:0.998
+	ADD_FMODULE		-mid:1001		-x:-14.9		-y:-38.6		-transform:4		-m11:1		-m12:0.008		-m21:-0.008		-m22:1
+FRAME		-fid:201e		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-21.9		-y:-46.1		-transform:4		-m11:1		-m12:0.005		-m21:-0.005		-m22:1
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-45		-y:-21.1		-transform:4		-m11:1		-m12:0.005		-m21:-0.005		-m22:1
+	ADD_FMODULE		-mid:1006		-x:-42.3		-y:-34.4		-transform:4		-m11:0.999		-m12:-0.047		-m21:0.047		-m22:0.999
+	ADD_FMODULE		-mid:1004		-x:21		-y:-28.5		-transform:4		-m11:1		-m12:0.004		-m21:-0.004		-m22:1
+	ADD_FMODULE		-mid:1003		-x:5		-y:-30.5		-transform:4		-m11:1		-m12:-0.001		-m21:0.001		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.6		-y:-23.4		-transform:4		-m11:0.998		-m12:-0.069		-m21:0.069		-m22:0.998
+	ADD_FMODULE		-mid:1001		-x:-15		-y:-38.6		-transform:4		-m11:1		-m12:0.004		-m21:-0.004		-m22:1
+FRAME		-fid:201f		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-22		-y:-46		-transform:4		-m11:1		-m12:0.001		-m21:-0.001		-m22:1
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-45		-y:-21		-transform:4		-m11:1		-m12:0.001		-m21:-0.001		-m22:1
+	ADD_FMODULE		-mid:1006		-x:-42.2		-y:-34.6		-transform:4		-m11:0.999		-m12:-0.041		-m21:0.041		-m22:0.999
+	ADD_FMODULE		-mid:1004		-x:21		-y:-28.5		-transform:4		-m11:1		-m12:0.001		-m21:-0.001		-m22:1
+	ADD_FMODULE		-mid:1003		-x:5		-y:-30.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.6		-y:-23.3		-transform:4		-m11:0.997		-m12:-0.079		-m21:0.079		-m22:0.997
+	ADD_FMODULE		-mid:1001		-x:-15		-y:-38.5		-transform:4		-m11:1		-m12:0.001		-m21:-0.001		-m22:1
+FRAME		-fid:2020		-desc:""
+	ADD_FMODULE		-mid:1005		-x:-22		-y:-46		-transform:0
+	ADD_FMODULE		-mid:1008		-x:-36		-y:-37.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1007		-x:-45		-y:-21		-transform:0
+	ADD_FMODULE		-mid:1006		-x:-42.1		-y:-34.7		-transform:4		-m11:0.999		-m12:-0.034		-m21:0.034		-m22:0.999
+	ADD_FMODULE		-mid:1004		-x:21		-y:-28.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1003		-x:5		-y:-30.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+	ADD_FMODULE		-mid:1002		-x:-11.6		-y:-23.2		-transform:4		-m11:0.996		-m12:-0.089		-m21:0.089		-m22:0.996
+	ADD_FMODULE		-mid:1001		-x:-15		-y:-38.5		-transform:4		-m11:1		-m12:0		-m21:0		-m22:1
+ANIMATION		-aid:3000		-desc:"buicay_1"
+	ADD_AFRAME		-fid:2000		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2001		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2002		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2003		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2004		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2005		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2006		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2007		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2008		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2009		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:200a		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:200b		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:200c		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:200d		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:200e		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:200f		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2010		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2011		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2012		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2013		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2014		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2015		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2016		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2017		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2018		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2019		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:201a		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:201b		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:201c		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:201d		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:201e		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:201f		-x:0		-y:0		-transform:0		-time:1
+	ADD_AFRAME		-fid:2020		-x:0		-y:0		-transform:0		-time:1

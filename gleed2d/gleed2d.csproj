@@ -108,6 +108,7 @@
     <Compile Include="src\Pixma\Pixma.cs" />
     <Compile Include="src\Pixma\PixmaManager.cs" />
     <Compile Include="src\Pixma\PixMatrix.cs" />
+    <Compile Include="src\Pixma\Test.cs" />
     <Compile Include="src\Pixma\Utils.cs" />
     <Compile Include="src\Utils\Define.cs" />
     <Compile Include="src\Utils\IsoMath.cs" />

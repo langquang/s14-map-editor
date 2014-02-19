@@ -326,13 +326,12 @@ namespace GLEED2D
             {
                 Pixma pixma = PixmaManager.getCache(currentbrush.fullpath);
                 i = new PixFrame(currentbrush.pixma_id, currentbrush.fullpath, new Vector2((int)mouseworldpos.X, (int)mouseworldpos.Y)); 
-                //pixma.GetFrame_bitmap((PixFrame)i);
             }
             else if (currentbrush.type == Define.TYPE_ANIM)
             {
                 Pixma pixma = PixmaManager.getCache(currentbrush.fullpath);
                 i = new PixAnim(currentbrush.pixma_id, currentbrush.fullpath, new Vector2((int)mouseworldpos.X, (int)mouseworldpos.Y));
-                //pixma.GetFrame_bitmap((PixFrame)i);
+
             }
             i.Name = i.getNamePrefix() + level.getNextItemNumber();
             i.layer = SelectedLayer;

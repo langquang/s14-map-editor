@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Collections;
@@ -689,19 +690,18 @@ namespace GLEED2D
         {
             if (moduleImages.Length == 0)
                 return null;
-            
 
             int frame_id = frame.getFrameId();
-
             if (frame_caches[frame_id] != null)
             {
-                return frame_caches[frame_id].FillEmptyFrame(frame);
+                frame = frame_caches[frame_id].FillEmptyFrame(frame);
+                return frame;
             }
-                
 
+            TimeSpan begin = Process.GetCurrentProcess().TotalProcessorTime;
+                
             int fmodule_min = 0;
             int fmodule_max = 0;
-
             int module = 0;
             int fmodule_transf = 0;
             float ox = 0;
@@ -750,17 +750,19 @@ namespace GLEED2D
                 fm_trans_matrix.M41 = fmoduleMatrices[i * 6] - frame_rect.X;
                 fm_trans_matrix.M42 = fmoduleMatrices[i * 6 + 1] - frame_rect.Y;
 
-                //// [CS.2012/06/27] incorrect flipping
                 if ((fmodule_transf & TRANSFORM_FLIP_H) != 0)
                 {
                     fm_trans_matrix *= Matrix.CreateScale(-1, 1, 1);
                 }
+
                 if ((fmodule_transf & TRANSFORM_FLIP_V) != 0)
                 {
                     fm_trans_matrix *= Matrix.CreateScale(1, -1, 1);
                 }
-                Utils.draw(back_buffer, module_bmp_data, fm_trans_matrix);   
+
+                Utils.draw(back_buffer, module_bmp_data, fm_trans_matrix);
             }
+
             frame.addModule_bitmap(frame_bitmap, bitmap_trans, frame_rect);
             frame.FrameName = frame_names[frame_id];
             frame_caches[frame_id] = frame;
