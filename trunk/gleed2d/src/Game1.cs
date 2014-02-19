@@ -146,7 +146,10 @@ namespace GLEED2D
         {
             float fps = 1 / (float)gameTime.ElapsedGameTime.TotalSeconds;
             MainForm.Instance.toolStripStatusLabel4.Text = "FPS: " + fps.ToString("#0.00");
-            jugger.update(gameTime);
+            if (jugger.Play)
+            {
+                jugger.update(gameTime);
+            }
 
             Editor.Instance.draw(spriteBatch);
 

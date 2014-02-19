@@ -8,5 +8,7 @@ namespace GLEED2D
     public interface Animation
     {
         void update();
+        void stop(int frame);
+        void play();
     }
 }

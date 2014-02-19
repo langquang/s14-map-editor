@@ -130,7 +130,7 @@ namespace GLEED2D
  
         }
 
-        public System.Drawing.Bitmap getBitmapView()
+        public virtual System.Drawing.Bitmap getBitmapView()
         {
             int w = texture.Width;
             int h = texture.Height;
@@ -269,6 +269,14 @@ namespace GLEED2D
         {
             return frameId;
         }
+
+        public PixFrame FillEmptyFrame(PixFrame frame)
+        {
+            frame.addModule_bitmap(bitmap, bitmap_trans, frame_rect);
+            frame.FrameName = FrameName;
+            return frame;
+        }
+
     }
 
 }

@@ -20,6 +20,7 @@ namespace GLEED2D
         public String fullpath;
         public Texture2D texture;
         public PixFrame frame;
+        public PixAnim anim;
         public string type;
         public int pixma_id;
 
@@ -36,8 +37,14 @@ namespace GLEED2D
             {
                 Pixma pixma = PixmaManager.getCache(this.fullpath);
                 frame = new PixFrame(this.pixma_id, this.fullpath, Vector2.Zero);
-                frame = pixma.GetFrame_bitmap(frame);
+                //frame = pixma.GetFrame_bitmap(frame);
                 frame.Visible = true;
+            }
+            else if (this.type == Define.TYPE_ANIM)
+            {
+                Pixma pixma = PixmaManager.getCache(this.fullpath);
+                anim = new PixAnim(this.pixma_id, this.fullpath, Vector2.Zero);
+                anim.Visible = true;
             }
         }
 
@@ -54,6 +61,11 @@ namespace GLEED2D
             {
                 frame.setPosition(pos.X, pos.Y);
                 frame.drawInEditor(sb);
+            }
+            else if (this.type == Define.TYPE_ANIM)
+            {
+                anim.setPosition(pos.X, pos.Y);
+                anim.drawInEditor(sb);
             }
         }
     }

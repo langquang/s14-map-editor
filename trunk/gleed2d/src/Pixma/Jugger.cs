@@ -10,7 +10,24 @@ namespace GLEED2D
     {
         private ArrayList list;
         private double lastTime;
-        private double curTime;	
+        private double curTime;
+        private bool _play;
+
+        public bool Play
+        {
+            get
+            {
+                return _play;
+            }
+            set
+            {
+                _play = value;
+                if (_play == false)
+                    stopAllAnim();
+                else
+                    playAllAnim();
+            }
+        }
 
         public Jugger()
         {
@@ -31,8 +48,6 @@ namespace GLEED2D
         public void update(Microsoft.Xna.Framework.GameTime gameTime)
         {
             curTime = gameTime.TotalGameTime.TotalMilliseconds;
-            if (lastTime == 0)
-                lastTime = curTime;
 
             if (curTime > lastTime + 34)
             {
@@ -42,5 +57,17 @@ namespace GLEED2D
             }
 
 		}
+
+        public void stopAllAnim()
+        {
+            foreach (Animation anim in list)
+                anim.stop(-1);
+        }
+
+        public void playAllAnim()
+        {
+            foreach (Animation anim in list)
+                anim.play();
+        }
     }
 }

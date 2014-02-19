@@ -30,7 +30,6 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // button1
@@ -53,20 +52,8 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(267, 112);
             this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "GLEED2D \r\n\r\nGeneric Level Editor 2D\r\n\r\nVersion {v}\r\n\r\nby zissakos (Zissis Siantid" +
-                "is)";
+            this.textBox1.Text = "S14 Map Editor\r\n\r\nby TinBQ2\r\n\r\n\r\n";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.Location = new System.Drawing.Point(13, 132);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(267, 23);
-            this.linkLabel1.TabIndex = 2;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "gleed2d.codeplex.com";
-            this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // AboutForm
             // 
@@ -74,7 +61,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 273);
             this.ControlBox = false;
-            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -91,6 +77,5 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

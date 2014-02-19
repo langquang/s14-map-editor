@@ -108,6 +108,12 @@ namespace GLEED2D
             //comboBox3.Items.Add("256x256");
             comboBox3.SelectedIndex = 1;
 
+            comboBox6.Items.Add("48x48");
+            comboBox6.Items.Add("64x64");
+            comboBox6.Items.Add("96x96");
+            comboBox6.Items.Add("128x128");
+            comboBox6.SelectedIndex = 1;
+
         }
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -295,6 +301,8 @@ namespace GLEED2D
                 listview = listView1;
             else if (tabControl1.SelectedIndex == 2)// frame
                 listview = listView4;
+            else if (tabControl1.SelectedIndex == 3)// anim
+                listview = listView8;
             e.Effect = DragDropEffects.Move;
             ListViewItem lvi = (ListViewItem)e.Data.GetData(typeof(ListViewItem));
             string[] data = Regex.Split(listview.FocusedItem.Tag.ToString(), ";");
@@ -325,6 +333,8 @@ namespace GLEED2D
                 listview = listView1;
             else if (tabControl1.SelectedIndex == 2)// frame
                 listview = listView4;
+            else if (tabControl1.SelectedIndex == 3)// anim
+                listview = listView8;
             Editor.Instance.paintTextureBrush(false);
             listview.Cursor = Cursors.Default;
             pictureBox1.Cursor = Cursors.Default;
@@ -1086,7 +1096,6 @@ namespace GLEED2D
                         framesList64.Images.Add(frame.FrameName + file.FullName, getThumbNail(bmp, 64, 64));
                         framesList96.Images.Add(frame.FrameName + file.FullName, getThumbNail(bmp, 96, 96));
                         framesList128.Images.Add(frame.FrameName + file.FullName, getThumbNail(bmp, 128, 128));
-//                        framesList256.Images.Add(frame.getName(), getThumbNail(bmp, 256, 256));
 
                         ListViewItem lvi = new ListViewItem();
                         lvi.Name = file.FullName;
@@ -1122,10 +1131,6 @@ namespace GLEED2D
                     listView4.LargeImageList = framesList128;
                     SetListViewSpacing(listView4, 128 + 8, 128 + 32);
                     break;
-//                case 4:
-//                    listView4.LargeImageList = framesList256;
-//                    SetListViewSpacing(listView4, 256 + 8, 256 + 32);
-//                    break;
             }
         }
 
@@ -1142,11 +1147,6 @@ namespace GLEED2D
             {
                 Editor.Instance.createTextureBrush(listView4.FocusedItem.Name, Define.TYPE_FRAME, id);
             }
-            else if (itemtype == Define.TYPE_ANIM)
-            {
-                //Editor.Instance.createTextureBrush(listView1.FocusedItem.Name);
-            }
-
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -1160,6 +1160,137 @@ namespace GLEED2D
         private void toolStripButton4_CheckedChanged(object sender, EventArgs e)
         {
             Define.is_nagetive = !toolStripButton4.Checked;
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            DirectoryInfo di = Directory.GetParent(textBox5.Text);
+            if (di == null) return;
+            loadPixmaAnims(di.FullName);
+        }
+
+        public void loadPixmaAnims(string path)
+        {
+            animList48.Images.Clear();
+            animList64.Images.Clear();
+            animList96.Images.Clear();
+            animList128.Images.Clear();
+            animList256.Images.Clear();
+
+            Image img = Resources.folder;
+            animList48.Images.Add(img);
+            animList64.Images.Add(img);
+            animList96.Images.Add(img);
+            animList128.Images.Add(img);
+            animList256.Images.Add(img);
+
+            listView8.Clear();
+
+            DirectoryInfo di = new DirectoryInfo(path);
+            textBox5.Text = di.FullName;
+            DirectoryInfo[] folders = di.GetDirectories();
+            foreach (DirectoryInfo folder in folders)
+            {
+                ListViewItem lvi = new ListViewItem();
+                lvi.Text = folder.Name;
+                lvi.ToolTipText = folder.Name;
+                lvi.ImageIndex = 0;
+                lvi.Tag = Define.TYPE_FOLDER + Define.TYPE_SEPARATE + "0";
+                lvi.Name = folder.FullName;
+                listView8.Items.Add(lvi);
+            }
+
+            string filters = "*.anim";
+            List<FileInfo> fileList = new List<FileInfo>();
+            string[] extensions = filters.Split(';');
+            foreach (string filter in extensions) fileList.AddRange(di.GetFiles(filter));
+            FileInfo[] files = fileList.ToArray();
+            Pixma pixma;
+            foreach (FileInfo file in files)
+            {
+                pixma = PixmaManager.getCache(file.FullName);
+                if (pixma == null)
+                {
+                    pixma = new Pixma(file.Name);
+                    pixma.load(file.FullName);
+                    PixmaManager.cache(file.FullName, pixma);
+                }
+
+                int i = 0, length = pixma.NumAnim;
+                for (i = 0; i < length; i++)
+                {
+                    if (pixma.hasAnimName(i))
+                    {
+                        PixAnim anim = new PixAnim(i, file.FullName, Vector2.Zero);
+                        Bitmap bmp = anim.getBitmapView();
+                        animList48.Images.Add(anim.FrameName + file.FullName, getThumbNail(bmp, 48, 48));
+                        animList64.Images.Add(anim.FrameName + file.FullName, getThumbNail(bmp, 64, 64));
+                        animList96.Images.Add(anim.FrameName + file.FullName, getThumbNail(bmp, 96, 96));
+                        animList128.Images.Add(anim.FrameName + file.FullName, getThumbNail(bmp, 128, 128));
+
+                        ListViewItem lvi = new ListViewItem();
+                        lvi.Name = file.FullName;
+                        lvi.Text = anim.FrameName;
+                        lvi.ImageKey = anim.FrameName + file.FullName;
+                        lvi.Tag = Define.TYPE_ANIM + Define.TYPE_SEPARATE + i;
+                        lvi.ToolTipText = anim.FrameName + " - " + file.Name + " (" + bmp.Width.ToString() + " x " + bmp.Height.ToString() + ")";
+
+                        listView8.Items.Add(lvi);
+                    }
+                }
+
+            }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog d = new FolderBrowserDialog();
+            d.SelectedPath = textBox5.Text;
+            if (d.ShowDialog() == DialogResult.OK) loadPixmaAnims(d.SelectedPath);
+        }
+
+        private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBox6.SelectedIndex)
+            {
+                case 0:
+                    listView8.LargeImageList = animList48;
+                    SetListViewSpacing(listView8, 48 + 8, 48 + 32);
+                    break;
+                case 1:
+                    listView8.LargeImageList = animList64;
+                    SetListViewSpacing(listView8, 64 + 8, 64 + 32);
+                    break;
+                case 2:
+                    listView8.LargeImageList = animList96;
+                    SetListViewSpacing(listView8, 96 + 8, 96 + 32);
+                    break;
+                case 3:
+                    listView8.LargeImageList = animList128;
+                    SetListViewSpacing(listView8, 128 + 8, 128 + 32);
+                    break;
+            }
+        }
+
+        private void listView8_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            string[] data = Regex.Split(listView8.FocusedItem.Tag.ToString(), ";");
+            string itemtype = data[0];
+            string id = data[1];
+            if (itemtype == Define.TYPE_FOLDER)
+            {
+                loadPixmaAnims(listView8.FocusedItem.Name);
+            }
+            else if (itemtype == Define.TYPE_ANIM)
+            {
+                Editor.Instance.createTextureBrush(listView8.FocusedItem.Name, Define.TYPE_ANIM, id);
+            }
+
+        }
+
+        private void toolStripButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            Game1.Instance.jugger.Play =  toolStripButton2.Checked;
         }
 
 
