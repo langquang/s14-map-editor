@@ -708,8 +708,12 @@ namespace GLEED2D
         {
             
             Vector2 result = input;
+            if (Define.is_iso)
+                result = IsoMath.screenToIso(result, false);
             result.X = Constants.Instance.GridSpacing.X * (int)Math.Round(result.X / Constants.Instance.GridSpacing.X);
             result.Y = Constants.Instance.GridSpacing.Y * (int)Math.Round(result.Y / Constants.Instance.GridSpacing.Y);
+            if (Define.is_iso)
+                result = IsoMath.isoToScreen(result, false);
             posSnappedPoint = result;
             drawSnappedPoint = true;
             return result;
@@ -770,7 +774,28 @@ namespace GLEED2D
             if (SelectedLayer != null) camera.Position *= SelectedLayer.ScrollSpeed;
             mouseworldpos = Vector2.Transform(new Vector2(mstate.X, mstate.Y), Matrix.Invert(camera.matrix));
             mouseworldpos = mouseworldpos.Round();
-            MainForm.Instance.toolStripStatusLabel3.Text = "Mouse: (" + mouseworldpos.X + ", " + mouseworldpos.Y + ")";
+            if (!Define.is_iso)
+            {
+                MainForm.Instance.toolStripStatusLabel3.Text = "Mouse: (" + mouseworldpos.X + ", " + mouseworldpos.Y + ")";
+                Vector2 cell = new Vector2(
+                                            (float)Math.Floor((double)mouseworldpos.X / Constants.Instance.GridSpacing.X),
+                                            (float)Math.Floor((double)mouseworldpos.Y / Constants.Instance.GridSpacing.Y));
+                MainForm.Instance.toolStripCell.Text = "Cell: (" + cell.X + ", " + cell.Y + ")";
+            }
+            else
+            {
+                Vector2 mouseisoworldpos = IsoMath.screenToIso(mouseworldpos, true);
+                mouseisoworldpos =  mouseisoworldpos.Round();
+                MainForm.Instance.toolStripStatusLabel3.Text = "Mouse: (" + mouseisoworldpos.X + ", " + mouseisoworldpos.Y + ")";
+                Vector2 cell = new Vector2(
+                                            (float)Math.Floor((double)mouseisoworldpos.X / Constants.Instance.GridSpacing.X),
+                                            (float)Math.Floor((double)mouseisoworldpos.Y / Constants.Instance.GridSpacing.Y));
+                MainForm.Instance.toolStripCell.Text = "Cell: (" + cell.X + ", " + cell.Y + ")";
+
+            }
+            
+
+          
             camera.Position = maincameraposition;
 
 

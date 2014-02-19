@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml.Serialization;
@@ -17,6 +18,7 @@ namespace GLEED2D
         [XmlIgnore()]
         private string _frameName;
 
+        [Browsable(false)]  
         public string FrameName
         {
             get{return _frameName;}

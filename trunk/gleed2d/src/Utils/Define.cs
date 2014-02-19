@@ -9,7 +9,7 @@ namespace GLEED2D
     {
         public static readonly string TWO_D = "2D";
         public static readonly string ISO_METRIC = "Iso Metric";
-        public static bool is_iso = false;
+        public static bool is_iso = true;
         public static int FlipHorizontally = 1;
         public static int FlipVertically = 2;
         public static string TYPE_IMAGE = "image";

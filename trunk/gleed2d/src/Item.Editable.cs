@@ -70,6 +70,22 @@ namespace GLEED2D
             }
         }
 
+        [XmlIgnore()]
+        [DisplayName("IsoCellPos"), Category(" General")]
+        [Description("The item's position in isometric space.")]
+        public Vector2 pIsoCell
+        {
+            get
+            {
+                return _IsoCell;
+            }
+            set
+            {
+                _IsoCell = value;
+                pIsoPosition = new Vector2(_IsoCell.X * Constants.Instance.GridSpacing.X, _IsoCell.Y * Constants.Instance.GridSpacing.Y);
+            }
+        }
+
         public virtual string getNamePrefix()
         {
             return "Item_";
@@ -115,6 +131,11 @@ namespace GLEED2D
         public virtual void setPosition(Vector2 pos)
         {
             pPosition = pos;
+        }
+
+        public virtual void setIsoPosition(Vector2 pos)
+        {
+            pIsoPosition = pos;
         }
 
         public virtual bool CanRotate()

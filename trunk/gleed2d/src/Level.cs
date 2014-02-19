@@ -172,6 +172,9 @@ namespace GLEED2D
             {
                 _Position = value;
                 _IsoPosition = IsoMath.screenToIso(_Position, true);
+                _IsoCell = new Vector2(
+                            (float)Math.Floor((double)_IsoPosition.X / Constants.Instance.GridSpacing.X),
+                            (float)Math.Floor((double)_IsoPosition.Y / Constants.Instance.GridSpacing.Y));
             }
         }
 
@@ -187,14 +190,17 @@ namespace GLEED2D
             {
                 _IsoPosition = value;
                 _Position = IsoMath.isoToScreen(_IsoPosition, true);
+                _IsoCell = new Vector2(
+                                (float)Math.Floor((double)_IsoPosition.X / Constants.Instance.GridSpacing.X),
+                                (float)Math.Floor((double)_IsoPosition.Y / Constants.Instance.GridSpacing.Y));
             }
         }
 
+        protected Vector2 _IsoCell;
         /// <summary>
         /// A Dictionary containing any user-defined Properties.
         /// </summary>
         public SerializableDictionary CustomProperties;
-
 
         public Item()
         {
