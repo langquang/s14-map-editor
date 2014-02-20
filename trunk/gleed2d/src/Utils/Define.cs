@@ -5,6 +5,11 @@ using System.Text;
 
 namespace GLEED2D
 {
+    public enum MaskType
+    {
+        MASK_NONE, MASK_RESTRICTION_TILE
+    }
+
     class Define
     {
         public static readonly string TWO_D = "2D";
@@ -18,6 +23,5 @@ namespace GLEED2D
         public static string TYPE_FRAME = "frame";
         public static string TYPE_ANIM = "anim";
         public static string TYPE_SEPARATE = ";";
-
     }
 }

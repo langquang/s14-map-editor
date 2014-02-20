@@ -23,6 +23,8 @@ namespace GLEED2D
         public PixAnim anim;
         public string type;
         public int pixma_id;
+        public Vector2 Origin;
+        public MaskType maskType;
 
         public Brush(String fullpath, string type, string pixma_id)
         {
@@ -32,6 +34,16 @@ namespace GLEED2D
             if (this.type == Define.TYPE_IMAGE)
             {
                 this.texture = TextureLoader.Instance.FromFile(Game1.Instance.GraphicsDevice, this.fullpath);
+                maskType = Utils.GetMaskTexture(this.fullpath);
+                switch (maskType)
+                {
+                    case MaskType.MASK_NONE:
+                        Origin = new Vector2(this.texture.Width / 2, this.texture.Height / 2);
+                        break;
+                    case MaskType.MASK_RESTRICTION_TILE:
+                        Origin = new Vector2(this.texture.Width / 2, 0);
+                        break;
+                }
             }
             else if (this.type == Define.TYPE_FRAME)
             {
@@ -54,7 +66,7 @@ namespace GLEED2D
             if (this.type == Define.TYPE_IMAGE)
             {
                 sb.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Deferred, SaveStateMode.None, Editor.Instance.camera.matrix);
-                sb.Draw(this.texture, pos, null, new Color(1f, 1f, 1f, 0.7f), 0, new Vector2(this.texture.Width / 2, this.texture.Height / 2), 1, SpriteEffects.None, 0);
+                sb.Draw(this.texture, pos, null, new Color(1f, 1f, 1f, 0.7f), 0, Origin, 1, SpriteEffects.None, 0);
                 sb.End();
             }
             else if (this.type == Define.TYPE_FRAME)

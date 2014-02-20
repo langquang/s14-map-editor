@@ -8,7 +8,7 @@ namespace GLEED2D
 {
     public enum TextureOriginMethodEnum
     {
-        TextureCenter, Centroid, TopLeft, TopRight, BottomLeft, BottomRight
+        TextureCenter, Centroid, TopLeft, TopRight, BottomLeft, BottomRight, TopCenter
     }
 
     public class Constants
@@ -35,7 +35,7 @@ namespace GLEED2D
             ColorPrimitives = new Color(192, 0, 192, 145);
             ColorTextureTransparent = new Color(255, 0, 255, 255);
             DefaultPathItemLineWidth = 4;
-            DefaultContentRootFolder = "C:\\";
+            DefaultContentRootFolder = Directory.GetCurrentDirectory();
             CameraSpeed = 500;
             CameraFastSpeed = 2000;
             DefaultTextureOriginMethod = TextureOriginMethodEnum.TextureCenter;
@@ -133,9 +133,9 @@ namespace GLEED2D
         public bool SaveLevelAppendLevelFilename;
 
 
-        public bool ShowGrid;
+        public bool ShowGrid = true;
         public bool SnapToGrid;
-        public bool ShowWorldOrigin;
+        public bool ShowWorldOrigin = true;
         
 
 

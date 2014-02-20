@@ -272,5 +272,21 @@ namespace GLEED2D
             return rnd;
         }
 
+        public static MaskType GetMaskTexture(string texture_fullpath)
+        {
+            string[] data = texture_fullpath.Split('\\');
+            string filename = data[data.Length - 1];
+            filename = filename.ToUpper();
+            if (filename.IndexOf("MASK") != -1)
+            {
+                return MaskType.MASK_RESTRICTION_TILE;
+            }
+            else
+            {
+                return MaskType.MASK_NONE;
+            }
+
+        }
+
     }
 }
