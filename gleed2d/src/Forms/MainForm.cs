@@ -1224,19 +1224,19 @@ namespace GLEED2D
                 {
                     if ( pixma.hasAnimName(i))
                     {
-                        PixAnim anim = new PixAnim(i, file.FullName, Vector2.Zero);
-                        Bitmap bmp = anim.getBitmapView();
-                        animList48.Images.Add(anim.FrameName + file.FullName, getThumbNail(bmp, 48, 48));
-                        animList64.Images.Add(anim.FrameName + file.FullName, getThumbNail(bmp, 64, 64));
-                        animList96.Images.Add(anim.FrameName + file.FullName, getThumbNail(bmp, 96, 96));
-                        animList128.Images.Add(anim.FrameName + file.FullName, getThumbNail(bmp, 128, 128));
+                        Bitmap bmp = pixma.GetAnimIcon(i);
+                        string animName = pixma.GetAnimName(i);
+                        animList48.Images.Add(animName + file.FullName, getThumbNail(bmp, 48, 48));
+                        animList64.Images.Add(animName + file.FullName, getThumbNail(bmp, 64, 64));
+                        animList96.Images.Add(animName + file.FullName, getThumbNail(bmp, 96, 96));
+                        animList128.Images.Add(animName + file.FullName, getThumbNail(bmp, 128, 128));
 
                         ListViewItem lvi = new ListViewItem();
                         lvi.Name = file.FullName;
-                        lvi.Text = anim.FrameName;
-                        lvi.ImageKey = anim.FrameName + file.FullName;
+                        lvi.Text = animName;
+                        lvi.ImageKey = animName + file.FullName;
                         lvi.Tag = Define.TYPE_ANIM + Define.TYPE_SEPARATE + i;
-                        lvi.ToolTipText = anim.FrameName + " - " + file.Name + " (" + bmp.Width.ToString() + " x " + bmp.Height.ToString() + ")";
+                        lvi.ToolTipText = animName + " - " + file.Name + " (" + bmp.Width.ToString() + " x " + bmp.Height.ToString() + ")";
 
                         listView8.Items.Add(lvi);
                     }

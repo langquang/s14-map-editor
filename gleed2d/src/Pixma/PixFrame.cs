@@ -253,7 +253,7 @@ namespace GLEED2D
                 }
 
                 if( this.frameId < 0 )
-                    frameId = pixma.getFrameIndex(FrameName);
+                    frameId = pixma.GetFrameIndex(FrameName);
                 pixma.GetFrame_bitmap(this);
             }
 

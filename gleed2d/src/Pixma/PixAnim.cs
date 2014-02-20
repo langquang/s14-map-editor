@@ -203,7 +203,7 @@ namespace GLEED2D
                 }
 
                 if (this.anim_id < 0)
-                    anim_id = pixma.getAnimIndex(FrameName);
+                    anim_id = pixma.GetAnimIndex(FrameName);
                 pixma.GetAnim_bitmap(this);
             }
 
