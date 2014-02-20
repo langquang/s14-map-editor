@@ -2,7 +2,39 @@
 <Level xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="Level_01" Visible="true">
     <Layers>
         <Layer Name="Tiles" Visible="true">
-            <Items />
+            <Items>
+                <Item xsi:type="TextureItem" Name="Map_0047" Visible="true">
+                    <CustomProperties />
+                    <Position>
+                        <X>-1324</X>
+                        <Y>-1</Y>
+                    </Position>
+                    <IsoPosition>
+                        <X>-663</X>
+                        <Y>661</Y>
+                    </IsoPosition>
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>maps\Map01_Edit_2.jpg</texture_filename>
+                    <asset_name>maps\Map01_Edit_2</asset_name>
+                    <Origin>
+                        <X>0</X>
+                        <Y>0</Y>
+                    </Origin>
+                </Item>
+            </Items>
             <ScrollSpeed>
                 <X>1</X>
                 <Y>1</Y>
@@ -35,8 +67,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\pixma_frames\deco_fire_1.anim</texture_filename>
-                    <asset_name>data\pixma_frames\deco_fire_1</asset_name>
+                    <texture_filename>pixma_frames\deco_fire_1.anim</texture_filename>
+                    <asset_name>pixma_frames\deco_fire_1</asset_name>
                     <Origin>
                         <X>0</X>
                         <Y>0</Y>
@@ -67,8 +99,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\pixma_frames\deco_fire_2.anim</texture_filename>
-                    <asset_name>data\pixma_frames\deco_fire_2</asset_name>
+                    <texture_filename>pixma_frames\deco_fire_2.anim</texture_filename>
+                    <asset_name>pixma_frames\deco_fire_2</asset_name>
                     <Origin>
                         <X>0</X>
                         <Y>0</Y>
@@ -99,8 +131,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\pixma_frames\deco_water.anim</texture_filename>
-                    <asset_name>data\pixma_frames\deco_water</asset_name>
+                    <texture_filename>pixma_frames\deco_water.anim</texture_filename>
+                    <asset_name>pixma_frames\deco_water</asset_name>
                     <Origin>
                         <X>0</X>
                         <Y>0</Y>
@@ -131,8 +163,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\pixma_frames\deco_fire_2.anim</texture_filename>
-                    <asset_name>data\pixma_frames\deco_fire_2</asset_name>
+                    <texture_filename>pixma_frames\deco_fire_2.anim</texture_filename>
+                    <asset_name>pixma_frames\deco_fire_2</asset_name>
                     <Origin>
                         <X>0</X>
                         <Y>0</Y>
@@ -151,12 +183,12 @@
                 <Item xsi:type="PixAnim" Name="Anim_0025" Visible="true">
                     <CustomProperties />
                     <Position>
-                        <X>-385</X>
-                        <Y>367</Y>
+                        <X>-231</X>
+                        <Y>531</Y>
                     </Position>
                     <IsoPosition>
-                        <X>174.5</X>
-                        <Y>559.5</Y>
+                        <X>415.5</X>
+                        <Y>646.5</Y>
                     </IsoPosition>
                     <Rotation>0</Rotation>
                     <Scale>
@@ -172,8 +204,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\pixma_anim\bui cay.anim</texture_filename>
-                    <asset_name>data\pixma_anim\bui cay</asset_name>
+                    <texture_filename>pixma_anim\bui cay.anim</texture_filename>
+                    <asset_name>pixma_anim\bui cay</asset_name>
                     <Origin>
                         <X>0</X>
                         <Y>0</Y>
@@ -183,12 +215,12 @@
                 <Item xsi:type="PixAnim" Name="Anim_0026" Visible="true">
                     <CustomProperties />
                     <Position>
-                        <X>-455</X>
-                        <Y>402</Y>
+                        <X>-373</X>
+                        <Y>568</Y>
                     </Position>
                     <IsoPosition>
-                        <X>174.5</X>
-                        <Y>629.5</Y>
+                        <X>381.5</X>
+                        <Y>754.5</Y>
                     </IsoPosition>
                     <Rotation>0</Rotation>
                     <Scale>
@@ -204,8 +236,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\pixma_anim\bui cay.anim</texture_filename>
-                    <asset_name>data\pixma_anim\bui cay</asset_name>
+                    <texture_filename>pixma_anim\bui cay.anim</texture_filename>
+                    <asset_name>pixma_anim\bui cay</asset_name>
                     <Origin>
                         <X>0</X>
                         <Y>0</Y>
@@ -236,8 +268,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\pixma_anim\bongbong.anim</texture_filename>
-                    <asset_name>data\pixma_anim\bongbong</asset_name>
+                    <texture_filename>pixma_anim\bongbong.anim</texture_filename>
+                    <asset_name>pixma_anim\bongbong</asset_name>
                     <Origin>
                         <X>0</X>
                         <Y>0</Y>
@@ -268,8 +300,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\pixma_anim\bongbong.anim</texture_filename>
-                    <asset_name>data\pixma_anim\bongbong</asset_name>
+                    <texture_filename>pixma_anim\bongbong.anim</texture_filename>
+                    <asset_name>pixma_anim\bongbong</asset_name>
                     <Origin>
                         <X>0</X>
                         <Y>0</Y>
@@ -300,8 +332,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\pixma_anim\bongbong.anim</texture_filename>
-                    <asset_name>data\pixma_anim\bongbong</asset_name>
+                    <texture_filename>pixma_anim\bongbong.anim</texture_filename>
+                    <asset_name>pixma_anim\bongbong</asset_name>
                     <Origin>
                         <X>0</X>
                         <Y>0</Y>
@@ -332,8 +364,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\pixma_anim\bongbong.anim</texture_filename>
-                    <asset_name>data\pixma_anim\bongbong</asset_name>
+                    <texture_filename>pixma_anim\bongbong.anim</texture_filename>
+                    <asset_name>pixma_anim\bongbong</asset_name>
                     <Origin>
                         <X>0</X>
                         <Y>0</Y>
@@ -364,8 +396,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\pixma_anim\bongbong.anim</texture_filename>
-                    <asset_name>data\pixma_anim\bongbong</asset_name>
+                    <texture_filename>pixma_anim\bongbong.anim</texture_filename>
+                    <asset_name>pixma_anim\bongbong</asset_name>
                     <Origin>
                         <X>0</X>
                         <Y>0</Y>
@@ -396,8 +428,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\pixma_anim\bongbong.anim</texture_filename>
-                    <asset_name>data\pixma_anim\bongbong</asset_name>
+                    <texture_filename>pixma_anim\bongbong.anim</texture_filename>
+                    <asset_name>pixma_anim\bongbong</asset_name>
                     <Origin>
                         <X>0</X>
                         <Y>0</Y>
@@ -428,8 +460,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\pixma_anim\bongbong.anim</texture_filename>
-                    <asset_name>data\pixma_anim\bongbong</asset_name>
+                    <texture_filename>pixma_anim\bongbong.anim</texture_filename>
+                    <asset_name>pixma_anim\bongbong</asset_name>
                     <Origin>
                         <X>0</X>
                         <Y>0</Y>
@@ -460,8 +492,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\pixma_anim\bongbong.anim</texture_filename>
-                    <asset_name>data\pixma_anim\bongbong</asset_name>
+                    <texture_filename>pixma_anim\bongbong.anim</texture_filename>
+                    <asset_name>pixma_anim\bongbong</asset_name>
                     <Origin>
                         <X>0</X>
                         <Y>0</Y>
@@ -492,8 +524,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\pixma_anim\bongbong.anim</texture_filename>
-                    <asset_name>data\pixma_anim\bongbong</asset_name>
+                    <texture_filename>pixma_anim\bongbong.anim</texture_filename>
+                    <asset_name>pixma_anim\bongbong</asset_name>
                     <Origin>
                         <X>0</X>
                         <Y>0</Y>
@@ -533,8 +565,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\masks\mask_35x35.png</texture_filename>
-                    <asset_name>data\masks\mask_35x35</asset_name>
+                    <texture_filename>masks\mask_35x35.png</texture_filename>
+                    <asset_name>masks\mask_35x35</asset_name>
                     <Origin>
                         <X>35</X>
                         <Y>0</Y>
@@ -564,8 +596,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\masks\mask_35x35.png</texture_filename>
-                    <asset_name>data\masks\mask_35x35</asset_name>
+                    <texture_filename>masks\mask_35x35.png</texture_filename>
+                    <asset_name>masks\mask_35x35</asset_name>
                     <Origin>
                         <X>35</X>
                         <Y>0</Y>
@@ -595,8 +627,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\masks\mask_35x35.png</texture_filename>
-                    <asset_name>data\masks\mask_35x35</asset_name>
+                    <texture_filename>masks\mask_35x35.png</texture_filename>
+                    <asset_name>masks\mask_35x35</asset_name>
                     <Origin>
                         <X>35</X>
                         <Y>0</Y>
@@ -626,8 +658,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\masks\mask_35x35.png</texture_filename>
-                    <asset_name>data\masks\mask_35x35</asset_name>
+                    <texture_filename>masks\mask_35x35.png</texture_filename>
+                    <asset_name>masks\mask_35x35</asset_name>
                     <Origin>
                         <X>35</X>
                         <Y>0</Y>
@@ -657,8 +689,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\masks\mask_35x35.png</texture_filename>
-                    <asset_name>data\masks\mask_35x35</asset_name>
+                    <texture_filename>masks\mask_35x35.png</texture_filename>
+                    <asset_name>masks\mask_35x35</asset_name>
                     <Origin>
                         <X>35</X>
                         <Y>0</Y>
@@ -688,8 +720,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\masks\mask_35x35.png</texture_filename>
-                    <asset_name>data\masks\mask_35x35</asset_name>
+                    <texture_filename>masks\mask_35x35.png</texture_filename>
+                    <asset_name>masks\mask_35x35</asset_name>
                     <Origin>
                         <X>35</X>
                         <Y>0</Y>
@@ -719,8 +751,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\masks\mask_35x35.png</texture_filename>
-                    <asset_name>data\masks\mask_35x35</asset_name>
+                    <texture_filename>masks\mask_35x35.png</texture_filename>
+                    <asset_name>masks\mask_35x35</asset_name>
                     <Origin>
                         <X>35</X>
                         <Y>0</Y>
@@ -750,8 +782,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\masks\mask_35x35.png</texture_filename>
-                    <asset_name>data\masks\mask_35x35</asset_name>
+                    <texture_filename>masks\mask_35x35.png</texture_filename>
+                    <asset_name>masks\mask_35x35</asset_name>
                     <Origin>
                         <X>35</X>
                         <Y>0</Y>
@@ -781,8 +813,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\masks\mask_35x35.png</texture_filename>
-                    <asset_name>data\masks\mask_35x35</asset_name>
+                    <texture_filename>masks\mask_35x35.png</texture_filename>
+                    <asset_name>masks\mask_35x35</asset_name>
                     <Origin>
                         <X>35</X>
                         <Y>0</Y>
@@ -812,8 +844,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\masks\mask_35x35.png</texture_filename>
-                    <asset_name>data\masks\mask_35x35</asset_name>
+                    <texture_filename>masks\mask_35x35.png</texture_filename>
+                    <asset_name>masks\mask_35x35</asset_name>
                     <Origin>
                         <X>35</X>
                         <Y>0</Y>
@@ -843,8 +875,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\masks\mask_35x35.png</texture_filename>
-                    <asset_name>data\masks\mask_35x35</asset_name>
+                    <texture_filename>masks\mask_35x35.png</texture_filename>
+                    <asset_name>masks\mask_35x35</asset_name>
                     <Origin>
                         <X>35</X>
                         <Y>0</Y>
@@ -874,8 +906,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\masks\mask_35x35.png</texture_filename>
-                    <asset_name>data\masks\mask_35x35</asset_name>
+                    <texture_filename>masks\mask_35x35.png</texture_filename>
+                    <asset_name>masks\mask_35x35</asset_name>
                     <Origin>
                         <X>35</X>
                         <Y>0</Y>
@@ -893,12 +925,12 @@
                 <Item xsi:type="PixAnim" Name="Anim_0019" Visible="true">
                     <CustomProperties />
                     <Position>
-                        <X>70</X>
-                        <Y>210</Y>
+                        <X>81</X>
+                        <Y>656</Y>
                     </Position>
                     <IsoPosition>
-                        <X>245</X>
-                        <Y>175</Y>
+                        <X>696.5</X>
+                        <Y>615.5</Y>
                     </IsoPosition>
                     <Rotation>0</Rotation>
                     <Scale>
@@ -914,8 +946,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\pixma_anim\buichuoi.anim</texture_filename>
-                    <asset_name>data\pixma_anim\buichuoi</asset_name>
+                    <texture_filename>pixma_anim\buichuoi.anim</texture_filename>
+                    <asset_name>pixma_anim\buichuoi</asset_name>
                     <Origin>
                         <X>0</X>
                         <Y>0</Y>
@@ -946,8 +978,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\pixma_anim\cay.anim</texture_filename>
-                    <asset_name>data\pixma_anim\cay</asset_name>
+                    <texture_filename>pixma_anim\cay.anim</texture_filename>
+                    <asset_name>pixma_anim\cay</asset_name>
                     <Origin>
                         <X>0</X>
                         <Y>0</Y>
@@ -978,8 +1010,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\pixma_anim\cay.anim</texture_filename>
-                    <asset_name>data\pixma_anim\cay</asset_name>
+                    <texture_filename>pixma_anim\cay.anim</texture_filename>
+                    <asset_name>pixma_anim\cay</asset_name>
                     <Origin>
                         <X>0</X>
                         <Y>0</Y>
@@ -1010,8 +1042,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\pixma_anim\cay.anim</texture_filename>
-                    <asset_name>data\pixma_anim\cay</asset_name>
+                    <texture_filename>pixma_anim\cay.anim</texture_filename>
+                    <asset_name>pixma_anim\cay</asset_name>
                     <Origin>
                         <X>0</X>
                         <Y>0</Y>
@@ -1042,8 +1074,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\pixma_anim\buichuoi.anim</texture_filename>
-                    <asset_name>data\pixma_anim\buichuoi</asset_name>
+                    <texture_filename>pixma_anim\buichuoi.anim</texture_filename>
+                    <asset_name>pixma_anim\buichuoi</asset_name>
                     <Origin>
                         <X>0</X>
                         <Y>0</Y>
@@ -1074,8 +1106,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\pixma_anim\cay.anim</texture_filename>
-                    <asset_name>data\pixma_anim\cay</asset_name>
+                    <texture_filename>pixma_anim\cay.anim</texture_filename>
+                    <asset_name>pixma_anim\cay</asset_name>
                     <Origin>
                         <X>0</X>
                         <Y>0</Y>
@@ -1094,12 +1126,12 @@
                 <Item xsi:type="PixAnim" Name="Anim_0041" Visible="true">
                     <CustomProperties />
                     <Position>
-                        <X>-93</X>
-                        <Y>575</Y>
+                        <X>-170</X>
+                        <Y>651</Y>
                     </Position>
                     <IsoPosition>
-                        <X>528.5</X>
-                        <Y>621.5</Y>
+                        <X>566</X>
+                        <Y>736</Y>
                     </IsoPosition>
                     <Rotation>0</Rotation>
                     <Scale>
@@ -1115,8 +1147,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\pixma_anim\zone\special_zone.anim</texture_filename>
-                    <asset_name>data\pixma_anim\zone\special_zone</asset_name>
+                    <texture_filename>pixma_anim\zone\special_zone.anim</texture_filename>
+                    <asset_name>pixma_anim\zone\special_zone</asset_name>
                     <Origin>
                         <X>0</X>
                         <Y>0</Y>
@@ -1126,12 +1158,12 @@
                 <Item xsi:type="PixAnim" Name="Anim_0042" Visible="true">
                     <CustomProperties />
                     <Position>
-                        <X>-68</X>
-                        <Y>425</Y>
+                        <X>-2</X>
+                        <Y>524</Y>
                     </Position>
                     <IsoPosition>
-                        <X>391</X>
-                        <Y>459</Y>
+                        <X>523</X>
+                        <Y>525</Y>
                     </IsoPosition>
                     <Rotation>0</Rotation>
                     <Scale>
@@ -1147,8 +1179,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\pixma_anim\zone\special_zone.anim</texture_filename>
-                    <asset_name>data\pixma_anim\zone\special_zone</asset_name>
+                    <texture_filename>pixma_anim\zone\special_zone.anim</texture_filename>
+                    <asset_name>pixma_anim\zone\special_zone</asset_name>
                     <Origin>
                         <X>0</X>
                         <Y>0</Y>
@@ -1179,8 +1211,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\pixma_anim\zone\special_zone.anim</texture_filename>
-                    <asset_name>data\pixma_anim\zone\special_zone</asset_name>
+                    <texture_filename>pixma_anim\zone\special_zone.anim</texture_filename>
+                    <asset_name>pixma_anim\zone\special_zone</asset_name>
                     <Origin>
                         <X>0</X>
                         <Y>0</Y>
@@ -1190,12 +1222,12 @@
                 <Item xsi:type="PixAnim" Name="Anim_0044" Visible="true">
                     <CustomProperties />
                     <Position>
-                        <X>-63</X>
-                        <Y>198</Y>
+                        <X>364</X>
+                        <Y>524</Y>
                     </Position>
                     <IsoPosition>
-                        <X>166.5</X>
-                        <Y>229.5</Y>
+                        <X>706</X>
+                        <Y>342</Y>
                     </IsoPosition>
                     <Rotation>0</Rotation>
                     <Scale>
@@ -1211,8 +1243,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\pixma_anim\zone\special_zone.anim</texture_filename>
-                    <asset_name>data\pixma_anim\zone\special_zone</asset_name>
+                    <texture_filename>pixma_anim\zone\special_zone.anim</texture_filename>
+                    <asset_name>pixma_anim\zone\special_zone</asset_name>
                     <Origin>
                         <X>0</X>
                         <Y>0</Y>
@@ -1243,8 +1275,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>data\pixma_anim\zone\special_zone.anim</texture_filename>
-                    <asset_name>data\pixma_anim\zone\special_zone</asset_name>
+                    <texture_filename>pixma_anim\zone\special_zone.anim</texture_filename>
+                    <asset_name>pixma_anim\zone\special_zone</asset_name>
                     <Origin>
                         <X>0</X>
                         <Y>0</Y>
@@ -1261,12 +1293,12 @@
     </Layers>
     <CustomProperties />
     <EditorRelated>
-        <NextItemNumber>45</NextItemNumber>
-        <ContentRootFolder>D:\Test\S14_mapEditor</ContentRootFolder>
+        <NextItemNumber>47</NextItemNumber>
+        <ContentRootFolder>D:\Myproject\Work\CSharp\s14_editor\release\S14_mapEditor\data</ContentRootFolder>
         <CameraPosition>
-            <X>8.333357</X>
-            <Y>458.334</Y>
+            <X>-191.667068</X>
+            <Y>441.667358</Y>
         </CameraPosition>
-        <Version>1.3.0.0</Version>
+        <Version>1.0.0.0</Version>
     </EditorRelated>
 </Level>

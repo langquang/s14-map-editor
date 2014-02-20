@@ -493,9 +493,14 @@ namespace GLEED2D
             {
                 if (!Directory.Exists(l.ContentRootFolder))
                 {
-                    Forms.MessageBox.Show("The directory \"" + l.ContentRootFolder + "\" doesn't exist! "
-                        + "Please adjust the XML file before trying again.");
-                    return;
+                    if (Define.file_data_path.Length > 0)
+                        l.ContentRootFolder = Define.file_data_path;
+                    else
+                    {
+                        Forms.MessageBox.Show("The directory \"" + l.ContentRootFolder + "\" doesn't exist! "
+                                + "Please adjust the XML file before trying again.");
+                        return;
+                    }
                 }
             }
 
