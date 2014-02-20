@@ -5,9 +5,9 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GLEED2D")]
-[assembly: AssemblyProduct("GLEED2D")]
-[assembly: AssemblyDescription("Generic Level Editor 2D")]
+[assembly: AssemblyTitle("S14 EDITOR")]
+[assembly: AssemblyProduct("S14 EDITOR")]
+[assembly: AssemblyDescription("Generic S14 Editor Isometric")]
 [assembly: AssemblyCompany("")]
 
 [assembly: AssemblyCopyright("")]
@@ -30,4 +30,4 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.3.0.0")]
+[assembly: AssemblyVersion("1.0.0.0")]
