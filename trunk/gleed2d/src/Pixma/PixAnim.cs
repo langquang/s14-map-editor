@@ -231,5 +231,16 @@ namespace GLEED2D
             onAddToState(true);
         }
 
+        public override Item clone()
+        {
+            PixAnim result = (PixAnim)this.MemberwiseClone();
+            result.CustomProperties = new SerializableDictionary(CustomProperties);
+            result.polygon = (Vector2[])polygon.Clone();
+            result.hovering = false;
+            result.m1StFrame = new PixFrame(m1StFrame.getFrameId(), m1StFrame.texture_fullpath, new Vector2(m1StFrame.Position.X, m1StFrame.Position.Y));
+            this.m1StFrame.FillEmptyFrame(result.m1StFrame);
+            return result;
+        }
+
     }
 }

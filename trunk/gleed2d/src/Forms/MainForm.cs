@@ -59,7 +59,7 @@ namespace GLEED2D
         }
         public void updatetitlebar()
         {
-            Text = "GLEED2D - " + levelfilename + (DirtyFlag ? "*" : "");
+            Text = "S14 EDITOR - " + levelfilename + (DirtyFlag ? "*" : "");
         }
 
         public static Image getThumbNail(Bitmap bmp, int imgWidth, int imgHeight)

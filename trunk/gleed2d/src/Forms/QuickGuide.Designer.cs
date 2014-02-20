@@ -100,7 +100,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "QuickGuide";
-            this.Text = "GLEED2D QuickGuide";
+            this.Text = "S14 EDITOR QuickGuide";
             this.ResumeLayout(false);
             this.PerformLayout();
 
