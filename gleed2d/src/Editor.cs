@@ -301,6 +301,15 @@ namespace GLEED2D
         {
             state = EditorState.brush;
             currentbrush = new Brush(fullpath, type, pixma_id);
+            switch (currentbrush.maskType)
+            {
+                case MaskType.MASK_NONE:
+                    Constants.Instance.DefaultTextureOriginMethod = TextureOriginMethodEnum.TextureCenter;
+                    break;
+                case MaskType.MASK_RESTRICTION_TILE:
+                    Constants.Instance.DefaultTextureOriginMethod = TextureOriginMethodEnum.TopCenter;
+                    break;    
+            }
         }
         
         public void destroyTextureBrush()
@@ -333,6 +342,7 @@ namespace GLEED2D
                 i = new PixAnim(currentbrush.pixma_id, currentbrush.fullpath, new Vector2((int)mouseworldpos.X, (int)mouseworldpos.Y));
 
             }
+            i.Mask = currentbrush.maskType;
             i.Name = i.getNamePrefix() + level.getNextItemNumber();
             i.layer = SelectedLayer;
             beginCommand("Add Item \"" + i.Name + "\"");

@@ -1219,7 +1219,7 @@ namespace GLEED2D
                 int i = 0, length = pixma.NumAnim;
                 for (i = 0; i < length; i++)
                 {
-                    if (pixma.hasAnimName(i))
+                    if ( pixma.hasAnimName(i))
                     {
                         PixAnim anim = new PixAnim(i, file.FullName, Vector2.Zero);
                         Bitmap bmp = anim.getBitmapView();

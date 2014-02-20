@@ -136,9 +136,9 @@ namespace GLEED2D
             loadIntoEditor();
             this.Origin = getTextureOrigin(texture);
 
-            //compensate for origins that are not at the center of the texture
-            Vector2 center = new Vector2(texture.Width / 2, texture.Height / 2);
-            this.Position -= (center - Origin);
+            ////compensate for origins that are not at the center of the texture
+            //Vector2 center = new Vector2(texture.Width / 2, texture.Height / 2);
+            //this.Position -= (center - Origin);
 
 
             OnTransformed();
@@ -184,6 +184,8 @@ namespace GLEED2D
 
         public override string getNamePrefix()
         {
+            if( Mask == MaskType.MASK_RESTRICTION_TILE )
+                return "Restricted_Tile_";
             return "Texture_";
         }
 
@@ -355,14 +357,11 @@ namespace GLEED2D
                     return new Vector2(0, texture.Height);
                 case TextureOriginMethodEnum.BottomRight:
                     return new Vector2(texture.Width, texture.Height);
+                case TextureOriginMethodEnum.TopCenter:
+                    return new Vector2(texture.Width / 2, 0);
             }
             return Vector2.Zero;
         }
-
-
-        
-        
-
 
     }
 
