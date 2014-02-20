@@ -177,7 +177,11 @@ namespace GLEED2D
 
         public void addItem(Item i)
         {
-            if (!i.layer.Items.Contains(i)) i.layer.Items.Add(i);
+            if (!i.layer.Items.Contains(i))
+            {
+                i.layer.Items.Add(i);
+                i.onAddToState(true);
+            }
         }
 
         public void deleteSelectedItems()
@@ -201,6 +205,7 @@ namespace GLEED2D
                         }
 
                 selitem.layer.Items.Remove(selitem);
+                selitem.onAddToState(false);
             }
             endCommand();
             selectitem(null);
@@ -308,7 +313,10 @@ namespace GLEED2D
                     break;
                 case MaskType.MASK_RESTRICTION_TILE:
                     Constants.Instance.DefaultTextureOriginMethod = TextureOriginMethodEnum.TopCenter;
-                    break;    
+                    break;
+                case MaskType.MASK_MAP:
+                    Constants.Instance.DefaultTextureOriginMethod = TextureOriginMethodEnum.TopLeft;
+                    break;
             }
         }
         
@@ -342,7 +350,7 @@ namespace GLEED2D
                 i = new PixAnim(currentbrush.pixma_id, currentbrush.fullpath, new Vector2((int)mouseworldpos.X, (int)mouseworldpos.Y));
 
             }
-            i.Mask = currentbrush.maskType;
+            i.setMask(currentbrush.maskType);
             i.Name = i.getNamePrefix() + level.getNextItemNumber();
             i.layer = SelectedLayer;
             beginCommand("Add Item \"" + i.Name + "\"");

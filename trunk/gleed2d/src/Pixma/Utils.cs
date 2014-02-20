@@ -281,6 +281,10 @@ namespace GLEED2D
             {
                 return MaskType.MASK_RESTRICTION_TILE;
             }
+            else if (filename.IndexOf("MAP") != -1)
+            {
+                return MaskType.MASK_MAP;
+            }
             else
             {
                 return MaskType.MASK_NONE;

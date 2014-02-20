@@ -7,7 +7,7 @@ namespace GLEED2D
 {
     public enum MaskType
     {
-        MASK_NONE, MASK_RESTRICTION_TILE
+        MASK_NONE, MASK_RESTRICTION_TILE, MASK_MAP
     }
 
     class Define

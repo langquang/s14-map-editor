@@ -49,6 +49,7 @@ namespace GLEED2D
             {
                 result.Items[i] = result.Items[i].clone();
                 result.Items[i].layer = result;
+                result.Items[i].onAddToState(true);
             }
             return result;
         }
