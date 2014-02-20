@@ -283,6 +283,17 @@ namespace GLEED2D
             return frame;
         }
 
+
+        public override Item clone()
+        {
+            PixFrame result = (PixFrame)base.clone();
+            TextureItem result = (TextureItem)this.MemberwiseClone();
+            result.CustomProperties = new SerializableDictionary(CustomProperties);
+            result.polygon = (Vector2[])polygon.Clone();
+            result.hovering = false;
+            return result;
+        }
+
     }
 
 }
