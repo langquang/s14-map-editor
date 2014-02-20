@@ -23,5 +23,7 @@ namespace GLEED2D
         public static string TYPE_FRAME = "frame";
         public static string TYPE_ANIM = "anim";
         public static string TYPE_SEPARATE = ";";
+        public static string file_data_path = "";
+
     }
 }

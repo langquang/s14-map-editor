@@ -512,10 +512,13 @@ namespace GLEED2D
         }
         public void loadLevel(String filename)
         {
+            string data_path = Directory.GetParent(filename).ToString() + "\\data";
+            Define.file_data_path = !Directory.Exists(data_path) ? String.Empty : data_path;
+
             Level level = Level.FromFile(filename, Game1.Instance.Content);
 
 
-            if (level.EditorRelated.Version == null || level.EditorRelated.Version.CompareTo("1.3") < 0)
+            if (level.EditorRelated.Version == null || level.EditorRelated.Version.CompareTo("1.0") < 0)
             {
                 DialogResult dr = MessageBox.Show(
                     "This file was created with a version of GLEED2D less than 1.3.\n" +

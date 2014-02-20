@@ -331,25 +331,14 @@ namespace GLEED2D
             if (FlipVertically) yB = texture.Height - yB;
 
             // If the pixel lies within the bounds of B
-            if (Mask == MaskType.MASK_MAP)
+            if (0 <= xB && xB < texture.Width && 0 <= yB && yB < texture.Height)
             {
-                if (0 <= xB && xB < 25 && 0 <= yB && yB < 25)
+                Color colorB = coldata[xB + yB * texture.Width];
+                if (colorB.A != 0)
                 {
                     return true;
-                } 
- 
-            }
-            else
-            {
-                if (0 <= xB && xB < texture.Width && 0 <= yB && yB < texture.Height)
-                {
-                    Color colorB = coldata[xB + yB * texture.Width];
-                    if (colorB.A != 0)
-                    {
-                        return true;
-                    }
-                }  
-            }
+                }
+            } 
             return false;
         }
 

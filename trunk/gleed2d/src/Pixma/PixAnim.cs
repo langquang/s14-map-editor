@@ -67,29 +67,32 @@ namespace GLEED2D
         // 30fps
         public void update()
         {
-            if (!mIsStop && Visible && mCurFrame_time > 0)
+            if (!mIsStop && Visible && mFrames.Count > 0)
             {
-                mCurFrame_time--;
-
-                if (mCurFrame_time == 0)
+                if ( mCurFrame_time > 0)
                 {
-                    mCurFrame++;
+                    mCurFrame_time--;
 
-                    if (mCurFrame < mFrames.Count)
+                    if (mCurFrame_time == 0)
                     {
-                        mCurFrame_time = (int)mFrame_times[mCurFrame];
-                        mFrame = (PixFrame)mFrames[mCurFrame];
-                    }
-                    else
-                    {
-                        mCurFrame = 0;
-                        mCurFrame_time = (int)mFrame_times[0];
+                        mCurFrame++;
+
+                        if (mCurFrame < mFrames.Count)
+                        {
+                            mCurFrame_time = (int)mFrame_times[mCurFrame];
+                            mFrame = (PixFrame)mFrames[mCurFrame];
+                        }
+                        else
+                        {
+                            mCurFrame = 0;
+                            mCurFrame_time = (int)mFrame_times[0];
+                        }
                     }
                 }
-            }
-            else
-            {
-                mCurFrame_time = (int)mFrame_times[mCurFrame];
+                else
+                {
+                    mCurFrame_time = (int)mFrame_times[mCurFrame];
+                }
             }
         }
 
@@ -127,11 +130,13 @@ namespace GLEED2D
         public void play()
         {
             mIsStop = false;
-            Random random = new Random();
-            mCurFrame = Utils.RandNumber(0, mFrames.Count);
-            mCurFrame_time = (int)mFrame_times[mCurFrame];
-            mFrame = (PixFrame)mFrames[mCurFrame];
-            Debug.WriteLine(mCurFrame);
+            if (mFrames.Count > 0)
+            {
+                Random random = new Random();
+                mCurFrame = Utils.RandNumber(0, mFrames.Count);
+                mCurFrame_time = (int)mFrame_times[mCurFrame];
+                mFrame = (PixFrame)mFrames[mCurFrame];
+            }
         }
 
         public int getAnimId()
