@@ -698,7 +698,6 @@ namespace GLEED2D
                 return frame;
             }
 
-            TimeSpan begin = Process.GetCurrentProcess().TotalProcessorTime;
                 
             int fmodule_min = 0;
             int fmodule_max = 0;
@@ -771,7 +770,6 @@ namespace GLEED2D
 
         public PixAnim GetAnim_bitmap(PixAnim pixAnim)
         {
-
             int anim_id = pixAnim.getAnimId();
             int minAFrame = 0;
             int maxAFrame = 0;
@@ -798,14 +796,26 @@ namespace GLEED2D
             return pixAnim;
         }
 
-        public int getFrameIndex(string frame_name)
+        public System.Drawing.Bitmap GetAnimIcon(int animId)
         {
-            return Array.IndexOf(frame_names, frame_name);
+            int i = animInfos[animId];
+            PixFrame frame = new PixFrame(aframeInfos[i * 5], pixma_path, new Vector2(aframeInfos[i * 5 + 1], aframeInfos[i * 5 + 2]));
+            return frame.getBitmapView();
         }
 
-        public int getAnimIndex(string anim_name)
+        public string GetAnimName(int animId)
         {
-            return Array.IndexOf(anim_names, anim_name);
+            return anim_names[animId];
+        }
+
+        public int GetFrameIndex(string frameName)
+        {
+            return Array.IndexOf(frame_names, frameName);
+        }
+
+        public int GetAnimIndex(string animName)
+        {
+            return Array.IndexOf(anim_names, animName);
         }
     }
 }
