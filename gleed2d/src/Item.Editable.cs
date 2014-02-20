@@ -165,7 +165,24 @@ namespace GLEED2D
 
         public abstract bool contains(Vector2 worldpos);
 
+        public virtual void onAddToState( bool add )
+        {
+        }
 
+        public void setMask(MaskType mask)
+        {
+            Mask = mask;
+            //switch (Mask)
+            //{
+            //    case MaskType.MASK_RESTRICTION_TILE:
+            //        break;
+            //    case MaskType.MASK_MAP:
+            //        isFreeCollision = false;
+            //        break;
+            //    default:
+            //        break;
+            //}
+        }
 
     }
 }

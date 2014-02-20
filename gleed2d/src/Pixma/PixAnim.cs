@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using System.Windows.Forms;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
@@ -17,7 +18,7 @@ namespace GLEED2D
         private ArrayList mFrame_times;
         private PixFrame m1StFrame;
         private PixFrame mFrame;
-        private int anim_id;
+        private int anim_id = -1;
         private int mCurFrame;
         private int mCurFrame_time;
         private bool mIsStop;
@@ -46,8 +47,6 @@ namespace GLEED2D
             FlipHorizontally = FlipVertically = false;
             this.Origin = Vector2.Zero;
             loadIntoEditor();
-
-            Game1.Instance.jugger.add(this);
         }
 
         public void addFrame(PixFrame frame, int time)
@@ -68,7 +67,7 @@ namespace GLEED2D
         // 30fps
         public void update()
         {
-            if (!mIsStop && mCurFrame_time > 0)
+            if (!mIsStop && Visible && mCurFrame_time > 0)
             {
                 mCurFrame_time--;
 
@@ -212,6 +211,24 @@ namespace GLEED2D
         public override void drawSelectionFrame(SpriteBatch sb, Matrix matrix, Color color)
         {
             m1StFrame.drawSelectionFrame(sb, matrix, color);
+        }
+
+        public override void onAddToState(bool add)
+        {
+            if (add)
+            {
+               Game1.Instance.jugger.add(this);
+            }
+            else
+            {
+                Game1.Instance.jugger.remove(this);
+                
+            }
+        }
+
+        public override void load(ContentManager cm)
+        {
+            onAddToState(true);
         }
 
     }

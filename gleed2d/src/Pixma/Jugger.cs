@@ -37,7 +37,8 @@ namespace GLEED2D
 
         public void add( Animation animate)
         {
-			list.Add(animate);
+			if( !list.Contains(animate) )
+                list.Add(animate);
 		}
 		
 		public void remove(Animation animate)

@@ -789,7 +789,7 @@ namespace GLEED2D
                 maxAFrame = animInfos[anim_id + 1];
             }
 
-            for (i = minAFrame; i < maxAFrame + 1; i++)
+            for (i = minAFrame; i < maxAFrame; i++)
             {
                 frame = new PixFrame(aframeInfos[i * 5], pixAnim.texture_fullpath, new Vector2(aframeInfos[i * 5 + 1], aframeInfos[i * 5 + 2]));
                 pixAnim.addFrame(frame, aframeInfos[i * 5 + 4]);

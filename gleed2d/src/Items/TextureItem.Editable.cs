@@ -184,9 +184,15 @@ namespace GLEED2D
 
         public override string getNamePrefix()
         {
-            if( Mask == MaskType.MASK_RESTRICTION_TILE )
-                return "Restricted_Tile_";
-            return "Texture_";
+            switch (Mask)
+            {
+                case MaskType.MASK_RESTRICTION_TILE:
+                    return "Restricted_Tile_";
+                case MaskType.MASK_MAP:
+                    return "Map_";
+                default:
+                    return "Texture_";
+            }
         }
 
         public override void OnTransformed()
@@ -325,14 +331,25 @@ namespace GLEED2D
             if (FlipVertically) yB = texture.Height - yB;
 
             // If the pixel lies within the bounds of B
-            if (0 <= xB && xB < texture.Width && 0 <= yB && yB < texture.Height)
+            if (Mask == MaskType.MASK_MAP)
             {
-                Color colorB = coldata[xB + yB * texture.Width];
-                if (colorB.A != 0)
+                if (0 <= xB && xB < 25 && 0 <= yB && yB < 25)
                 {
                     return true;
-                }
-            }            
+                } 
+ 
+            }
+            else
+            {
+                if (0 <= xB && xB < texture.Width && 0 <= yB && yB < texture.Height)
+                {
+                    Color colorB = coldata[xB + yB * texture.Width];
+                    if (colorB.A != 0)
+                    {
+                        return true;
+                    }
+                }  
+            }
             return false;
         }
 
@@ -362,7 +379,6 @@ namespace GLEED2D
             }
             return Vector2.Zero;
         }
-
     }
 
 

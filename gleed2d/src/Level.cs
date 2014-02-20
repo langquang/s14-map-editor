@@ -211,9 +211,10 @@ namespace GLEED2D
         [XmlIgnore()]
         public int Height;
 
-        [Browsable(false)]
-        [XmlIgnore()]
-        public MaskType Mask = MaskType.MASK_NONE;
+        //[Browsable(false)]
+        //[XmlIgnore()]
+        protected MaskType Mask = MaskType.MASK_NONE;
+
 
         public Item()
         {
