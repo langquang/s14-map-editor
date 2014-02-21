@@ -12,9 +12,14 @@ namespace GLEED2D
         static void Main(string[] args)
         {
             Logger.Instance.log("Application started.");
+            if (args.Length > 0)
+            {
+                Logger.Instance.log("Run from file: " + args[0]);
+                Define.run_from_file = args[0];
+            }
 
-            //try
-            //{
+            try
+            {
                 Application.EnableVisualStyles();
 
                 MainForm form = new MainForm();
@@ -25,17 +30,18 @@ namespace GLEED2D
                 {
                     game.Run();
                 }
-            //}
-            //catch (Exception e)
-            //{
-            //    Logger.Instance.log("Exception caught: \n\n " + e.Message + "\n\n" + e.StackTrace);
-            //    if (e.InnerException != null) Logger.Instance.log("Inner Exception: " + e.InnerException.Message);
-            //    MessageBox.Show("An exception was caught. Application will end. Please check the file log.txt.");
-            //}
-            //finally
-            //{
-            //    Logger.Instance.log("Application ended.");
-            //}
+                
+            }
+            catch (Exception e)
+            {
+                Logger.Instance.log("Exception caught: \n\n " + e.Message + "\n\n" + e.StackTrace);
+                if (e.InnerException != null) Logger.Instance.log("Inner Exception: " + e.InnerException.Message);
+                MessageBox.Show("An exception was caught. Application will end. Please check the file log.txt.");
+            }
+            finally
+            {
+                Logger.Instance.log("Application ended.");
+            }
 
 
         }
