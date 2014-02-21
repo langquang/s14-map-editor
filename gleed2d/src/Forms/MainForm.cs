@@ -575,7 +575,7 @@ namespace GLEED2D
                     if (levelfilename == "untitled")
                     {
                         SaveFileDialog dialog = new SaveFileDialog();
-                        dialog.Filter = "XML Files (*.xml)|*.xml";
+                        dialog.Filter = "XML Files (*.s14map)|*.s14map";
                         if (dialog.ShowDialog() == DialogResult.OK) saveLevel(dialog.FileName);
                         else return DialogResult.Cancel;
                     }
@@ -598,7 +598,7 @@ namespace GLEED2D
         {
             if (checkCurrentLevelAndSaveEventually() == DialogResult.Cancel) return;
             OpenFileDialog opendialog = new OpenFileDialog();
-            opendialog.Filter = "XML Files (*.xml)|*.xml";
+            opendialog.Filter = "S14MAP Files (*.s14map)|*.s14map";
             if (opendialog.ShowDialog() == DialogResult.OK) loadLevel(opendialog.FileName);
         }
         private void FileSave(object sender, EventArgs e)
@@ -610,7 +610,7 @@ namespace GLEED2D
         private void FileSaveAs(object sender, EventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = "XML Files (*.xml)|*.xml";
+            dialog.Filter = "S14MAP Files (*.s14map)|*.s14map";
             if (dialog.ShowDialog() == DialogResult.OK) saveLevel(dialog.FileName);
         }
         private void FileExit(object sender, EventArgs e)
