@@ -52,7 +52,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(267, 112);
             this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "S14 Map Editor\r\n\r\nby TinBQ2\r\n\r\n\r\n";
+            this.textBox1.Text = "S14 Map Editor\r\n\r\nby TinBQ2\r\n\r\nVersion: 1.0\r\n";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // AboutForm

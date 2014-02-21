@@ -50,8 +50,6 @@ namespace GLEED2D
         {
             Instance = this;
             InitializeComponent();
-
-
         }
         public IntPtr getHandle()
         {
@@ -512,11 +510,11 @@ namespace GLEED2D
         }
         public void loadLevel(String filename)
         {
+            Logger.Instance.log("Load level: " + filename);
             string data_path = Directory.GetParent(filename).ToString() + "\\data";
             Define.file_data_path = !Directory.Exists(data_path) ? String.Empty : data_path;
 
             Level level = Level.FromFile(filename, Game1.Instance.Content);
-
 
             if (level.EditorRelated.Version == null || level.EditorRelated.Version.CompareTo("1.0") < 0)
             {
@@ -1303,6 +1301,15 @@ namespace GLEED2D
                 Layer l = (Layer)treeView1.SelectedNode.Tag;
                 l.Items = Utils.zoder(l.Items);
                 Editor.Instance.updatetreeview();
+            }
+        }
+
+        public void checkRunFromFile()
+        {
+            if (Define.run_from_file.Length > 0)
+            {
+                Logger.Instance.log("checkRunFromFile: success!");
+                loadLevel(Define.run_from_file);
             }
         }
 

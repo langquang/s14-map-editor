@@ -55,6 +55,7 @@ namespace GLEED2D
             Logger.Instance.log("Winform created.");
 
             Logger.Instance.log("Game1 creation ended.");
+            
         }
 
         void graphics_PreparingDeviceSettings(object sender, PreparingDeviceSettingsEventArgs e)

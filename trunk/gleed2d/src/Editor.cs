@@ -110,7 +110,8 @@ namespace GLEED2D
 
             Logger.Instance.log("Editor creation ended.");
 
-            initTest();
+            MainForm.Instance.checkRunFromFile();
+            //initTest();
         }
 
 

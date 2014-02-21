@@ -1,1 +1,0 @@
-D:\JavaServer\Code\CSharp\s14_xna_editor\gleed2d\Content\obj\x86\Release\ResolveAssemblyReference.cache
