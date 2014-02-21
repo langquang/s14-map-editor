@@ -1,0 +1,16 @@
+2/21/2014 9:56:55 AM.112 - Log File created.
+2/21/2014 9:56:55 AM.113 - Application started.
+2/21/2014 9:56:55 AM.332 - Creating Game1 object.
+2/21/2014 9:56:55 AM.408 - Game1 creation started.
+2/21/2014 9:56:55 AM.411 - Creating Winform.
+2/21/2014 9:56:55 AM.510 - Winform created.
+2/21/2014 9:56:55 AM.510 - Game1 creation ended.
+2/21/2014 9:56:55 AM.585 - Creating Editor object.
+2/21/2014 9:56:55 AM.589 - Editor creation started.
+2/21/2014 9:56:55 AM.590 - Loading Resources.
+2/21/2014 9:56:55 AM.611 - Resources loaded.
+2/21/2014 9:56:55 AM.611 - Loading Settings.
+2/21/2014 9:56:55 AM.896 - Settings loaded.
+2/21/2014 9:56:55 AM.896 - Creating new level.
+2/21/2014 9:57:10 AM.484 - New level created.
+2/21/2014 9:57:10 AM.484 - Editor creation ended.
