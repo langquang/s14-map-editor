@@ -107,6 +107,10 @@ namespace GLEED2D
                 JObject decos = null;
                 JArray restrictions = null;
                 JObject tiles = null;
+                JArray wObjs = null;
+                JArray items = null;
+
+
                 foreach (Layer l in Layers)
                 {
                     if (l.Name.ToUpper().IndexOf(Generator.LAYER_TILE) != -1)
@@ -125,6 +129,14 @@ namespace GLEED2D
                     {
                         decos = Generator.CreateMapModules(l);
                     }
+                    else if (l.Name.ToUpper().IndexOf(Generator.LAYER_WORLD_OBJECT) != -1)
+                    {
+                        wObjs = Generator.CreateObjects(l);
+                    }
+                    else if (l.Name.ToUpper().IndexOf(Generator.LAYER_WORLD_OBJECT) != -1)
+                    {
+                        items = Generator.CreateItems(l);
+                    }
                 }
 
                 JObject map = new JObject();
@@ -132,6 +144,8 @@ namespace GLEED2D
                 map.Add(Generator.LAYER_DECOS, decos);
                 map.Add(Generator.LAYER_RESTRICTION, restrictions);
                 map.Add(Generator.LAYER_TILE, tiles);
+                map.Add(Generator.LAYER_WORLD_OBJECT, wObjs);
+                map.Add(Generator.LAYER_ITEMS, items);
 
                 using (StreamWriter outfile = new StreamWriter(filename))
                 {
