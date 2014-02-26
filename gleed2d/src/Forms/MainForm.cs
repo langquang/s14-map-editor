@@ -1313,6 +1313,17 @@ namespace GLEED2D
             }
         }
 
+        private void exportJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Define.EXPORT_JSON = true;
+
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "S14JSON Files (*.s14json)|*.s14json";
+            if (dialog.ShowDialog() == DialogResult.OK) saveLevel(dialog.FileName);
+
+            Define.EXPORT_JSON = false;
+        }
+
 
 
 

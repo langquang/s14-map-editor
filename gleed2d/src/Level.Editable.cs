@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
+using GLEED2D.src.Pixma;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Forms = System.Windows.Forms;
 using System.ComponentModel;
 using System.Text;
@@ -10,6 +13,7 @@ using System.Drawing.Design;
 using System.Windows.Forms;
 using CustomUITypeEditors;
 using Microsoft.Xna.Framework;
+using Formatting = System.Xml.Formatting;
 
 namespace GLEED2D
 {
@@ -85,14 +89,89 @@ namespace GLEED2D
             }
 
 
-            XmlTextWriter writer = new XmlTextWriter(filename, null);
-            writer.Formatting = Formatting.Indented;
-            writer.Indentation = 4;
 
-            XmlSerializer serializer = new XmlSerializer(typeof(Level));
-            serializer.Serialize(writer, this);
+            if (!Define.EXPORT_JSON)
+            {
+                XmlTextWriter writer = new XmlTextWriter(filename, null);
+                writer.Formatting = Formatting.Indented;
+                writer.Indentation = 4;
 
-            writer.Close();
+                XmlSerializer serializer = new XmlSerializer(typeof(Level));
+                serializer.Serialize(writer, this);
+
+                writer.Close();
+            }
+            else
+            {
+                JObject modules = null;
+                JObject decos = null;
+                JArray restrictions = null;
+                JObject tiles = null;
+                foreach (Layer l in Layers)
+                {
+                    if (l.Name.ToUpper().IndexOf(Generator.LAYER_TILE) != -1)
+                    {
+                        tiles = Generator.CreateTiles(l);
+                    }
+                    else if (l.Name.ToUpper().IndexOf(Generator.LAYER_RESTRICTION) != -1)
+                    {
+                        restrictions = Generator.CreateRestriction(l);
+                    }
+                    else if (l.Name.ToUpper().IndexOf(Generator.LAYER_MODULE) != -1)
+                    {
+                        modules = Generator.CreateMapModules(l);
+                    }
+                    else if (l.Name.ToUpper().IndexOf(Generator.LAYER_DECOS) != -1)
+                    {
+                        decos = Generator.CreateMapModules(l);
+                    }
+                }
+
+                JObject map = new JObject();
+                map.Add(Generator.LAYER_MODULE, modules);
+                map.Add(Generator.LAYER_DECOS, decos);
+                map.Add(Generator.LAYER_RESTRICTION, restrictions);
+                map.Add(Generator.LAYER_TILE, tiles);
+
+                using (StreamWriter outfile = new StreamWriter(filename))
+                {
+                    outfile.Write(map.ToString());
+                    outfile.Close();
+                }
+
+
+
+
+                //XmlWriterSettings settings = new XmlWriterSettings();
+                //settings.Encoding = new UnicodeEncoding(false, false); // no BOM in a .NET string
+                //settings.Indent = true;
+                //settings.OmitXmlDeclaration = true;
+
+                //XmlSerializer serializer = new XmlSerializer(typeof(Level));
+
+                //using (StringWriter textWriter = new StringWriter())
+                //{
+                //    using (XmlWriter xmlWriter = XmlWriter.Create(textWriter, settings))
+                //    {
+                //        serializer.Serialize(xmlWriter, this);
+                //        XmlDocument xml = new XmlDocument();
+                //        xml.LoadXml(textWriter.ToString());
+                //        JObject jobj = JObject.Parse(JsonConvert.SerializeXmlNode(xml));
+                //        jobj = jobj.get
+
+                //        //using (StreamWriter outfile = new StreamWriter(filename))
+                //        //{
+                //        //    outfile.Write(JsonConvert.SerializeXmlNode(xml));
+                //        //    outfile.Close();
+                //        //}
+                //    }
+
+                //}
+
+
+            }
+
+           
 
         }
 

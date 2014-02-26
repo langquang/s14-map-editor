@@ -51,7 +51,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Location = new System.Drawing.Point(171, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(164, 260);
+            this.label2.Size = new System.Drawing.Size(167, 273);
             this.label2.TabIndex = 1;
             this.label2.Text = resources.GetString("label2.Text");
             // 
