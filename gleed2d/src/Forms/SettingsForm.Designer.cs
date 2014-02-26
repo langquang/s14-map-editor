@@ -45,10 +45,15 @@
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.xlsPath = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // propertyGrid1
@@ -92,6 +97,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -243,6 +249,46 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Each time the level is saved, ";
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.label3);
+            this.tabPage4.Controls.Add(this.button2);
+            this.tabPage4.Controls.Add(this.xlsPath);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(573, 457);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "XLS Constance";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(494, 217);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(61, 23);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Browse...";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // xlsPath
+            // 
+            this.xlsPath.Enabled = false;
+            this.xlsPath.Location = new System.Drawing.Point(18, 220);
+            this.xlsPath.Name = "xlsPath";
+            this.xlsPath.Size = new System.Drawing.Size(470, 20);
+            this.xlsPath.TabIndex = 9;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(15, 194);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(119, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Select game constance";
+            // 
             // SettingsForm
             // 
             this.AcceptButton = this.buttonOK;
@@ -266,6 +312,8 @@
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -289,5 +337,9 @@
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox xlsPath;
+        private System.Windows.Forms.Label label3;
     }
 }

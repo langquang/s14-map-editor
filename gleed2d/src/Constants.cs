@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.IO;
 using System.Xml.Serialization;
 using CustomUITypeEditors;
@@ -45,6 +46,7 @@ namespace GLEED2D
             GridLineThickness = 1;
             GridNumberOfGridLines = 500;
             GridSpacing = new Microsoft.Xna.Framework.Vector2(64, 64);
+            XlsConstancePath = String.Empty;
 
         }
 
@@ -119,8 +121,9 @@ namespace GLEED2D
 
         [Category("Grid"), Description("The grid spacing in X and Y direction in WorldUnits.")]
         public Microsoft.Xna.Framework.Vector2 GridSpacing { get; set; }
-        
-        
+
+        [Browsable(false)]
+        public string XlsConstancePath { get; set; }
         
         
         public bool RunLevelStartApplication;

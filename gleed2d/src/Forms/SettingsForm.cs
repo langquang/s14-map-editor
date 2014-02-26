@@ -20,6 +20,7 @@ namespace GLEED2D
         {
             Constants.Instance.export("settings.xml");
             propertyGrid1.SelectedObject = Constants.Instance;
+            xlsPath.Text = Constants.Instance.XlsConstancePath;
 
             //Run Level tab
             checkBox1.Checked = Constants.Instance.RunLevelStartApplication;
@@ -38,6 +39,7 @@ namespace GLEED2D
         {
             Constants.Instance.RunLevelApplicationToStart = textBox1.Text;
             Constants.Instance.SaveLevelApplicationToStart = textBox2.Text;
+            Constants.Instance.XlsConstancePath = xlsPath.Text;
             Constants.Instance.export("settings.xml");
             Close();
         }
@@ -89,6 +91,18 @@ namespace GLEED2D
             if (f.ShowDialog() == DialogResult.OK)
             {
                 textBox2.Text = f.FileName;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog f = new OpenFileDialog();
+            f.FileName = textBox2.Text;
+            f.Filter = "Executable Files (*.xls, *.xlsx)|*.xls;*.xlsx";
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                xlsPath.Text = f.FileName;
+                
             }
         }
 

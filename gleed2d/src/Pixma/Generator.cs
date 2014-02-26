@@ -7,6 +7,8 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json.Linq;
 using System.Collections;
+using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
 
 namespace GLEED2D.src.Pixma
 {
@@ -21,6 +23,14 @@ namespace GLEED2D.src.Pixma
         public static string LAYER_ITEMS = "ITEMS";
         public static string NAME_MASK = "MASK";
         public static string NAME_MAP = "MAP";
+
+        //Xls
+        public static int SHEET_CONSTANCE = 0;
+        public static int CLOLUMN_ID = 1;
+        public static int CLOLUMN_VALUE = 2;
+        public static int CLOLUMN_FILE = 4;
+        public static int CLOLUMN_PIXMA = 5;
+
 
 
         public static void createImages(Layer layer, ArrayList files, ArrayList pixmas)
@@ -133,6 +143,79 @@ namespace GLEED2D.src.Pixma
             return obj;
         }
 
+        public static JArray CreateObjects(Layer layer)
+        {
+            ArrayList wObjs = new ArrayList();
+            Dictionary<string, int> mapping = getXlsData();
+            foreach (Item i in layer.Items)
+            {
+                WorldObjectMap wObj = new WorldObjectMap();
+                wObj.setPosition(i.Position, false);
+                wObj.setScale(i.getScale());
+                wObj.setRotation(i.getRotation());
+
+                if (i is PixFrame)
+                {
+                    PixFrame frame = (PixFrame)i;
+                    wObj.setFlipHorizontally(frame.FlipHorizontally);
+                    wObj.setFlipVertically(frame.FlipVertically);
+                    string filename = Path.GetFileNameWithoutExtension(frame.texture_fullpath);
+                    string key = filename + frame.FrameName;
+                    if (mapping.ContainsKey(key))
+                    {
+                        wObj.setId(mapping[key]);
+                        wObjs.Add(wObj.encode());
+                    }
+                    else
+                    {
+                        if (i is PixAnim)
+                        {
+                            Logger.Instance.log("New World Object: {anim} - " + filename + " : " + frame.FrameName);
+                        }
+                        else
+                        {
+                            Logger.Instance.log("New World Object: {frame} - " + filename + " : " + frame.FrameName);
+                        }
+                    }
+
+
+                }
+            }
+            JArray entitys = new JArray((JObject[])wObjs.ToArray(typeof(JObject)));
+            return entitys;
+
+        }
+
+        public static JArray CreateItems(Layer layer)
+        {
+            return null;
+        }
+
+        public static Dictionary<string, int> getXlsData()
+        {
+            Dictionary<string, int> dictionary = new Dictionary<string, int>();
+            using (FileStream file = new FileStream(Constants.Instance.XlsConstancePath, FileMode.Open, FileAccess.Read))
+            {
+                HSSFWorkbook  hssfworkbook = new HSSFWorkbook(file);
+                ISheet sheet = hssfworkbook.GetSheetAt(SHEET_CONSTANCE);
+                System.Collections.IEnumerator rows = sheet.GetRowEnumerator();
+                while (rows.MoveNext())
+                {
+                    IRow row = (HSSFRow)rows.Current;
+                    ICell cell_value = row.GetCell(CLOLUMN_VALUE);
+                    ICell cell_file = row.GetCell(CLOLUMN_FILE);
+                    ICell cell_pixma = row.GetCell(CLOLUMN_PIXMA);
+                    if (cell_value != null && cell_file != null && cell_pixma != null)
+                    {
+                        dictionary.Add(cell_file.ToString().Trim() + cell_pixma.ToString().Trim(), Convert.ToInt32(cell_value.ToString()));
+                    }
+
+                }
+                file.Close();
+            }
+            return dictionary;
+
+        }
 
        
 
@@ -237,7 +320,7 @@ namespace GLEED2D.src.Pixma
                 Flag |= FLAG_PNG;
         }
 
-        public JObject encode()
+        public  virtual JObject encode()
         {
             JObject obj = new JObject
             {
@@ -254,5 +337,34 @@ namespace GLEED2D.src.Pixma
             return obj;
         }
 
+    }
+
+    public class WorldObjectMap : ModuleMap
+    {
+        public static string KEY_ID = "id";
+
+        protected int Id;
+
+        public void setId(int id)
+        {
+            Id = id;
+        }
+
+        public override JObject encode()
+        {
+            JObject obj = new JObject
+            {
+                {KEY_FLAG, Flag},
+                {KEY_ID, Id},
+                {KEY_POS, new JArray(Pos)},
+            };
+
+            if ((Flag & FLAG_ROT) != 0)
+                obj.Add(KEY_ROT, Rot);
+            if ((Flag & FLAG_SCALE) != 0)
+                obj.Add(KEY_SCA, new JArray(Scale));
+
+            return obj;
+        }
     }
 }
