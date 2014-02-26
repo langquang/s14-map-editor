@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
 using System.Text.RegularExpressions;
+using NPOI.SS.Formula.Functions;
 
 
 namespace GLEED2D
@@ -238,7 +239,7 @@ namespace GLEED2D
 				numFModules = 0;		// number of frame	
 				for (int i = 0; i<numFrames; i++)
 				{
-				    frame_names[i] = readString(frames_str[i], _desc, _end);
+				    frame_names[i] = readString(frames_str[i], _desc_start, _desc_end);
                     frame_id_index.Add( readString(frames_str[i], _fid, _desc), i );
                     num = num_fmodules[i+1];				
 					frameInfos[i] = numFModules;
@@ -318,7 +319,7 @@ namespace GLEED2D
                 animInfos = new int[numAnims];
 				numAFrames = 0;
 				for (i = 0;i<numAnims;i++) {
-                    anim_names[i] = readString(anims_str[i], _desc, _end);
+                    anim_names[i] = readString(anims_str[i], _desc_start, _desc_end);
 					n = num_frames[i+1];
 					animInfos[i] = numAFrames;
 					numAFrames += n;
@@ -625,6 +626,8 @@ namespace GLEED2D
         static public string _time = "-time:";
         static public string _end = "endLine";
         static public string _fid = "-fid:";
+        static public string _desc_start = "-desc:\"";
+        static public string _desc_end = "\"";
 
 
         private int readInt(string line, string start, string end)
@@ -810,12 +813,20 @@ namespace GLEED2D
 
         public int GetFrameIndex(string frameName)
         {
-            return Array.IndexOf(frame_names, frameName);
+            //frameName = frameName.Replace("\"", "");
+            int index = Array.IndexOf(frame_names, frameName);
+            if( index == -1 )
+                Logger.Instance.log("Frame: " + frameName + " not exist in " + name);
+            return index;
         }
 
         public int GetAnimIndex(string animName)
         {
-            return Array.IndexOf(anim_names, animName);
+           // animName = animName.Replace("\"", "");
+            int index = Array.IndexOf(anim_names, animName);
+            if (index == -1)
+                Logger.Instance.log("Anim: " + animName + " not exist in " + name);
+            return index;
         }
     }
 }

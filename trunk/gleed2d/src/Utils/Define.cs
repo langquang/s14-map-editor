@@ -25,6 +25,7 @@ namespace GLEED2D
         public static string TYPE_SEPARATE = ";";
         public static string file_data_path = "";
         public static string run_from_file = "";
+        public static bool EXPORT_JSON = false;
 
     }
 }
