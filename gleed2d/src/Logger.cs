@@ -2,6 +2,7 @@
 // provides a convenient way to have a log file
 //
 using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace GLEED2D
@@ -36,6 +37,11 @@ namespace GLEED2D
             sw = new StreamWriter(logfilename, true);
             sw.WriteLine(box(message));
             sw.Close();            
+        }
+
+        public void open()
+        {
+            Process.Start(logfilename);
         }
 
         string box(string message)

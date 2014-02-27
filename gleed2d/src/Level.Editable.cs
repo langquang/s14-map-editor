@@ -103,6 +103,8 @@ namespace GLEED2D
             }
             else
             {
+                Logger.Instance.log("Export JSON: " + filename);
+
                 JObject modules = null;
                 JObject decos = null;
                 JArray restrictions = null;
@@ -133,7 +135,7 @@ namespace GLEED2D
                     {
                         wObjs = Generator.CreateObjects(l);
                     }
-                    else if (l.Name.ToUpper().IndexOf(Generator.LAYER_WORLD_OBJECT) != -1)
+                    else if (l.Name.ToUpper().IndexOf(Generator.LAYER_ITEMS) != -1)
                     {
                         items = Generator.CreateItems(l);
                     }
@@ -153,7 +155,7 @@ namespace GLEED2D
                     outfile.Close();
                 }
 
-
+                Logger.Instance.log("End Export JSON");
 
 
                 //XmlWriterSettings settings = new XmlWriterSettings();

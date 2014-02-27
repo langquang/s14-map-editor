@@ -594,13 +594,12 @@ namespace GLEED2D
 
         public bool hasFrameName(int frame_id)
         {
-           return frame_id < numFrames && frame_names[frame_id] != null && frame_names[frame_id] != "\"\"";
+           return frame_id < numFrames && frame_names[frame_id] != null && frame_names[frame_id].Length > 0;
         }
 
         public bool hasAnimName(int anim_id)
         {
-            return anim_id < numAnims && anim_names[anim_id] != null && anim_names[anim_id] != "\"\"";
-            
+            return anim_id < numAnims && anim_names[anim_id] != null && anim_names[anim_id].Length > 0;
         }
 			
 

@@ -7,8 +7,8 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json.Linq;
 using System.Collections;
-using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
 
 namespace GLEED2D.src.Pixma
 {
@@ -70,7 +70,7 @@ namespace GLEED2D.src.Pixma
             foreach (Item i in layer.Items)
             {
                 ModuleMap module = new ModuleMap();
-                module.setPosition(i.Position, false);
+                module.setPosition(i.IsoPosition, true, false);
                 module.setScale(i.getScale());
                 module.setRotation(i.getRotation());
 
@@ -100,7 +100,7 @@ namespace GLEED2D.src.Pixma
             json.Add("imgs", new JArray((string[])files.ToArray(typeof(string))));
             json.Add("pixs", new JArray((string[])pixmas.ToArray(typeof(string))));
             json.Add("list", entitys);
-
+            Logger.Instance.log("CreateMapModules success!");
             return json;
         }
 
@@ -120,6 +120,7 @@ namespace GLEED2D.src.Pixma
                     }
                 }
             }
+            Logger.Instance.log("CreateRestriction success!");
             return new JArray((int[])array.ToArray(typeof(int)));
         }
 
@@ -140,17 +141,22 @@ namespace GLEED2D.src.Pixma
                     }
                 }
             }
+            Logger.Instance.log("CreateTiles success!");
             return obj;
         }
 
         public static JArray CreateObjects(Layer layer)
         {
+            ArrayList newFiles1 = new ArrayList();
+            ArrayList newFiles2 = new ArrayList();
+            ArrayList newPixmas1 = new ArrayList();
+            ArrayList newPixmas2 = new ArrayList();
             ArrayList wObjs = new ArrayList();
             Dictionary<string, int> mapping = getXlsData();
             foreach (Item i in layer.Items)
             {
                 WorldObjectMap wObj = new WorldObjectMap();
-                wObj.setPosition(i.Position, false);
+                wObj.setPosition(i.pIsoCell, true, true);
                 wObj.setScale(i.getScale());
                 wObj.setRotation(i.getRotation());
 
@@ -168,12 +174,16 @@ namespace GLEED2D.src.Pixma
                     }
                     else
                     {
-                        if (i is PixAnim)
+                        if (i is PixAnim && !newFiles1.Contains(filename) && !newPixmas1.Contains(frame.FrameName))
                         {
+                            newFiles1.Add(filename);
+                            newPixmas1.Add(frame.FrameName);
                             Logger.Instance.log("New World Object: {anim} - " + filename + " : " + frame.FrameName);
                         }
-                        else
+                        else if( !newFiles2.Contains(filename) && !newPixmas2.Contains(frame.FrameName))
                         {
+                            newFiles2.Add(filename);
+                            newPixmas2.Add(frame.FrameName);
                             Logger.Instance.log("New World Object: {frame} - " + filename + " : " + frame.FrameName);
                         }
                     }
@@ -182,26 +192,81 @@ namespace GLEED2D.src.Pixma
                 }
             }
             JArray entitys = new JArray((JObject[])wObjs.ToArray(typeof(JObject)));
+            Logger.Instance.log("CreateObjects success!");
             return entitys;
 
         }
 
         public static JArray CreateItems(Layer layer)
         {
-            return null;
+            ArrayList newFiles1 = new ArrayList();
+            ArrayList newFiles2 = new ArrayList();
+            ArrayList newPixmas1 = new ArrayList();
+            ArrayList newPixmas2 = new ArrayList();
+            ArrayList wObjs = new ArrayList();
+            Dictionary<string, int> mapping = getXlsData();
+            foreach (Item i in layer.Items)
+            {
+                WorldObjectMap wObj = new WorldObjectMap();
+                wObj.setPosition(i.pIsoCell, true, true);
+                wObj.setScale(i.getScale());
+                wObj.setRotation(i.getRotation());
+
+                if (i is PixFrame)
+                {
+                    PixFrame frame = (PixFrame)i;
+                    wObj.setFlipHorizontally(frame.FlipHorizontally);
+                    wObj.setFlipVertically(frame.FlipVertically);
+                    string filename = Path.GetFileNameWithoutExtension(frame.texture_fullpath);
+                    string key = filename + frame.FrameName;
+                    if (mapping.ContainsKey(key))
+                    {
+                        wObj.setId(mapping[key]);
+                        wObjs.Add(wObj.encode());
+                    }
+                    else
+                    {
+                        if (i is PixAnim && (!newFiles1.Contains(filename) || !newPixmas1.Contains(frame.FrameName)))
+                        {
+                            newFiles1.Add(filename);
+                            newPixmas1.Add(frame.FrameName);
+                            Logger.Instance.log("New World Object: {anim} - " + filename + " : " + frame.FrameName);
+                        }
+                        else if (!newFiles2.Contains(filename) || !newPixmas2.Contains(frame.FrameName))
+                        {
+                            newFiles2.Add(filename);
+                            newPixmas2.Add(frame.FrameName);
+                            Logger.Instance.log("New World Object: {frame} - " + filename + " : " + frame.FrameName);
+                        }
+                    }
+
+
+                }
+            }
+            JArray entitys = new JArray((JObject[])wObjs.ToArray(typeof(JObject)));
+            Logger.Instance.log("CreateItems success!");
+            return entitys;
         }
 
         public static Dictionary<string, int> getXlsData()
         {
+            Logger.Instance.log("copy temp file!");
+            string xlsPath = Directory.GetParent(Constants.Instance.XlsConstancePath).ToString();
+            string xlsFile = Path.GetFileNameWithoutExtension(Constants.Instance.XlsConstancePath);
+            string xlsExtension = Path.GetExtension(Constants.Instance.XlsConstancePath);
+            string xlsFileCopy = xlsFile + "_copy" + xlsExtension;
+            xlsFileCopy = Path.Combine(xlsPath, xlsFileCopy);
+            System.IO.File.Copy(Constants.Instance.XlsConstancePath, xlsFileCopy, true);
+            Logger.Instance.log("load xls: " + xlsFileCopy);
             Dictionary<string, int> dictionary = new Dictionary<string, int>();
-            using (FileStream file = new FileStream(Constants.Instance.XlsConstancePath, FileMode.Open, FileAccess.Read))
+            using (FileStream file = new FileStream(xlsFileCopy, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
-                HSSFWorkbook  hssfworkbook = new HSSFWorkbook(file);
+                XSSFWorkbook hssfworkbook = new XSSFWorkbook(file);
                 ISheet sheet = hssfworkbook.GetSheetAt(SHEET_CONSTANCE);
                 System.Collections.IEnumerator rows = sheet.GetRowEnumerator();
                 while (rows.MoveNext())
                 {
-                    IRow row = (HSSFRow)rows.Current;
+                    IRow row = (XSSFRow)rows.Current;
                     ICell cell_value = row.GetCell(CLOLUMN_VALUE);
                     ICell cell_file = row.GetCell(CLOLUMN_FILE);
                     ICell cell_pixma = row.GetCell(CLOLUMN_PIXMA);
@@ -213,6 +278,7 @@ namespace GLEED2D.src.Pixma
                 }
                 file.Close();
             }
+            Logger.Instance.log("getXlsData success!");
             return dictionary;
 
         }
@@ -234,6 +300,7 @@ namespace GLEED2D.src.Pixma
         public static int FLAG_FRAME = 32;
         public static int FLAG_ANIM = 64;
         public static int FLAG_ISO = 128;
+        public static int FLAG_CELL = 256;
 
         public static string KEY_POS = "pos";
         public static string KEY_ROT = "rot";
@@ -274,15 +341,20 @@ namespace GLEED2D.src.Pixma
             }
         }
 
-        public void setPosition( Vector2 pos, bool iso )
+        public void setPosition( Vector2 pos, bool isIso, bool isCell )
         {
             Pos = new int[2];
             Pos[0] = (int) pos.X;
             Pos[1] = (int) pos.Y;
 
-            if (iso)
+            if (isIso)
             {
                 Flag |= FLAG_ISO;
+            }
+
+            if (isCell)
+            {
+                Flag |= FLAG_CELL;
             }
         }
 
