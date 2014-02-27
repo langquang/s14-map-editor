@@ -1324,6 +1324,11 @@ namespace GLEED2D
             Define.EXPORT_JSON = false;
         }
 
+        private void openLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Logger.Instance.open();
+        }
+
 
 
 
