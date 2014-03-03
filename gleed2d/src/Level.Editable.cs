@@ -117,7 +117,8 @@ namespace GLEED2D
                 {
                     if (l.Name.ToUpper().IndexOf(Generator.LAYER_TILE) != -1)
                     {
-                        tiles = Generator.CreateTiles(l);
+                        Vector2 mapsize = Generator.GetMapSize(Layers);
+                        tiles = Generator.CreateTiles(l, (int)mapsize.X, (int)mapsize.Y);
                     }
                     else if (l.Name.ToUpper().IndexOf(Generator.LAYER_RESTRICTION) != -1)
                     {

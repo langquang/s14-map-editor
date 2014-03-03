@@ -7,6 +7,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json.Linq;
 using System.Collections;
+using NPOI.SS.Formula.Functions;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 
@@ -40,7 +41,7 @@ namespace GLEED2D.src.Pixma
                 if (i is TextureItem)
                 {
                     TextureItem ti = (TextureItem)i;
-                    string filename = Path.GetFileNameWithoutExtension(ti.texture_fullpath);
+                    string filename = getFileName(ti);
                     if (filename != null && !files.Contains(filename))
                     {
                         files.Add(filename);
@@ -70,7 +71,7 @@ namespace GLEED2D.src.Pixma
             foreach (Item i in layer.Items)
             {
                 ModuleMap module = new ModuleMap();
-                module.setPosition(i.IsoPosition, true, false);
+                module.setPosition(i.Position, true, false);
                 module.setScale(i.getScale());
                 module.setRotation(i.getRotation());
 
@@ -79,7 +80,7 @@ namespace GLEED2D.src.Pixma
                     TextureItem ti = (TextureItem)i;
                     module.setFlipHorizontally(ti.FlipHorizontally);
                     module.setFlipVertically(ti.FlipVertically);
-                    string filename = Path.GetFileNameWithoutExtension(ti.texture_fullpath);
+                    string filename = getFileName(ti);
                     int file_index = files.IndexOf(filename);
                     module.setImage(file_index, -1, i);
 
@@ -124,7 +125,7 @@ namespace GLEED2D.src.Pixma
             return new JArray((int[])array.ToArray(typeof(int)));
         }
 
-        public static JObject CreateTiles(Layer layer)
+        public static JObject CreateTiles(Layer layer, int nCellX, int nCellY)
         {
             JObject obj = new JObject();
             foreach (Item i in layer.Items)
@@ -134,9 +135,20 @@ namespace GLEED2D.src.Pixma
                     TextureItem ti = (TextureItem)i;
                     if (ti.texture_filename.ToUpper().IndexOf(NAME_MAP) != -1)
                     {
-                        obj.Add("x", (int)ti.Position.X);
-                        obj.Add("y", (int)ti.Position.Y);
-                        obj.Add("img", Path.GetFileNameWithoutExtension(ti.texture_fullpath));
+                        ModuleMap module = new ModuleMap();
+                        module.setPosition(i.Position, false, false);
+                        module.setScale(i.getScale());
+                        module.setRotation(i.getRotation());
+                        module.setFlipHorizontally(ti.FlipHorizontally);
+                        module.setFlipVertically(ti.FlipVertically);
+                        module.setImage(0, -1, i);
+
+                        obj.Add("nCellX", nCellX);
+                        obj.Add("nCellY", nCellY);
+                        obj.Add("width", ti.getTexture().Width);
+                        obj.Add("height", ti.getTexture().Height);
+                        obj.Add("img", Path.GetFileName(ti.texture_fullpath));
+                        obj.Add("bg", module.encode());
                         break;
                     }
                 }
@@ -165,7 +177,7 @@ namespace GLEED2D.src.Pixma
                     PixFrame frame = (PixFrame)i;
                     wObj.setFlipHorizontally(frame.FlipHorizontally);
                     wObj.setFlipVertically(frame.FlipVertically);
-                    string filename = Path.GetFileNameWithoutExtension(frame.texture_fullpath);
+                    string filename = Path.GetFileName(frame.texture_fullpath);
                     string key = filename + frame.FrameName;
                     if (mapping.ContainsKey(key))
                     {
@@ -217,7 +229,7 @@ namespace GLEED2D.src.Pixma
                     PixFrame frame = (PixFrame)i;
                     wObj.setFlipHorizontally(frame.FlipHorizontally);
                     wObj.setFlipVertically(frame.FlipVertically);
-                    string filename = Path.GetFileNameWithoutExtension(frame.texture_fullpath);
+                    string filename = getFileName(frame);
                     string key = filename + frame.FrameName;
                     if (mapping.ContainsKey(key))
                     {
@@ -281,6 +293,82 @@ namespace GLEED2D.src.Pixma
             Logger.Instance.log("getXlsData success!");
             return dictionary;
 
+        }
+
+
+        public static Vector2 GetMapSize(List<Layer> layers)
+        {
+            Vector2 mapsize = new Vector2();
+            foreach (Layer l in layers)
+            {
+                if (l.Name.ToUpper().IndexOf(Generator.LAYER_RESTRICTION) != -1)
+                {
+                    foreach (Item i in l.Items)
+                    {
+                        if (i is TextureItem)
+                        {
+                            TextureItem ti = (TextureItem)i;
+                            if (ti.texture_filename.ToUpper().IndexOf(NAME_MASK) != -1)
+                            {
+                                mapsize.X = mapsize.X < ti.pIsoCell.X ? ti.pIsoCell.X : mapsize.X;
+                                mapsize.Y = mapsize.Y < ti.pIsoCell.Y ? ti.pIsoCell.Y : mapsize.Y;
+                            }
+                        }
+                    }
+                }
+                else if (l.Name.ToUpper().IndexOf(Generator.LAYER_WORLD_OBJECT) != -1)
+                {
+                    foreach (Item i in l.Items)
+                    {
+                        if (i is TextureItem)
+                        {
+                            TextureItem ti = (TextureItem)i;
+                            if (ti.texture_filename.ToUpper().IndexOf(NAME_MASK) != -1)
+                            {
+                                mapsize.X = mapsize.X < ti.pIsoCell.X ? ti.pIsoCell.X : mapsize.X;
+                                mapsize.Y = mapsize.Y < ti.pIsoCell.Y ? ti.pIsoCell.Y : mapsize.Y;
+                            }
+                        }
+                    }
+                }
+                else if (l.Name.ToUpper().IndexOf(Generator.LAYER_ITEMS) != -1)
+                {
+                    foreach (Item i in l.Items)
+                    {
+                        if (i is TextureItem)
+                        {
+                            TextureItem ti = (TextureItem)i;
+                            if (ti.texture_filename.ToUpper().IndexOf(NAME_MASK) != -1)
+                            {
+                                mapsize.X = mapsize.X < ti.pIsoCell.X ? ti.pIsoCell.X : mapsize.X;
+                                mapsize.Y = mapsize.Y < ti.pIsoCell.Y ? ti.pIsoCell.Y : mapsize.Y;
+                            }
+                        }
+                    }
+                }
+            }
+            if (mapsize.X > mapsize.Y)
+            {
+                mapsize.X += 5;
+                mapsize.Y = mapsize.X;
+            }
+            else
+            {
+                mapsize.Y += 5;
+                mapsize.X = mapsize.Y;
+            }
+
+            return mapsize;
+        }
+
+        public static string getFileName(TextureItem ti)
+        {
+            if (ti is PixFrame)
+                return Path.GetFileNameWithoutExtension(ti.texture_fullpath);
+            else
+            {
+                return Path.GetFileName(ti.texture_fullpath);
+            }
         }
 
        
@@ -372,7 +460,7 @@ namespace GLEED2D.src.Pixma
         public void setImage(int file, int pixma, Item i)
         {
 
-            if (pixma > 0)
+            if (pixma >= 0)
             {
                 Img = new int[2];
                 Img[0] = file;

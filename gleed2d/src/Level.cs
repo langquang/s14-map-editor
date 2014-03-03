@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using GLEED2D.src.Utils;
+using NPOI.SS.Formula.Functions;
 
 
 namespace GLEED2D
@@ -325,6 +326,11 @@ namespace GLEED2D
             if (FlipHorizontally) effects |= SpriteEffects.FlipHorizontally;
             if (FlipVertically) effects |= SpriteEffects.FlipVertically;
             sb.Draw(texture, Position, null, TintColor, Rotation, Origin, Scale, effects, 0);
+        }
+
+        public Texture2D getTexture()
+        {
+            return _texture;
         }
     }
 

@@ -485,7 +485,8 @@ namespace GLEED2D
         public void saveLevel(String filename)
         {
             Editor.Instance.saveLevel(filename);
-            levelfilename = filename;
+            if (!Define.EXPORT_JSON)
+                levelfilename = filename;
             DirtyFlag = false;
 
             if (Constants.Instance.SaveLevelStartApplication)
@@ -1318,6 +1319,7 @@ namespace GLEED2D
             Define.EXPORT_JSON = true;
 
             SaveFileDialog dialog = new SaveFileDialog();
+            dialog.FileName = Editor.Instance.level.Name;
             dialog.Filter = "S14JSON Files (*.s14json)|*.s14json";
             if (dialog.ShowDialog() == DialogResult.OK) saveLevel(dialog.FileName);
 
