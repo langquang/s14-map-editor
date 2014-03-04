@@ -99,7 +99,7 @@ namespace GLEED2D.src.Pixma
 
             JObject json = new JObject();
             json.Add("imgs", new JArray((string[])files.ToArray(typeof(string))));
-            json.Add("pixs", new JArray((string[])pixmas.ToArray(typeof(string))));
+            json.Add("pixs", new JArray(GetUpperStrings(pixmas)));
             json.Add("list", entitys);
             Logger.Instance.log("CreateMapModules success!");
             return json;
@@ -358,6 +358,13 @@ namespace GLEED2D.src.Pixma
                 mapsize.X = mapsize.Y;
             }
 
+            if (mapsize.X < 30 || mapsize.Y < 30)
+            {
+                mapsize.X = 30;
+                mapsize.Y = 30;
+
+            }
+
             return mapsize;
         }
 
@@ -369,6 +376,17 @@ namespace GLEED2D.src.Pixma
             {
                 return Path.GetFileName(ti.texture_fullpath);
             }
+        }
+
+        public static string[] GetUpperStrings(ArrayList arrayList)
+        {
+            int length = arrayList.Count;
+            string[] result = new string[length];
+            for (int i = 0; i < length; i++)
+            {
+                result[i] = ((string) arrayList[i]).ToUpper();
+            }
+            return result;
         }
 
        
@@ -469,7 +487,7 @@ namespace GLEED2D.src.Pixma
             else
             {
                 Img = new int[1];
-                Img[0] = pixma;
+                Img[0] = file;
             }
 
             if (i is PixAnim)
