@@ -8,7 +8,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
 using System.Text.RegularExpressions;
-using NPOI.SS.Formula.Functions;
 
 
 namespace GLEED2D

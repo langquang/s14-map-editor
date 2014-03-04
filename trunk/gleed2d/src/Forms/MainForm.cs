@@ -476,7 +476,7 @@ namespace GLEED2D
         public void newLevel()
         {
             Application.DoEvents();
-            Level newlevel = new Level();
+            Level newlevel = Level.createS14Template();
             newlevel.EditorRelated.Version = Editor.Instance.Version;
             Editor.Instance.loadLevel(newlevel);
             levelfilename = "untitled";

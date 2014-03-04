@@ -42,6 +42,18 @@ namespace GLEED2D
             CustomProperties = new SerializableDictionary();
         }
 
+        public static Level createS14Template()
+        {
+            Level level = new Level();
+            level.Layers.Add(new Layer("Tiles"));
+            level.Layers.Add(new Layer("Modules"));
+            level.Layers.Add(new Layer("Decos"));
+            level.Layers.Add(new Layer("Restrictions"));
+            level.Layers.Add(new Layer("Objects"));
+            level.Layers.Add(new Layer("Items"));
+            return level;
+        }
+
         public static Level FromFile(string filename, ContentManager cm)
         {
             FileStream stream = File.Open(filename, FileMode.Open);
