@@ -111,6 +111,7 @@ namespace GLEED2D
                 JObject tiles = null;
                 JArray wObjs = null;
                 JArray items = null;
+                JArray players = null;
 
 
                 foreach (Layer l in Layers)
@@ -140,6 +141,10 @@ namespace GLEED2D
                     {
                         items = Generator.CreateItems(l);
                     }
+                    else if (l.Name.ToUpper().IndexOf(Generator.LAYER_PLAYER) != -1)
+                    {
+                        players = Generator.CreatePlayer(l);
+                    }
                 }
 
                 JObject map = new JObject();
@@ -149,6 +154,8 @@ namespace GLEED2D
                 map.Add(Generator.LAYER_TILE, tiles);
                 map.Add(Generator.LAYER_WORLD_OBJECT, wObjs);
                 map.Add(Generator.LAYER_ITEMS, items);
+                map.Add(Generator.LAYER_PLAYER, players);
+
 
                 using (StreamWriter outfile = new StreamWriter(filename))
                 {
