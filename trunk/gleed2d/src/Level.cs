@@ -51,6 +51,8 @@ namespace GLEED2D
             level.Layers.Add(new Layer("Restrictions"));
             level.Layers.Add(new Layer("Objects"));
             level.Layers.Add(new Layer("Items"));
+            level.Layers.Add(new Layer("Players"));
+
             return level;
         }
 

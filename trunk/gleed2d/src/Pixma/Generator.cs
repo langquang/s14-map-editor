@@ -22,8 +22,12 @@ namespace GLEED2D.src.Pixma
         public static string LAYER_RESTRICTION = "RESTRICTION";
         public static string LAYER_WORLD_OBJECT = "OBJECTS";
         public static string LAYER_ITEMS = "ITEMS";
+        public static string LAYER_PLAYER = "PLAYERS";
         public static string NAME_MASK = "MASK";
         public static string NAME_MAP = "MAP";
+        public static string NAME_PLAYER_1 = "PLAYER_1";
+        public static string NAME_PLAYER_2 = "PLAYER_2";
+
 
         //Xls
         public static int SHEET_CONSTANCE = 0;
@@ -125,6 +129,35 @@ namespace GLEED2D.src.Pixma
             return new JArray((int[])array.ToArray(typeof(int)));
         }
 
+        public static JArray CreatePlayer(Layer layer)
+        {
+            ArrayList array = new ArrayList();
+            foreach (Item i in layer.Items)
+            {
+                if (i is TextureItem)
+                {
+                    TextureItem ti = (TextureItem)i;
+                    String textname = ti.texture_filename.ToUpper();
+                    if (textname.IndexOf(NAME_PLAYER_1) != -1)
+                    {
+                        Vector2 cell = i.pIsoCell;
+                        array.Add((int) 1);
+                        array.Add((int)cell.X);
+                        array.Add((int)cell.Y);
+                    }
+                    else if (textname.IndexOf(NAME_PLAYER_2) != -1)
+                    {
+                        Vector2 cell = i.pIsoCell;
+                        array.Add((int)2);
+                        array.Add((int)cell.X);
+                        array.Add((int)cell.Y);
+                    }
+                }
+            }
+            Logger.Instance.log("CreateRestriction success!");
+            return new JArray((int[])array.ToArray(typeof(int)));
+        }
+
         public static JObject CreateTiles(Layer layer, int nCellX, int nCellY)
         {
             JObject obj = new JObject();
@@ -148,7 +181,7 @@ namespace GLEED2D.src.Pixma
                         obj.Add("width", ti.getTexture().Width);
                         obj.Add("height", ti.getTexture().Height);
                         obj.Add("img", Path.GetFileName(ti.texture_fullpath));
-                        obj.Add("bg", module.encode());
+                        obj.Add("pos", new JArray((int)i.Position.X, (int)i.Position.Y));
                         break;
                     }
                 }
